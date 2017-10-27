@@ -1,0 +1,2 @@
+include *.txt
+include src/utilidades/modelos/*.txt

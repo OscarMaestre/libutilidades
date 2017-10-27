@@ -1,0 +1,464 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>documentación de Modulo de utilidades para Python - 1.0</title>
+    
+    <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="_static/translations.js"></script>
+    <link rel="top" title="None" href="index.html#document-index" />
+   
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head>
+  <body role="document">  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="modulo-de-utilidades-para-python">
+<h1>Modulo de utilidades para Python<a class="headerlink" href="#modulo-de-utilidades-para-python" title="Enlazar permanentemente con este título">¶</a></h1>
+<p>Contents:</p>
+<div class="toctree-wrapper compound">
+</div>
+</div>
+<div class="section" id="clase-gestortelegram">
+<h1>Clase GestorTelegram<a class="headerlink" href="#clase-gestortelegram" title="Enlazar permanentemente con este título">¶</a></h1>
+<p>Un ejemplo de código</p>
+<dl class="class">
+<dt id="utilidades.mensajeria.telegram.GestorTelegram">
+<em class="property">class </em><code class="descclassname">utilidades.mensajeria.telegram.</code><code class="descname">GestorTelegram</code><span class="sig-paren">(</span><em>token</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/utilidades/mensajeria/telegram.html#GestorTelegram"><span class="viewcode-link">[fuente]</span></a><a class="headerlink" href="#utilidades.mensajeria.telegram.GestorTelegram" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Gestiona los mensajes de Telegram</p>
+<dl class="method">
+<dt id="utilidades.mensajeria.telegram.GestorTelegram.dar_de_alta">
+<code class="descname">dar_de_alta</code><span class="sig-paren">(</span><em>chat_id</em>, <em>resto_texto</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/utilidades/mensajeria/telegram.html#GestorTelegram.dar_de_alta"><span class="viewcode-link">[fuente]</span></a><a class="headerlink" href="#utilidades.mensajeria.telegram.GestorTelegram.dar_de_alta" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Da de alta a una persona</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="utilidades.mensajeria.telegram.GestorTelegram.enviar_mensaje_alta_no_realizada">
+<code class="descname">enviar_mensaje_alta_no_realizada</code><span class="sig-paren">(</span><em>chat_id</em>, <em>dni</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/utilidades/mensajeria/telegram.html#GestorTelegram.enviar_mensaje_alta_no_realizada"><span class="viewcode-link">[fuente]</span></a><a class="headerlink" href="#utilidades.mensajeria.telegram.GestorTelegram.enviar_mensaje_alta_no_realizada" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Envia el mensaje que indica que el alta no se ha hecho</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="utilidades.mensajeria.telegram.GestorTelegram.enviar_mensaje_alta_realizada">
+<code class="descname">enviar_mensaje_alta_realizada</code><span class="sig-paren">(</span><em>chat_id</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/utilidades/mensajeria/telegram.html#GestorTelegram.enviar_mensaje_alta_realizada"><span class="viewcode-link">[fuente]</span></a><a class="headerlink" href="#utilidades.mensajeria.telegram.GestorTelegram.enviar_mensaje_alta_realizada" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Envia el mensaje que indica que el alta no se ha hecho</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="utilidades.mensajeria.telegram.GestorTelegram.enviar_mensaje_ayuda">
+<code class="descname">enviar_mensaje_ayuda</code><span class="sig-paren">(</span><em>chat_id</em>, <em>dni</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/utilidades/mensajeria/telegram.html#GestorTelegram.enviar_mensaje_ayuda"><span class="viewcode-link">[fuente]</span></a><a class="headerlink" href="#utilidades.mensajeria.telegram.GestorTelegram.enviar_mensaje_ayuda" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Envia el mensaje de ayuda estándar</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="utilidades.mensajeria.telegram.GestorTelegram.getUpdates">
+<code class="descname">getUpdates</code><span class="sig-paren">(</span><em>offset=-1</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/utilidades/mensajeria/telegram.html#GestorTelegram.getUpdates"><span class="viewcode-link">[fuente]</span></a><a class="headerlink" href="#utilidades.mensajeria.telegram.GestorTelegram.getUpdates" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Descarga las actualizaciones en forma de una lista de objetos Update.</p>
+<p>Argumentos:</p>
+<blockquote>
+<div>offset &#8211; Identificador del primer update_id. Debería ser el último recogido +1</div></blockquote>
+<p>Devuelve</p>
+<blockquote>
+<div><p>Una lista de updates si todo va bien</p>
+<p>None si no funcionó</p>
+</div></blockquote>
+</dd></dl>
+
+<dl class="method">
+<dt id="utilidades.mensajeria.telegram.GestorTelegram.sendMessage">
+<code class="descname">sendMessage</code><span class="sig-paren">(</span><em>chat_id</em>, <em>text</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/utilidades/mensajeria/telegram.html#GestorTelegram.sendMessage"><span class="viewcode-link">[fuente]</span></a><a class="headerlink" href="#utilidades.mensajeria.telegram.GestorTelegram.sendMessage" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Envia un mensaje</p>
+<p>Parametros:</p>
+<blockquote>
+<div><p>chat_id &#8211; id del chat al que enviar el texto</p>
+<p>text &#8211; texto a enviar</p>
+</div></blockquote>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="clase-updates">
+<h1>Clase Updates<a class="headerlink" href="#clase-updates" title="Enlazar permanentemente con este título">¶</a></h1>
+<dl class="class">
+<dt id="utilidades.mensajeria.telegram.Update">
+<em class="property">class </em><code class="descclassname">utilidades.mensajeria.telegram.</code><code class="descname">Update</code><span class="sig-paren">(</span><em>objeto_json</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/utilidades/mensajeria/telegram.html#Update"><span class="viewcode-link">[fuente]</span></a><a class="headerlink" href="#utilidades.mensajeria.telegram.Update" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Actualización recibida</p>
+<dl class="method">
+<dt id="utilidades.mensajeria.telegram.Update.es_alta">
+<code class="descname">es_alta</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/utilidades/mensajeria/telegram.html#Update.es_alta"><span class="viewcode-link">[fuente]</span></a><a class="headerlink" href="#utilidades.mensajeria.telegram.Update.es_alta" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Nos dice si un mensaje recibido es un alta o no.</p>
+<dl class="docutils">
+<dt>Devuelve</dt>
+<dd><p class="first">(True, resto_mensaje) &#8211; Si es un mensaje de alta</p>
+<p class="last">(False, None) &#8211; Si no es un mensaje de alta</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="clase-procesadorpdf">
+<h1>Clase ProcesadorPDF<a class="headerlink" href="#clase-procesadorpdf" title="Enlazar permanentemente con este título">¶</a></h1>
+<dl class="class">
+<dt id="utilidades.ficheros.ProcesadorPDF.ProcesadorPDF">
+<em class="property">class </em><code class="descclassname">utilidades.ficheros.ProcesadorPDF.</code><code class="descname">ProcesadorPDF</code><a class="reference internal" href="_modules/utilidades/ficheros/ProcesadorPDF.html#ProcesadorPDF"><span class="viewcode-link">[fuente]</span></a><a class="headerlink" href="#utilidades.ficheros.ProcesadorPDF.ProcesadorPDF" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Procesa archivos PDF convertidos a texto</p>
+<dl class="method">
+<dt id="utilidades.ficheros.ProcesadorPDF.ProcesadorPDF.abrir_fichero_txt">
+<code class="descname">abrir_fichero_txt</code><span class="sig-paren">(</span><em>nombre_fichero_txt</em>, <em>codificacion='utf-8'</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/utilidades/ficheros/ProcesadorPDF.html#ProcesadorPDF.abrir_fichero_txt"><span class="viewcode-link">[fuente]</span></a><a class="headerlink" href="#utilidades.ficheros.ProcesadorPDF.ProcesadorPDF.abrir_fichero_txt" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Abre un fichero txt para empezar a procesarlo</p>
+<p>Argumentos:</p>
+<blockquote>
+<div><p>nombre_fichero_txt &#8211; nombre del fichero txt</p>
+<p>codificacion &#8211; codificación del fichero</p>
+</div></blockquote>
+</dd></dl>
+
+<dl class="method">
+<dt id="utilidades.ficheros.ProcesadorPDF.ProcesadorPDF.avanzar_buscando_codigo_centro">
+<code class="descname">avanzar_buscando_codigo_centro</code><span class="sig-paren">(</span><em>con_c=False</em>, <em>debe_estar_en_misma_linea=True</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/utilidades/ficheros/ProcesadorPDF.html#ProcesadorPDF.avanzar_buscando_codigo_centro"><span class="viewcode-link">[fuente]</span></a><a class="headerlink" href="#utilidades.ficheros.ProcesadorPDF.ProcesadorPDF.avanzar_buscando_codigo_centro" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Avanza el procesador buscando un codigo de centro</p>
+<p>Argumentos:</p>
+<blockquote>
+<div><p>con_c &#8211; Si es True se busca un codigo acabado en &#8216;C&#8217;, si es False se busca sin &#8216;C&#8217; al final</p>
+<p>debe_estar_en_misma_linea &#8211; Si es True el procesador se mantiene siempre en la misma linea,
+si es False se le permite avanzar hacia delante</p>
+</div></blockquote>
+<p>Devuelve:</p>
+<blockquote>
+<div>Un código de centro o ProcesadorPDF.PATRON_NO_ENCONTRADO</div></blockquote>
+</dd></dl>
+
+<dl class="method">
+<dt id="utilidades.ficheros.ProcesadorPDF.ProcesadorPDF.avanzar_buscando_patron">
+<code class="descname">avanzar_buscando_patron</code><span class="sig-paren">(</span><em>expr_regular</em>, <em>debe_estar_en_misma_linea=True</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/utilidades/ficheros/ProcesadorPDF.html#ProcesadorPDF.avanzar_buscando_patron"><span class="viewcode-link">[fuente]</span></a><a class="headerlink" href="#utilidades.ficheros.ProcesadorPDF.ProcesadorPDF.avanzar_buscando_patron" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Hace avanzar el procesador buscando un cierto patrón</p>
+<p>Argumentos:</p>
+<blockquote>
+<div><p>expr_regular &#8211; patrón a buscar (ya debe estar compilado)</p>
+<p>debe_estar_en_misma_linea &#8211; True por defecto, obliga a buscar sin avanzar a la siguiente línea. Si
+se pone a False y el patrón no está se devuelve ProcesadorPDF.PATRON_NO_ENCONTRADO</p>
+</div></blockquote>
+<p>Devuelve:</p>
+<blockquote>
+<div>(ini, fin, texto) &#8211; Tupla con 3 elementos que pueden ser ProcesadorPDF.PATRON_NO_ENCONTRADO</div></blockquote>
+</dd></dl>
+
+<dl class="method">
+<dt id="utilidades.ficheros.ProcesadorPDF.ProcesadorPDF.convertir_a_txt">
+<code class="descname">convertir_a_txt</code><span class="sig-paren">(</span><em>nombre_pdf</em>, <em>evitar_reconversiones=True</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/utilidades/ficheros/ProcesadorPDF.html#ProcesadorPDF.convertir_a_txt"><span class="viewcode-link">[fuente]</span></a><a class="headerlink" href="#utilidades.ficheros.ProcesadorPDF.ProcesadorPDF.convertir_a_txt" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Convierte un archivo PDF a texto</p>
+<p>Argumentos:</p>
+<blockquote>
+<div><p>nombre_pdf &#8211; Nombre del fichero PDF</p>
+<p>evitar_reconversiones &#8211; False por defecto, evita reconvertir un fichero si ya se pasó de PDF a TXT</p>
+</div></blockquote>
+<p>Devuelve:</p>
+<blockquote>
+<div>nombre_txt &#8211; Nombre del fichero TXT (sin importar si ha sido reconvertido)</div></blockquote>
+</dd></dl>
+
+<dl class="method">
+<dt id="utilidades.ficheros.ProcesadorPDF.ProcesadorPDF.convertir_decimal_baremo_a_float">
+<code class="descname">convertir_decimal_baremo_a_float</code><span class="sig-paren">(</span><em>str_decimal</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/utilidades/ficheros/ProcesadorPDF.html#ProcesadorPDF.convertir_decimal_baremo_a_float"><span class="viewcode-link">[fuente]</span></a><a class="headerlink" href="#utilidades.ficheros.ProcesadorPDF.ProcesadorPDF.convertir_decimal_baremo_a_float" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Dado un decimal de los que aparecen en los baremos de
+los concursos de traslados lo convierte a un tipo
+float de Python</p>
+<p>Argumentos:</p>
+<blockquote>
+<div>str_decimal &#8211; cadena con el decimal a convertir</div></blockquote>
+</dd></dl>
+
+<dl class="method">
+<dt id="utilidades.ficheros.ProcesadorPDF.ProcesadorPDF.eof">
+<code class="descname">eof</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/utilidades/ficheros/ProcesadorPDF.html#ProcesadorPDF.eof"><span class="viewcode-link">[fuente]</span></a><a class="headerlink" href="#utilidades.ficheros.ProcesadorPDF.ProcesadorPDF.eof" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Nos dice si se ha llegado al final del fichero</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="utilidades.ficheros.ProcesadorPDF.ProcesadorPDF.expr_regular_codigo_centro_con_c">
+<code class="descname">expr_regular_codigo_centro_con_c</code><em class="property"> = None</em><a class="headerlink" href="#utilidades.ficheros.ProcesadorPDF.ProcesadorPDF.expr_regular_codigo_centro_con_c" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Expresion regular para códigos de centro buscando la letra C final</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="utilidades.ficheros.ProcesadorPDF.ProcesadorPDF.expr_regular_codigo_centro_sin_c">
+<code class="descname">expr_regular_codigo_centro_sin_c</code><em class="property"> = None</em><a class="headerlink" href="#utilidades.ficheros.ProcesadorPDF.ProcesadorPDF.expr_regular_codigo_centro_sin_c" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Expresion regular para códigos de centro sin buscar la letra C final</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="utilidades.ficheros.ProcesadorPDF.ProcesadorPDF.expr_regular_dni">
+<code class="descname">expr_regular_dni</code><em class="property"> = None</em><a class="headerlink" href="#utilidades.ficheros.ProcesadorPDF.ProcesadorPDF.expr_regular_dni" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Expresion regular para el dni</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="utilidades.ficheros.ProcesadorPDF.ProcesadorPDF.expr_regular_nombre">
+<code class="descname">expr_regular_nombre</code><em class="property"> = None</em><a class="headerlink" href="#utilidades.ficheros.ProcesadorPDF.ProcesadorPDF.expr_regular_nombre" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Expresion regular para el nombre de persona [A-ZÁÉÍÓÚÜÑ ]+,[A-ZÁÉÍÓÚÜÑ ]</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="utilidades.ficheros.ProcesadorPDF.ProcesadorPDF.extraer_dni">
+<code class="descname">extraer_dni</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/utilidades/ficheros/ProcesadorPDF.html#ProcesadorPDF.extraer_dni"><span class="viewcode-link">[fuente]</span></a><a class="headerlink" href="#utilidades.ficheros.ProcesadorPDF.ProcesadorPDF.extraer_dni" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Extrae el dni de la linea actual</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="utilidades.ficheros.ProcesadorPDF.ProcesadorPDF.fila_anterior">
+<code class="descname">fila_anterior</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/utilidades/ficheros/ProcesadorPDF.html#ProcesadorPDF.fila_anterior"><span class="viewcode-link">[fuente]</span></a><a class="headerlink" href="#utilidades.ficheros.ProcesadorPDF.ProcesadorPDF.fila_anterior" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Retrocede a la fila anterior</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="utilidades.ficheros.ProcesadorPDF.ProcesadorPDF.get_especialidades">
+<code class="descname">get_especialidades</code><span class="sig-paren">(</span><em>linea</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/utilidades/ficheros/ProcesadorPDF.html#ProcesadorPDF.get_especialidades"><span class="viewcode-link">[fuente]</span></a><a class="headerlink" href="#utilidades.ficheros.ProcesadorPDF.ProcesadorPDF.get_especialidades" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Devuelve la lista de posible especialidades de maestros</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="utilidades.ficheros.ProcesadorPDF.ProcesadorPDF.get_linea_actual">
+<code class="descname">get_linea_actual</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/utilidades/ficheros/ProcesadorPDF.html#ProcesadorPDF.get_linea_actual"><span class="viewcode-link">[fuente]</span></a><a class="headerlink" href="#utilidades.ficheros.ProcesadorPDF.ProcesadorPDF.get_linea_actual" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Devuelve el texto con la linea actual</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="utilidades.ficheros.ProcesadorPDF.ProcesadorPDF.get_linea_anterior">
+<code class="descname">get_linea_anterior</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/utilidades/ficheros/ProcesadorPDF.html#ProcesadorPDF.get_linea_anterior"><span class="viewcode-link">[fuente]</span></a><a class="headerlink" href="#utilidades.ficheros.ProcesadorPDF.ProcesadorPDF.get_linea_anterior" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Devuelve el texto con la linea anterior a la actual</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="utilidades.ficheros.ProcesadorPDF.ProcesadorPDF.get_linea_siguiente">
+<code class="descname">get_linea_siguiente</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/utilidades/ficheros/ProcesadorPDF.html#ProcesadorPDF.get_linea_siguiente"><span class="viewcode-link">[fuente]</span></a><a class="headerlink" href="#utilidades.ficheros.ProcesadorPDF.ProcesadorPDF.get_linea_siguiente" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Devuelve el texto con la linea siguiente a la actual</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="utilidades.ficheros.ProcesadorPDF.ProcesadorPDF.get_nombre_persona">
+<code class="descname">get_nombre_persona</code><span class="sig-paren">(</span><em>linea</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/utilidades/ficheros/ProcesadorPDF.html#ProcesadorPDF.get_nombre_persona"><span class="viewcode-link">[fuente]</span></a><a class="headerlink" href="#utilidades.ficheros.ProcesadorPDF.ProcesadorPDF.get_nombre_persona" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Indica si se encuentra un nombre de persona</p>
+<p>Argumentos</p>
+<blockquote>
+<div>linea &#8211; Linea en la que se busca el nombre de persona</div></blockquote>
+</dd></dl>
+
+<dl class="method">
+<dt id="utilidades.ficheros.ProcesadorPDF.ProcesadorPDF.linea_actual_contiene_codigo_centro">
+<code class="descname">linea_actual_contiene_codigo_centro</code><span class="sig-paren">(</span><em>con_c=False</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/utilidades/ficheros/ProcesadorPDF.html#ProcesadorPDF.linea_actual_contiene_codigo_centro"><span class="viewcode-link">[fuente]</span></a><a class="headerlink" href="#utilidades.ficheros.ProcesadorPDF.ProcesadorPDF.linea_actual_contiene_codigo_centro" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Indica si la linea actual contiene un codigo de centro</p>
+<p>Argumentos</p>
+<blockquote>
+<div>con_c &#8211; Nos dice si hay que buscar con C al final o no</div></blockquote>
+<p>Devuelve:</p>
+<blockquote>
+<div>(inicio, fin, texto) &#8211; Tupla con la posicion de inicio, la de final y el texto
+encontrado. Si no aparece nada se devuelve la constante ProcesadorPDF.PATRON_NO_ENCONTRADO</div></blockquote>
+</dd></dl>
+
+<dl class="method">
+<dt id="utilidades.ficheros.ProcesadorPDF.ProcesadorPDF.linea_actual_contiene_codigo_localidad">
+<code class="descname">linea_actual_contiene_codigo_localidad</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/utilidades/ficheros/ProcesadorPDF.html#ProcesadorPDF.linea_actual_contiene_codigo_localidad"><span class="viewcode-link">[fuente]</span></a><a class="headerlink" href="#utilidades.ficheros.ProcesadorPDF.ProcesadorPDF.linea_actual_contiene_codigo_localidad" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><blockquote>
+<div>Indica si la linea actual contiene un codigo de localidad</div></blockquote>
+<p>Devuelve:</p>
+<blockquote>
+<div>(inicio, fin, texto) &#8211; Tupla con la posicion de inicio, la de final y el texto
+encontrado. Si no aparece nada se devuelve la constante ProcesadorPDF.PATRON_NO_ENCONTRADO</div></blockquote>
+</dd></dl>
+
+<dl class="method">
+<dt id="utilidades.ficheros.ProcesadorPDF.ProcesadorPDF.linea_actual_contiene_patron">
+<code class="descname">linea_actual_contiene_patron</code><span class="sig-paren">(</span><em>expr_regular</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/utilidades/ficheros/ProcesadorPDF.html#ProcesadorPDF.linea_actual_contiene_patron"><span class="viewcode-link">[fuente]</span></a><a class="headerlink" href="#utilidades.ficheros.ProcesadorPDF.ProcesadorPDF.linea_actual_contiene_patron" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Indica si la linea actual contiene una cierta expresion regular</p>
+<p>Argumentos:</p>
+<blockquote>
+<div>expr_regular &#8211; expresión regular ya compilada</div></blockquote>
+<p>Devuelve:</p>
+<blockquote>
+<div>(inicio, fin, texto) &#8211; Tupla con la posicion de inicio, la de final y el texto
+encontrado. Si no aparece nada se devuelve la constante ProcesadorPDF.PATRON_NO_ENCONTRADO</div></blockquote>
+</dd></dl>
+
+<dl class="method">
+<dt id="utilidades.ficheros.ProcesadorPDF.ProcesadorPDF.linea_contiene_patron">
+<code class="descname">linea_contiene_patron</code><span class="sig-paren">(</span><em>expr_regular</em>, <em>linea</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/utilidades/ficheros/ProcesadorPDF.html#ProcesadorPDF.linea_contiene_patron"><span class="viewcode-link">[fuente]</span></a><a class="headerlink" href="#utilidades.ficheros.ProcesadorPDF.ProcesadorPDF.linea_contiene_patron" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Dice si una linea contiene un patron</p>
+<p>Argumentos:</p>
+<blockquote>
+<div><p>expr_regular &#8211; Expresión regular ya compilada</p>
+<p>linea &#8211; línea en la que buscar el texto</p>
+</div></blockquote>
+<p>Devuelve:</p>
+<blockquote>
+<div>(inicio, fin, texto) &#8211; Tupla con la posicion de inicio, la de final y el texto
+encontrado. Si no aparece nada se devuelve la constante ProcesadorPDF.PATRON_NO_ENCONTRADO</div></blockquote>
+</dd></dl>
+
+<dl class="method">
+<dt id="utilidades.ficheros.ProcesadorPDF.ProcesadorPDF.retroceder_linea">
+<code class="descname">retroceder_linea</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/utilidades/ficheros/ProcesadorPDF.html#ProcesadorPDF.retroceder_linea"><span class="viewcode-link">[fuente]</span></a><a class="headerlink" href="#utilidades.ficheros.ProcesadorPDF.ProcesadorPDF.retroceder_linea" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Retrocede a la fila anterior</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="utilidades.ficheros.ProcesadorPDF.ProcesadorPDF.saltar_linea">
+<code class="descname">saltar_linea</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/utilidades/ficheros/ProcesadorPDF.html#ProcesadorPDF.saltar_linea"><span class="viewcode-link">[fuente]</span></a><a class="headerlink" href="#utilidades.ficheros.ProcesadorPDF.ProcesadorPDF.saltar_linea" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Salta a la linea siguiente</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="utilidades.ficheros.ProcesadorPDF.ProcesadorPDF.siguiente_fila">
+<code class="descname">siguiente_fila</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/utilidades/ficheros/ProcesadorPDF.html#ProcesadorPDF.siguiente_fila"><span class="viewcode-link">[fuente]</span></a><a class="headerlink" href="#utilidades.ficheros.ProcesadorPDF.ProcesadorPDF.siguiente_fila" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Avanza a la siguiente fila de texto</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="utilidades.ficheros.ProcesadorPDF.ProcesadorPDF.siguiente_linea">
+<code class="descname">siguiente_linea</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/utilidades/ficheros/ProcesadorPDF.html#ProcesadorPDF.siguiente_linea"><span class="viewcode-link">[fuente]</span></a><a class="headerlink" href="#utilidades.ficheros.ProcesadorPDF.ProcesadorPDF.siguiente_linea" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Devuelve la siguiente linea</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="clase-gestorficheros">
+<h1>Clase GestorFicheros<a class="headerlink" href="#clase-gestorficheros" title="Enlazar permanentemente con este título">¶</a></h1>
+<dl class="class">
+<dt id="utilidades.ficheros.GestorFicheros.GestorFicheros">
+<em class="property">class </em><code class="descclassname">utilidades.ficheros.GestorFicheros.</code><code class="descname">GestorFicheros</code><a class="reference internal" href="_modules/utilidades/ficheros/GestorFicheros.html#GestorFicheros"><span class="viewcode-link">[fuente]</span></a><a class="headerlink" href="#utilidades.ficheros.GestorFicheros.GestorFicheros" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Simplica las operaciones con ficheros</p>
+<dl class="method">
+<dt id="utilidades.ficheros.GestorFicheros.GestorFicheros.ejecutar_comando">
+<code class="descname">ejecutar_comando</code><span class="sig-paren">(</span><em>comando</em>, <em>fichero</em>, <em>*args</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/utilidades/ficheros/GestorFicheros.html#GestorFicheros.ejecutar_comando"><span class="viewcode-link">[fuente]</span></a><a class="headerlink" href="#utilidades.ficheros.GestorFicheros.GestorFicheros.ejecutar_comando" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Ejecuta un comando</p>
+<p>Argumentos:</p>
+<blockquote>
+<div><p>comando &#8211; nombre del comando a ejecutar (sin ./)</p>
+<p>fichero &#8211; parametro obligatorio, poner &#8220;&#8221; si es necesario</p>
+<p>args &#8211; resto de parámetros</p>
+</div></blockquote>
+</dd></dl>
+
+<dl class="method">
+<dt id="utilidades.ficheros.GestorFicheros.GestorFicheros.existe_fichero">
+<code class="descname">existe_fichero</code><span class="sig-paren">(</span><em>nombre_fichero</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/utilidades/ficheros/GestorFicheros.html#GestorFicheros.existe_fichero"><span class="viewcode-link">[fuente]</span></a><a class="headerlink" href="#utilidades.ficheros.GestorFicheros.GestorFicheros.existe_fichero" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Nos dice si un fichero existe o no</p>
+<p>Argumentos:</p>
+<blockquote>
+<div>nombre_fichero &#8211; Nombre del fichero a comprobar</div></blockquote>
+<p>Devuelve</p>
+<blockquote>
+<div><p>True &#8211; si el fichero existe</p>
+<p>False &#8211; si el fichero no existe</p>
+</div></blockquote>
+</dd></dl>
+
+<dl class="method">
+<dt id="utilidades.ficheros.GestorFicheros.GestorFicheros.get_lineas_fichero">
+<code class="descname">get_lineas_fichero</code><span class="sig-paren">(</span><em>nombre_fichero</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/utilidades/ficheros/GestorFicheros.html#GestorFicheros.get_lineas_fichero"><span class="viewcode-link">[fuente]</span></a><a class="headerlink" href="#utilidades.ficheros.GestorFicheros.GestorFicheros.get_lineas_fichero" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Leer las lineas de un fichero</p>
+<p>Argumentos:</p>
+<blockquote>
+<div>nombre_fichero &#8211; nombre del fichero a leer</div></blockquote>
+<p>Devuelve:</p>
+<blockquote>
+<div>lista &#8211; una lista con todas las lineas del fichero sin fin de linea (se usa strip)</div></blockquote>
+</dd></dl>
+
+<dl class="method">
+<dt id="utilidades.ficheros.GestorFicheros.GestorFicheros.leer_fichero">
+<code class="descname">leer_fichero</code><span class="sig-paren">(</span><em>nombre_fichero</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/utilidades/ficheros/GestorFicheros.html#GestorFicheros.leer_fichero"><span class="viewcode-link">[fuente]</span></a><a class="headerlink" href="#utilidades.ficheros.GestorFicheros.GestorFicheros.leer_fichero" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Leer todo un fichero</p>
+<p>Argumentos:</p>
+<blockquote>
+<div>nombre_fichero &#8211; nombre del fichero a leer</div></blockquote>
+<p>Devuelve:</p>
+<blockquote>
+<div>cadena &#8211; una cadena con todo el fichero completo</div></blockquote>
+</dd></dl>
+
+<dl class="method">
+<dt id="utilidades.ficheros.GestorFicheros.GestorFicheros.leer_linea_fichero">
+<code class="descname">leer_linea_fichero</code><span class="sig-paren">(</span><em>num_linea</em>, <em>nombre_fichero</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/utilidades/ficheros/GestorFicheros.html#GestorFicheros.leer_linea_fichero"><span class="viewcode-link">[fuente]</span></a><a class="headerlink" href="#utilidades.ficheros.GestorFicheros.GestorFicheros.leer_linea_fichero" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Devuelve una linea de un fichero.</p>
+<p>Argumentos:</p>
+<blockquote>
+<div><p>num_linea &#8211; Numero de línea a leer</p>
+<p>nombre_fichero &#8211; Cadena con la ruta del fichero a leer</p>
+</div></blockquote>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="indices-and-tables">
+<h1>Indices and tables<a class="headerlink" href="#indices-and-tables" title="Enlazar permanentemente con este título">¶</a></h1>
+<ul class="simple">
+<li><a class="reference internal" href="genindex.html"><span>Índice</span></a></li>
+<li><a class="reference internal" href="py-modindex.html"><span>Índice de Módulos</span></a></li>
+<li><a class="reference internal" href="search.html"><span>Página de Búsqueda</span></a></li>
+</ul>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="index.html#document-index">Tabla de Contenidos</a></h3>
+  <ul class="simple">
+</ul>
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="index.html#document-index">Documentation overview</a><ul>
+  </ul></li>
+</ul>
+</div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2016, None.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.3.6</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.7</a>
+      
+    </div>
+
+    
+
+    
+  </body>
+</html>
