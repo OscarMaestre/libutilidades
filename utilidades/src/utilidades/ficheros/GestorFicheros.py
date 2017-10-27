@@ -220,11 +220,12 @@ class GestorFicheros(object):
             self.anadir_a_fichero("COMMIT TRANSACTION;", archivo_sql_resultado)
     
         
-    def descargar_fichero(self, url, nombre_fichero_destino):
+    def descargar_fichero(self, url, nombre_fichero_destino, codificacion="utf-8"):
         peticion = requests.get ( url )
-        descriptor=open (nombre_fichero_destino, "w")
+        descriptor=open (nombre_fichero_destino, "w", encoding=codificacion)
         descriptor.write ( peticion.text )
         descriptor.close()
+        
     def rellenar_fichero_plantilla(self, fichero_plantilla, diccionario,  fichero_salida=None):
         
         texto_plantilla=self.leer_fichero(fichero_plantilla)
