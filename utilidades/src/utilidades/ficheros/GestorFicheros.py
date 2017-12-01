@@ -234,4 +234,26 @@ class GestorFicheros(object):
         if fichero_salida!=None:
             self.escribir_en_fichero ( plantilla_rellena, fichero_salida)
         return plantilla_rellena
-        
+    
+    
+    #Funcion para contar las líneas de un fichero con rapidez
+    
+    def get_num_lineas_fichero(self, filename):
+        f = open(filename)
+        try:
+            lines = 1
+            buf_size = 1024 * 1024
+            read_f = f.read # loop optimization
+            buf = read_f(buf_size)
+    
+            # Empty file
+            if not buf:
+                return 0
+    
+            while buf:
+                lines += buf.count('\n')
+                buf = read_f(buf_size)
+    
+            return lines
+        finally:
+            f.close()
