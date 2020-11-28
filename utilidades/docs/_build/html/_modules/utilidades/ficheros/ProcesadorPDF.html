@@ -1,0 +1,486 @@
+
+<!DOCTYPE html>
+
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>utilidades.ficheros.ProcesadorPDF &#8212; documentación de Modulo de utilidades para Python - 1.0</title>
+    <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../../../_static/alabaster.css" type="text/css" />
+    <script id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
+    <script src="../../../_static/jquery.js"></script>
+    <script src="../../../_static/underscore.js"></script>
+    <script src="../../../_static/doctools.js"></script>
+    <script src="../../../_static/language_data.js"></script>
+    <script src="../../../_static/translations.js"></script>
+    <link rel="index" title="Índice" href="../../../genindex.html" />
+    <link rel="search" title="Búsqueda" href="../../../search.html" />
+   
+  <link rel="stylesheet" href="../../../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <h1>Código fuente para utilidades.ficheros.ProcesadorPDF</h1><div class="highlight"><pre>
+<span></span><span class="ch">#!/usr/bin/env python3</span>
+
+<span class="kn">from</span> <span class="nn">.GestorFicheros</span> <span class="k">import</span> <span class="n">GestorFicheros</span>
+<span class="kn">import</span> <span class="nn">re</span>
+
+<div class="viewcode-block" id="ProcesadorPDF"><a class="viewcode-back" href="../../../index.html#utilidades.ficheros.ProcesadorPDF.ProcesadorPDF">[documentos]</a><span class="k">class</span> <span class="nc">ProcesadorPDF</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot; Procesa archivos PDF convertidos a texto&quot;&quot;&quot;</span>
+    
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span> <span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">CONVERTIR</span><span class="o">=</span><span class="s2">&quot;pdftotext -layout -nopgbrk &quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">PATRON_NO_ENCONTRADO</span><span class="o">=</span><span class="s2">&quot;XxXxXxX&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">FIN_DE_FICHERO</span><span class="o">=</span><span class="kc">False</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">DECIMAL_NO_ENCONTRADO</span><span class="o">=</span><span class="s2">&quot;xxxxxxxxxxx&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">DECIMAL_NO_CONCORDANTE</span><span class="o">=</span><span class="s2">&quot;zzzzzzzzzzzzz&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">gf</span><span class="o">=</span><span class="n">GestorFicheros</span><span class="p">()</span>
+            
+        <span class="n">re_dni</span><span class="o">=</span><span class="s2">&quot;X?[0-9]{7,8}[A-Z]&quot;</span>
+        
+        <span class="bp">self</span><span class="o">.</span><span class="n">expr_regular_dni</span><span class="o">=</span><span class="n">re</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="n">re_dni</span><span class="p">)</span>
+        <span class="sd">&quot;&quot;&quot;Expresion regular para el dni&quot;&quot;&quot;</span>
+        
+        <span class="n">re_decimales_baremo</span><span class="o">=</span><span class="s2">&quot;[0-9]{1,3}[\,|\.][0-9]</span><span class="si">{4}</span><span class="s2">&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">expr_regular_decimales</span><span class="o">=</span><span class="n">re</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="n">re_decimales_baremo</span><span class="p">)</span>
+        
+        <span class="n">re_nota_oposicion</span><span class="o">=</span><span class="s2">&quot;([0-9]{1,2}\.[0-9]{1,4})&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">expr_regular_nota_oposicion</span><span class="o">=</span><span class="n">re</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="n">re_nota_oposicion</span><span class="p">)</span>
+        
+        <span class="n">re_anio</span><span class="o">=</span><span class="s2">&quot;(19|20)([0-9]</span><span class="si">{2}</span><span class="s2">)&quot;</span>
+        <span class="c1">#re_anio=&quot; [0-9]{4} &quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">expr_regular_anio</span><span class="o">=</span><span class="n">re</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="n">re_anio</span><span class="p">)</span>
+        
+        <span class="n">re_lista_especialidades_maestros</span><span class="o">=</span><span class="s2">&quot;( [0-9]</span><span class="si">{3}</span><span class="s2">)+&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">expr_regular_lista_especialidades</span><span class="o">=</span><span class="n">re</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="n">re_lista_especialidades_maestros</span><span class="p">)</span>
+        
+        <span class="n">re_centro_baremo_traslados</span><span class="o">=</span><span class="s2">&quot;[0-9]</span><span class="si">{8}</span><span class="s2">&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">expr_regular_centro_baremo_traslados</span><span class="o">=</span><span class="n">re</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="n">re_centro_baremo_traslados</span><span class="p">)</span>
+        
+        <span class="n">re_resulta</span><span class="o">=</span><span class="s2">&quot;[0-9]</span><span class="si">{8}</span><span class="s2"> [0-9]</span><span class="si">{3}</span><span class="s2">&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">expr_regular_resulta</span><span class="o">=</span><span class="n">re</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="n">re_resulta</span><span class="p">)</span>
+        
+        
+        
+        <span class="n">re_cifras_en_plantillas</span><span class="o">=</span><span class="s2">&quot;(\-|[0-9]+)&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">expr_regular_cifras_en_plantillas</span><span class="o">=</span><span class="n">re</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="n">re_cifras_en_plantillas</span><span class="p">)</span>
+        
+        <span class="n">re_cuerpo_plaza_no_maestros</span><span class="o">=</span><span class="s2">&quot;CUE: (?P&lt;cuerpo&gt;059[0-9])[ ]+ PLZ:[ ]+(?P&lt;plaza&gt;[0-9]+)&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">expr_regular_cuerpo_no_maestros</span><span class="o">=</span><span class="n">re</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="n">re_cuerpo_plaza_no_maestros</span><span class="p">)</span>
+        
+        <span class="n">re_cuerpo_plaza_maestros</span><span class="o">=</span><span class="s2">&quot;ESPEC\.:[ ]+(?P&lt;especialidad&gt;[0-9]</span><span class="si">{3}</span><span class="s2">)&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">expr_regular_cuerpo_maestros</span><span class="o">=</span><span class="n">re</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="n">re_cuerpo_plaza_maestros</span><span class="p">)</span>
+        
+        <span class="n">re_cuerpo_con_especialidad</span><span class="o">=</span><span class="s2">&quot;[0PWBFR]59[0-7][0-9]</span><span class="si">{3}</span><span class="s2">&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">expr_regular_cuerpo_con_especialidad</span><span class="o">=</span><span class="n">re</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="n">re_cuerpo_con_especialidad</span><span class="p">)</span>
+        
+        <span class="n">re_codigo_localidad</span><span class="o">=</span><span class="s2">&quot;[0-9]</span><span class="si">{9}</span><span class="s2">&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">expr_regular_codigo_localidad</span><span class="o">=</span><span class="n">re</span><span class="o">.</span><span class="n">compile</span> <span class="p">(</span> <span class="n">re_codigo_localidad</span> <span class="p">)</span>
+        
+        <span class="n">re_codigo_centro_sin_c</span><span class="o">=</span><span class="s2">&quot;[0-9]</span><span class="si">{8}</span><span class="s2">&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">expr_regular_codigo_centro_sin_c</span><span class="o">=</span><span class="n">re</span><span class="o">.</span><span class="n">compile</span> <span class="p">(</span> <span class="n">re_codigo_centro_sin_c</span> <span class="p">)</span>
+        <span class="sd">&quot;&quot;&quot;Expresion regular para códigos de centro sin buscar la letra C final&quot;&quot;&quot;</span>
+        
+        <span class="n">re_codigo_centro_con_c</span><span class="o">=</span><span class="s2">&quot;[0-9]</span><span class="si">{8}</span><span class="s2">C&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">expr_regular_codigo_centro_con_c</span><span class="o">=</span><span class="n">re</span><span class="o">.</span><span class="n">compile</span> <span class="p">(</span> <span class="n">re_codigo_centro_con_c</span> <span class="p">)</span>
+        <span class="sd">&quot;&quot;&quot;Expresion regular para códigos de centro buscando la letra C final&quot;&quot;&quot;</span>
+        
+        <span class="n">re_nombre_persona</span><span class="o">=</span><span class="s2">&quot;[ÜÑÁÉÍÓÚA-Z\-\. ]+,[\.ÜÑÁÉÍÓÚA-Z ]+&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">expr_regular_nombre_persona</span><span class="o">=</span><span class="n">re</span><span class="o">.</span><span class="n">compile</span> <span class="p">(</span> <span class="n">re_nombre_persona</span> <span class="p">)</span>
+        
+        <span class="n">re_decimales_baremo</span><span class="o">=</span><span class="s2">&quot;[0-9]{1,3}[\,|\.][0-9]</span><span class="si">{4}</span><span class="s2">&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">expr_regular_decimales</span><span class="o">=</span><span class="n">re</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span> <span class="n">re_decimales_baremo</span> <span class="p">)</span>
+        
+        <span class="n">re_numero_orden_interinos</span><span class="o">=</span><span class="s2">&quot;[0-9]{1,5}&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">expr_regular_numero_orden_interinos</span><span class="o">=</span><span class="n">re</span><span class="o">.</span><span class="n">compile</span> <span class="p">(</span> <span class="n">re_numero_orden_interinos</span> <span class="p">)</span>
+        <span class="sd">&quot;&quot;&quot;Expresion regular para número de orden de interino&quot;&quot;&quot;</span>
+        
+        <span class="n">re_nombre_completo</span><span class="o">=</span><span class="s2">&quot; [A-ZÁÉÍÓÚÜÑ ]+, [A-ZÁÉÍÓÚÜÑ ]&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">expr_regular_nombre</span><span class="o">=</span><span class="n">re</span><span class="o">.</span><span class="n">compile</span> <span class="p">(</span> <span class="n">re_nombre_completo</span> <span class="p">)</span>
+        <span class="sd">&quot;&quot;&quot;Expresion regular para el nombre de persona [A-ZÁÉÍÓÚÜÑ ]+,[A-ZÁÉÍÓÚÜÑ ]&quot;&quot;&quot;</span>
+        <span class="n">re_especialidades_maestros_en_concurso_traslados</span><span class="o">=</span><span class="s2">&quot;( [0-9]</span><span class="si">{3}</span><span class="s2">)+&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">expr_regular_especialidad_maestros_en_concurso_de_traslados</span><span class="o">=</span><span class="n">re</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span>
+            <span class="n">re_especialidades_maestros_en_concurso_traslados</span>
+        <span class="p">)</span>
+        
+        <span class="bp">self</span><span class="o">.</span><span class="n">num_fila</span><span class="o">=</span><span class="mi">0</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">num_columna</span><span class="o">=</span><span class="mi">0</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">lineas_fichero</span><span class="o">=</span><span class="p">[]</span>
+    
+<div class="viewcode-block" id="ProcesadorPDF.convertir_a_txt"><a class="viewcode-back" href="../../../index.html#utilidades.ficheros.ProcesadorPDF.ProcesadorPDF.convertir_a_txt">[documentos]</a>    <span class="k">def</span> <span class="nf">convertir_a_txt</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">nombre_pdf</span><span class="p">,</span> <span class="n">evitar_reconversiones</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Convierte un archivo PDF a texto</span>
+<span class="sd">        </span>
+<span class="sd">        Argumentos:</span>
+<span class="sd">        </span>
+<span class="sd">            nombre_pdf -- Nombre del fichero PDF</span>
+<span class="sd">    </span>
+<span class="sd">            evitar_reconversiones -- False por defecto, evita reconvertir un fichero si ya se pasó de PDF a TXT</span>
+<span class="sd">            </span>
+<span class="sd">        Devuelve:</span>
+<span class="sd">        </span>
+<span class="sd">            nombre_txt -- Nombre del fichero TXT (sin importar si ha sido reconvertido)</span>
+<span class="sd">            </span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">nombre_txt</span><span class="o">=</span><span class="n">nombre_pdf</span><span class="p">[:</span><span class="o">-</span><span class="mi">4</span><span class="p">]</span><span class="o">+</span><span class="s2">&quot;.txt&quot;</span>
+        <span class="k">if</span> <span class="n">evitar_reconversiones</span><span class="p">:</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">gf</span><span class="o">.</span><span class="n">existe_fichero</span> <span class="p">(</span> <span class="n">nombre_txt</span> <span class="p">):</span>
+                <span class="k">return</span> <span class="n">nombre_txt</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">gf</span><span class="o">.</span><span class="n">ejecutar_comando</span> <span class="p">(</span> <span class="bp">self</span><span class="o">.</span><span class="n">CONVERTIR</span><span class="p">,</span> <span class="n">nombre_pdf</span> <span class="p">)</span>
+        <span class="k">return</span> <span class="n">nombre_txt</span></div>
+        
+<div class="viewcode-block" id="ProcesadorPDF.abrir_fichero_txt"><a class="viewcode-back" href="../../../index.html#utilidades.ficheros.ProcesadorPDF.ProcesadorPDF.abrir_fichero_txt">[documentos]</a>    <span class="k">def</span> <span class="nf">abrir_fichero_txt</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">nombre_fichero_txt</span><span class="p">,</span> <span class="n">codificacion</span><span class="o">=</span><span class="s2">&quot;utf-8&quot;</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Abre un fichero txt para empezar a procesarlo</span>
+<span class="sd">        </span>
+<span class="sd">        Argumentos:</span>
+<span class="sd">        </span>
+<span class="sd">            nombre_fichero_txt -- nombre del fichero txt</span>
+<span class="sd">            </span>
+<span class="sd">            codificacion -- codificación del fichero</span>
+<span class="sd">            </span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="c1">#print (&quot;Abriendo -{0}-&quot;.format ( nombre_fichero_txt ) )</span>
+        <span class="n">descriptor</span><span class="o">=</span><span class="nb">open</span><span class="p">(</span><span class="n">nombre_fichero_txt</span><span class="p">,</span> <span class="s2">&quot;r&quot;</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="n">codificacion</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">lineas_fichero</span><span class="o">=</span><span class="n">descriptor</span><span class="o">.</span><span class="n">readlines</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">num_columna</span><span class="o">=</span><span class="mi">0</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">num_fila</span><span class="o">=</span><span class="mi">0</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">FIN_DE_FICHERO</span><span class="o">=</span><span class="kc">False</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">MAX_FILAS</span><span class="o">=</span><span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">lineas_fichero</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span>
+        <span class="c1">#print(self.MAX_FILAS)</span>
+        <span class="n">descriptor</span><span class="o">.</span><span class="n">close</span><span class="p">()</span></div>
+    
+<div class="viewcode-block" id="ProcesadorPDF.convertir_decimal_baremo_a_float"><a class="viewcode-back" href="../../../index.html#utilidades.ficheros.ProcesadorPDF.ProcesadorPDF.convertir_decimal_baremo_a_float">[documentos]</a>    <span class="k">def</span> <span class="nf">convertir_decimal_baremo_a_float</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">str_decimal</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">            Dado un decimal de los que aparecen en los baremos de</span>
+<span class="sd">            los concursos de traslados lo convierte a un tipo</span>
+<span class="sd">            float de Python</span>
+<span class="sd">            </span>
+<span class="sd">            Argumentos:</span>
+<span class="sd">            </span>
+<span class="sd">                str_decimal -- cadena con el decimal a convertir</span>
+<span class="sd">                </span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">str_con_punto</span><span class="o">=</span><span class="n">str_decimal</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot;,&quot;</span><span class="p">,</span> <span class="s2">&quot;.&quot;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="nb">float</span><span class="p">(</span><span class="n">str_con_punto</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="ProcesadorPDF.eof"><a class="viewcode-back" href="../../../index.html#utilidades.ficheros.ProcesadorPDF.ProcesadorPDF.eof">[documentos]</a>    <span class="k">def</span> <span class="nf">eof</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot; Nos dice si se ha llegado al final del fichero &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">FIN_DE_FICHERO</span></div>
+    
+<div class="viewcode-block" id="ProcesadorPDF.siguiente_fila"><a class="viewcode-back" href="../../../index.html#utilidades.ficheros.ProcesadorPDF.ProcesadorPDF.siguiente_fila">[documentos]</a>    <span class="k">def</span> <span class="nf">siguiente_fila</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Avanza a la siguiente fila de texto&quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">num_fila</span><span class="o">+=</span><span class="mi">1</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">num_fila</span><span class="o">&gt;=</span><span class="bp">self</span><span class="o">.</span><span class="n">MAX_FILAS</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">FIN_DE_FICHERO</span><span class="o">=</span><span class="kc">True</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">num_columna</span><span class="o">=</span><span class="mi">0</span></div>
+        
+<div class="viewcode-block" id="ProcesadorPDF.get_linea_actual"><a class="viewcode-back" href="../../../index.html#utilidades.ficheros.ProcesadorPDF.ProcesadorPDF.get_linea_actual">[documentos]</a>    <span class="k">def</span> <span class="nf">get_linea_actual</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Devuelve el texto con la linea actual&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">lineas_fichero</span> <span class="p">[</span> <span class="bp">self</span><span class="o">.</span><span class="n">num_fila</span> <span class="p">]</span></div>
+    
+<div class="viewcode-block" id="ProcesadorPDF.get_linea_anterior"><a class="viewcode-back" href="../../../index.html#utilidades.ficheros.ProcesadorPDF.ProcesadorPDF.get_linea_anterior">[documentos]</a>    <span class="k">def</span> <span class="nf">get_linea_anterior</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Devuelve el texto con la linea anterior a la actual&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">lineas_fichero</span> <span class="p">[</span> <span class="bp">self</span><span class="o">.</span><span class="n">num_fila</span><span class="o">-</span><span class="mi">1</span> <span class="p">]</span></div>
+<div class="viewcode-block" id="ProcesadorPDF.get_linea_siguiente"><a class="viewcode-back" href="../../../index.html#utilidades.ficheros.ProcesadorPDF.ProcesadorPDF.get_linea_siguiente">[documentos]</a>    <span class="k">def</span> <span class="nf">get_linea_siguiente</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Devuelve el texto con la linea siguiente a la actual&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">lineas_fichero</span> <span class="p">[</span> <span class="bp">self</span><span class="o">.</span><span class="n">num_fila</span><span class="o">+</span><span class="mi">1</span> <span class="p">]</span></div>
+    
+<div class="viewcode-block" id="ProcesadorPDF.fila_anterior"><a class="viewcode-back" href="../../../index.html#utilidades.ficheros.ProcesadorPDF.ProcesadorPDF.fila_anterior">[documentos]</a>    <span class="k">def</span> <span class="nf">fila_anterior</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Retrocede a la fila anterior&quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">num_fila</span><span class="o">-=</span><span class="mi">1</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">num_fila</span><span class="o">&lt;</span><span class="mi">0</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">num_fila</span><span class="o">=</span><span class="mi">0</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">num_columna</span><span class="o">=</span><span class="mi">0</span></div>
+        
+<div class="viewcode-block" id="ProcesadorPDF.retroceder_linea"><a class="viewcode-back" href="../../../index.html#utilidades.ficheros.ProcesadorPDF.ProcesadorPDF.retroceder_linea">[documentos]</a>    <span class="k">def</span> <span class="nf">retroceder_linea</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Retrocede a la fila anterior&quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">num_fila</span><span class="o">-=</span><span class="mi">1</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">num_fila</span><span class="o">&lt;</span><span class="mi">0</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">num_fila</span><span class="o">=</span><span class="mi">0</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">num_columna</span><span class="o">=</span><span class="mi">0</span></div>
+    
+<div class="viewcode-block" id="ProcesadorPDF.linea_contiene_patron"><a class="viewcode-back" href="../../../index.html#utilidades.ficheros.ProcesadorPDF.ProcesadorPDF.linea_contiene_patron">[documentos]</a>    <span class="k">def</span> <span class="nf">linea_contiene_patron</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">expr_regular</span><span class="p">,</span> <span class="n">linea</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Dice si una linea contiene un patron</span>
+<span class="sd">        </span>
+<span class="sd">        Argumentos:</span>
+<span class="sd">        </span>
+<span class="sd">            expr_regular -- Expresión regular ya compilada</span>
+<span class="sd">            </span>
+<span class="sd">            linea -- línea en la que buscar el texto</span>
+<span class="sd">            </span>
+<span class="sd">        Devuelve:</span>
+<span class="sd">        </span>
+<span class="sd">            (inicio, fin, texto) -- Tupla con la posicion de inicio, la de final y el texto</span>
+<span class="sd">            encontrado. Si no aparece nada se devuelve la constante ProcesadorPDF.PATRON_NO_ENCONTRADO</span>
+<span class="sd">        </span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="c1">#print (&quot;Buscando {0} en {1}&quot;.format( str(expr_regular), linea))</span>
+        <span class="n">concordancia</span><span class="o">=</span><span class="n">expr_regular</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="n">linea</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">concordancia</span><span class="p">:</span>
+            <span class="n">inicio</span><span class="o">=</span><span class="n">concordancia</span><span class="o">.</span><span class="n">start</span><span class="p">()</span>
+            <span class="n">final</span><span class="o">=</span><span class="n">concordancia</span><span class="o">.</span><span class="n">end</span><span class="p">()</span>
+            <span class="n">patron</span><span class="o">=</span><span class="n">concordancia</span><span class="o">.</span><span class="n">string</span><span class="p">[</span><span class="n">inicio</span><span class="p">:</span><span class="n">final</span><span class="p">]</span>
+            <span class="c1">#print (&quot;--&gt;Encontrado {0} en {1}&quot;.format( str(expr_regular), linea))</span>
+            <span class="k">return</span> <span class="p">(</span><span class="n">inicio</span><span class="p">,</span> <span class="n">final</span><span class="p">,</span> <span class="n">patron</span><span class="p">)</span>
+        <span class="k">return</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">PATRON_NO_ENCONTRADO</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">PATRON_NO_ENCONTRADO</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">PATRON_NO_ENCONTRADO</span><span class="p">)</span></div>
+    
+    
+<div class="viewcode-block" id="ProcesadorPDF.linea_actual_contiene_patron"><a class="viewcode-back" href="../../../index.html#utilidades.ficheros.ProcesadorPDF.ProcesadorPDF.linea_actual_contiene_patron">[documentos]</a>    <span class="k">def</span> <span class="nf">linea_actual_contiene_patron</span> <span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">expr_regular</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Indica si la linea actual contiene una cierta expresion regular</span>
+<span class="sd">        </span>
+<span class="sd">        Argumentos:</span>
+<span class="sd">        </span>
+<span class="sd">            expr_regular -- expresión regular ya compilada</span>
+<span class="sd">            </span>
+<span class="sd">        Devuelve:</span>
+<span class="sd">        </span>
+<span class="sd">            (inicio, fin, texto) -- Tupla con la posicion de inicio, la de final y el texto</span>
+<span class="sd">            encontrado. Si no aparece nada se devuelve la constante ProcesadorPDF.PATRON_NO_ENCONTRADO</span>
+<span class="sd">            </span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">linea_actual</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">get_linea_actual</span><span class="p">()</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">linea_contiene_patron</span> <span class="p">(</span> <span class="n">expr_regular</span><span class="p">,</span> <span class="n">linea_actual</span> <span class="p">)</span></div>
+    
+<div class="viewcode-block" id="ProcesadorPDF.linea_actual_contiene_codigo_centro"><a class="viewcode-back" href="../../../index.html#utilidades.ficheros.ProcesadorPDF.ProcesadorPDF.linea_actual_contiene_codigo_centro">[documentos]</a>    <span class="k">def</span> <span class="nf">linea_actual_contiene_codigo_centro</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">con_c</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Indica si la linea actual contiene un codigo de centro</span>
+<span class="sd">        </span>
+<span class="sd">        Argumentos</span>
+<span class="sd">        </span>
+<span class="sd">            con_c -- Nos dice si hay que buscar con C al final o no</span>
+<span class="sd">            </span>
+<span class="sd">        Devuelve:</span>
+<span class="sd">        </span>
+<span class="sd">            (inicio, fin, texto) -- Tupla con la posicion de inicio, la de final y el texto</span>
+<span class="sd">            encontrado. Si no aparece nada se devuelve la constante ProcesadorPDF.PATRON_NO_ENCONTRADO</span>
+<span class="sd">            </span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="n">con_c</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">linea_actual_contiene_patron</span> <span class="p">(</span> <span class="bp">self</span><span class="o">.</span><span class="n">expr_regular_codigo_centro_con_c</span> <span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">linea_actual_contiene_patron</span> <span class="p">(</span> <span class="bp">self</span><span class="o">.</span><span class="n">expr_regular_codigo_centro_sin_c</span> <span class="p">)</span></div>
+    
+<div class="viewcode-block" id="ProcesadorPDF.linea_actual_contiene_codigo_localidad"><a class="viewcode-back" href="../../../index.html#utilidades.ficheros.ProcesadorPDF.ProcesadorPDF.linea_actual_contiene_codigo_localidad">[documentos]</a>    <span class="k">def</span> <span class="nf">linea_actual_contiene_codigo_localidad</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">            Indica si la linea actual contiene un codigo de localidad</span>
+<span class="sd">            </span>
+<span class="sd">        Devuelve:</span>
+<span class="sd">        </span>
+<span class="sd">            (inicio, fin, texto) -- Tupla con la posicion de inicio, la de final y el texto</span>
+<span class="sd">            encontrado. Si no aparece nada se devuelve la constante ProcesadorPDF.PATRON_NO_ENCONTRADO    </span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">linea_actual_contiene_patron</span> <span class="p">(</span> <span class="bp">self</span><span class="o">.</span><span class="n">expr_regular_codigo_localidad</span> <span class="p">)</span></div>
+    
+<div class="viewcode-block" id="ProcesadorPDF.get_nombre_persona"><a class="viewcode-back" href="../../../index.html#utilidades.ficheros.ProcesadorPDF.ProcesadorPDF.get_nombre_persona">[documentos]</a>    <span class="k">def</span> <span class="nf">get_nombre_persona</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">linea</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Indica si se encuentra un nombre de persona</span>
+<span class="sd">        </span>
+<span class="sd">        Argumentos</span>
+<span class="sd">        </span>
+<span class="sd">            linea -- Linea en la que se busca el nombre de persona</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">linea_contiene_patron</span> <span class="p">(</span> <span class="bp">self</span><span class="o">.</span><span class="n">expr_regular_nombre_persona</span><span class="p">,</span> <span class="n">linea</span> <span class="p">)</span></div>
+    
+<div class="viewcode-block" id="ProcesadorPDF.get_especialidades"><a class="viewcode-back" href="../../../index.html#utilidades.ficheros.ProcesadorPDF.ProcesadorPDF.get_especialidades">[documentos]</a>    <span class="k">def</span> <span class="nf">get_especialidades</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">linea</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Devuelve la lista de posible especialidades de maestros&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">linea_contiene_patron</span> <span class="p">(</span> <span class="bp">self</span><span class="o">.</span><span class="n">expr_regular_especialidad_maestros_en_concurso_de_traslados</span><span class="p">,</span> <span class="n">linea</span><span class="p">)</span></div>
+    
+<div class="viewcode-block" id="ProcesadorPDF.siguiente_linea"><a class="viewcode-back" href="../../../index.html#utilidades.ficheros.ProcesadorPDF.ProcesadorPDF.siguiente_linea">[documentos]</a>    <span class="k">def</span> <span class="nf">siguiente_linea</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Devuelve la siguiente linea&quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">num_fila</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">num_fila</span><span class="o">+</span><span class="mi">1</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">num_columna</span><span class="o">=</span><span class="mi">0</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">num_fila</span><span class="o">&gt;=</span><span class="bp">self</span><span class="o">.</span><span class="n">MAX_FILAS</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">FIN_DE_FICHERO</span><span class="o">=</span><span class="kc">True</span></div>
+            
+<div class="viewcode-block" id="ProcesadorPDF.avanzar_buscando_patron"><a class="viewcode-back" href="../../../index.html#utilidades.ficheros.ProcesadorPDF.ProcesadorPDF.avanzar_buscando_patron">[documentos]</a>    <span class="k">def</span> <span class="nf">avanzar_buscando_patron</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">expr_regular</span><span class="p">,</span> <span class="n">debe_estar_en_misma_linea</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Hace avanzar el procesador buscando un cierto patrón</span>
+<span class="sd">        </span>
+<span class="sd">        Argumentos:</span>
+<span class="sd">        </span>
+<span class="sd">            expr_regular -- patrón a buscar (ya debe estar compilado)</span>
+<span class="sd">            </span>
+<span class="sd">            debe_estar_en_misma_linea -- True por defecto, obliga a buscar sin avanzar a la siguiente línea. Si</span>
+<span class="sd">            se pone a False y el patrón no está se devuelve ProcesadorPDF.PATRON_NO_ENCONTRADO</span>
+<span class="sd">            </span>
+<span class="sd">        Devuelve:</span>
+<span class="sd">        </span>
+<span class="sd">            (ini, fin, texto) -- Tupla con 3 elementos que pueden ser ProcesadorPDF.PATRON_NO_ENCONTRADO</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">lineas_fichero</span><span class="o">==</span><span class="p">[]:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;No hay ningun fichero abierto&quot;</span><span class="p">)</span>
+            <span class="k">return</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">num_fila</span><span class="o">&gt;=</span><span class="bp">self</span><span class="o">.</span><span class="n">MAX_FILAS</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">FIN_DE_FICHERO</span><span class="o">=</span><span class="kc">True</span>
+            <span class="k">return</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">PATRON_NO_ENCONTRADO</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">PATRON_NO_ENCONTRADO</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">PATRON_NO_ENCONTRADO</span><span class="p">)</span>
+        <span class="n">linea_actual</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">lineas_fichero</span><span class="p">[</span> <span class="bp">self</span><span class="o">.</span><span class="n">num_fila</span> <span class="p">][</span><span class="bp">self</span><span class="o">.</span><span class="n">num_columna</span><span class="p">:]</span>
+        <span class="p">(</span><span class="n">ini</span><span class="p">,</span> <span class="n">fin</span><span class="p">,</span> <span class="n">resultado</span><span class="p">)</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">linea_contiene_patron</span> <span class="p">(</span> <span class="n">expr_regular</span><span class="p">,</span> <span class="n">linea_actual</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">debe_estar_en_misma_linea</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">resultado</span><span class="o">==</span><span class="bp">self</span><span class="o">.</span><span class="n">PATRON_NO_ENCONTRADO</span><span class="p">:</span>
+                <span class="k">return</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">PATRON_NO_ENCONTRADO</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">PATRON_NO_ENCONTRADO</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">PATRON_NO_ENCONTRADO</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="k">return</span> <span class="p">(</span><span class="n">ini</span><span class="p">,</span> <span class="n">fin</span><span class="p">,</span> <span class="n">resultado</span><span class="p">)</span>
+        <span class="k">while</span> <span class="n">resultado</span><span class="o">==</span><span class="bp">self</span><span class="o">.</span><span class="n">PATRON_NO_ENCONTRADO</span> <span class="ow">and</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">FIN_DE_FICHERO</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">siguiente_linea</span><span class="p">()</span>
+            <span class="n">linea_actual</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">lineas_fichero</span><span class="p">[</span> <span class="bp">self</span><span class="o">.</span><span class="n">num_fila</span> <span class="p">]</span>
+            <span class="p">(</span><span class="n">ini</span><span class="p">,</span> <span class="n">fin</span><span class="p">,</span> <span class="n">resultado</span><span class="p">)</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">linea_contiene_patron</span> <span class="p">(</span> <span class="n">expr_regular</span><span class="p">,</span> <span class="n">linea_actual</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">resultado</span><span class="o">!=</span><span class="bp">self</span><span class="o">.</span><span class="n">PATRON_NO_ENCONTRADO</span><span class="p">:</span>
+            <span class="c1">#print(&quot;Patron encontrado&quot;)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">num_columna</span><span class="o">=</span><span class="n">fin</span>
+            <span class="k">return</span> <span class="p">(</span><span class="n">ini</span><span class="p">,</span> <span class="n">fin</span><span class="p">,</span> <span class="n">resultado</span><span class="p">)</span>
+        <span class="k">return</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">PATRON_NO_ENCONTRADO</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">PATRON_NO_ENCONTRADO</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">PATRON_NO_ENCONTRADO</span><span class="p">)</span></div>
+    
+    <span class="k">def</span> <span class="nf">avanzar_buscando_codigo_localidad</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">debe_estar_en_misma_linea</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>        
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">avanzar_buscando_patron</span> <span class="p">(</span> <span class="bp">self</span><span class="o">.</span><span class="n">expr_regular_codigo_localidad</span><span class="p">,</span>
+                                             <span class="n">debe_estar_en_misma_linea</span><span class="p">)</span>
+    <span class="k">def</span> <span class="nf">avanzar_buscando_dni</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">debe_estar_en_misma_linea</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>        
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">avanzar_buscando_patron</span> <span class="p">(</span> <span class="bp">self</span><span class="o">.</span><span class="n">expr_regular_dni</span><span class="p">,</span>
+                                             <span class="n">debe_estar_en_misma_linea</span><span class="p">)</span>
+    <span class="k">def</span> <span class="nf">avanzar_buscando_nif</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">debe_estar_en_misma_linea</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>        
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">avanzar_buscando_patron</span> <span class="p">(</span> <span class="bp">self</span><span class="o">.</span><span class="n">expr_regular_dni</span><span class="p">,</span>
+                                             <span class="n">debe_estar_en_misma_linea</span><span class="p">)</span>
+    
+<div class="viewcode-block" id="ProcesadorPDF.avanzar_buscando_codigo_centro"><a class="viewcode-back" href="../../../index.html#utilidades.ficheros.ProcesadorPDF.ProcesadorPDF.avanzar_buscando_codigo_centro">[documentos]</a>    <span class="k">def</span> <span class="nf">avanzar_buscando_codigo_centro</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">con_c</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">debe_estar_en_misma_linea</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Avanza el procesador buscando un codigo de centro</span>
+<span class="sd">        </span>
+<span class="sd">        Argumentos:</span>
+<span class="sd">        </span>
+<span class="sd">            con_c -- Si es True se busca un codigo acabado en &#39;C&#39;, si es False se busca sin &#39;C&#39; al final</span>
+<span class="sd">            </span>
+<span class="sd">            debe_estar_en_misma_linea -- Si es True el procesador se mantiene siempre en la misma linea,</span>
+<span class="sd">            si es False se le permite avanzar hacia delante</span>
+<span class="sd">            </span>
+<span class="sd">        Devuelve:</span>
+<span class="sd">            </span>
+<span class="sd">            Un código de centro o ProcesadorPDF.PATRON_NO_ENCONTRADO</span>
+<span class="sd">            </span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="n">con_c</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">avanzar_buscando_patron</span> <span class="p">(</span> <span class="bp">self</span><span class="o">.</span><span class="n">expr_regular_codigo_centro_con_c</span><span class="p">,</span>
+                                                 <span class="n">debe_estar_en_misma_linea</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">avanzar_buscando_patron</span> <span class="p">(</span> <span class="bp">self</span><span class="o">.</span><span class="n">expr_regular_codigo_centro_sin_c</span><span class="p">,</span>
+                                                 <span class="n">debe_estar_en_misma_linea</span><span class="p">)</span></div>
+    <span class="k">def</span> <span class="nf">avanzar_buscando_nombre_persona</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">debe_estar_en_misma_linea</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>        
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">avanzar_buscando_patron</span> <span class="p">(</span> <span class="bp">self</span><span class="o">.</span><span class="n">expr_regular_nombre_persona</span><span class="p">,</span>
+                                             <span class="n">debe_estar_en_misma_linea</span><span class="p">)</span>
+    
+    <span class="k">def</span> <span class="nf">avanzar_buscando_decimal</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">debe_estar_en_misma_linea</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+        <span class="n">devolver</span><span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">avanzar_buscando_patron</span> <span class="p">(</span> <span class="bp">self</span><span class="o">.</span><span class="n">expr_regular_decimales</span><span class="p">,</span>
+                                                <span class="n">debe_estar_en_misma_linea</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">devolver</span>
+    
+    <span class="k">def</span> <span class="nf">avanzar_buscando_anio</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">debe_estar_en_misma_linea</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+        <span class="n">devolver</span><span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">avanzar_buscando_patron</span> <span class="p">(</span> <span class="bp">self</span><span class="o">.</span><span class="n">expr_regular_anio</span><span class="p">,</span>
+                                                <span class="n">debe_estar_en_misma_linea</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">devolver</span>
+    
+    <span class="k">def</span> <span class="nf">avanzar_buscando_numero_de_orden</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">debe_estar_en_misma_linea</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+        <span class="n">devolver</span><span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">avanzar_buscando_patron</span> <span class="p">(</span> <span class="bp">self</span><span class="o">.</span><span class="n">expr_regular_numero_orden_interinos</span><span class="p">,</span>
+                                                <span class="n">debe_estar_en_misma_linea</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">devolver</span>
+    
+    <span class="k">def</span> <span class="nf">avanzar_buscando_especialidades_maestros_concurso_traslados</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">debe_estar_en_misma_linea</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+        <span class="n">devolver</span><span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">avanzar_buscando_patron</span> <span class="p">(</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">expr_regular_especialidad_maestros_en_concurso_de_traslados</span><span class="p">,</span>
+            <span class="n">debe_estar_en_misma_linea</span>
+        <span class="p">)</span>
+        <span class="k">return</span> <span class="n">devolver</span>
+    
+<div class="viewcode-block" id="ProcesadorPDF.saltar_linea"><a class="viewcode-back" href="../../../index.html#utilidades.ficheros.ProcesadorPDF.ProcesadorPDF.saltar_linea">[documentos]</a>    <span class="k">def</span> <span class="nf">saltar_linea</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Salta a la linea siguiente&quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">num_fila</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">num_fila</span> <span class="o">+</span> <span class="mi">1</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">num_columna</span> <span class="o">=</span> <span class="mi">0</span></div>
+    
+    
+<div class="viewcode-block" id="ProcesadorPDF.extraer_dni"><a class="viewcode-back" href="../../../index.html#utilidades.ficheros.ProcesadorPDF.ProcesadorPDF.extraer_dni">[documentos]</a>    <span class="k">def</span> <span class="nf">extraer_dni</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Extrae el dni de la linea actual&quot;&quot;&quot;</span>
+        <span class="n">linea</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">get_linea_actual</span><span class="p">()</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">linea_contiene_patron</span><span class="p">(</span> <span class="bp">self</span><span class="o">.</span><span class="n">expr_regular_dni</span><span class="p">,</span> <span class="n">linea</span><span class="p">)</span></div>
+    <span class="k">def</span> <span class="nf">extraer_todos_decimales</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">linea_actual</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">lineas_fichero</span> <span class="p">[</span> <span class="bp">self</span><span class="o">.</span><span class="n">num_fila</span> <span class="p">]</span>
+        <span class="c1">#print(linea_actual)</span>
+        <span class="n">concordancia</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">expr_regular_decimales</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="n">linea_actual</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">concordancia</span><span class="p">:</span>
+            <span class="n">decimales_como_cadenas</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">expr_regular_decimales</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="n">linea_actual</span><span class="p">)</span>
+            <span class="n">lista_floats</span><span class="o">=</span><span class="p">[]</span>
+            <span class="k">for</span> <span class="n">d</span> <span class="ow">in</span> <span class="n">decimales_como_cadenas</span><span class="p">:</span>
+                <span class="n">lista_floats</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">convertir_decimal_baremo_a_float</span><span class="p">(</span><span class="n">d</span><span class="p">))</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">num_fila</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">num_fila</span> <span class="o">+</span> <span class="mi">1</span>
+            <span class="k">return</span> <span class="n">lista_floats</span>
+        <span class="k">return</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">DECIMAL_NO_ENCONTRADO</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">DECIMAL_NO_ENCONTRADO</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">DECIMAL_NO_CONCORDANTE</span><span class="p">)</span></div>
+</pre></div>
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="../../../index.html">Modulo de utilidades para Python</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navegación</h3>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../../../index.html">Documentation overview</a><ul>
+  <li><a href="../../index.html">Código de módulo</a><ul>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Búsqueda rápida</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Ir a" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2016, None.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 3.3.1</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+    </div>
+
+    
+
+    
+  </body>
+</html>
