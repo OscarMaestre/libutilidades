@@ -11,6 +11,12 @@ Contents:
 .. toctree::
    :maxdepth: 2
 
+Clase Utilidades
+=====================
+
+.. autoclass:: utilidades.genericas.Utilidades.Utilidades
+   :members:
+
 
 Clase GestorTelegram
 =======================

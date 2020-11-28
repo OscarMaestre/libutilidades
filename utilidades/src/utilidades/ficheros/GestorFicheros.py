@@ -169,12 +169,35 @@ class GestorFicheros(object):
         return False
     
     def renombrar_fichero(self, nombre_viejo, nombre_nuevo):
+        """
+        
+        Renombra un fichero
+        
+        Argumentos:
+        
+            nombre_viejo -- Nombre del fichero a renombrar
+
+            nombre_nuevo -- Nuevo nombre que tendrá despues
+            
+        
+        """
         if nombre_nuevo==nombre_viejo:
             #print("No hace falta renombrar:"+nombre_viejo)
             return 
         self.aplicar_comando(self.MOVER, "\""+nombre_viejo+"\"", nombre_nuevo)
         
     def enviar_texto_a_comando(self, texto, comando):
+        """
+        
+        Envia un texto a un comando al estilo echo <texto> | comando
+        
+        Argumentos:
+        
+            texto -- Texto a enviar
+
+            comando -- Comando a ejecutar
+            
+        """
         if platform.system()=="Linux":
             comando_envio="echo '{0}'".format(texto)
         else:
@@ -183,6 +206,20 @@ class GestorFicheros(object):
         self.aplicar_comando ( comando_envio, "|", comando)
     
     def extraer_esquema(self, archivo_bd, nombre_tabla, archivo_sql_resultado, anadir=False):
+        """
+        
+        Extrae el esquema de una tabla de un fichero sqlite
+        
+        Argumentos:
+        
+            archivo_bd -- Ruta del archivo de base de datos
+
+            nombre_tabla -- Nombre de la tabla a extraer
+
+            archivo_sql_resultado -- Nombre del archivo donde se va a dejar la tabla
+
+        """
+
         texto=".schema {0}".format ( nombre_tabla )
         if anadir:
             comando="sqlite3 {0} >> {1}".format(archivo_bd, archivo_sql_resultado)
@@ -191,6 +228,20 @@ class GestorFicheros(object):
         self.enviar_texto_a_comando( texto, comando)
         
     def extraer_datos_tabla(self, archivo_bd, nombre_tabla, archivo_sql_resultado,anadir=True):
+        """
+        
+        Extrae los datos de una tabla de una base de datos sqlite3
+        
+        Argumentos:
+        
+            archivo_bd -- Ruta del archivo de base de datos
+
+            nombre_tabla -- Nombre de la tabla a extraer
+
+            archivo_sql_resultado -- Nombre del archivo donde se van a dejar los datos
+
+            anadir -- Se puede poner a True si deseamos que los datos se concatenen a un archivo ya existente
+        """
         texto=r".mode insert {0}\nselect * from {0};".format(
             nombre_tabla
         )
@@ -203,6 +254,23 @@ class GestorFicheros(object):
     def exportar_tabla(self, archivo_bd, nombre_tabla,
                        archivo_sql_resultado, bd_destinataria=None,
                        borrar_fichero_sql_intermedio=True):
+        """
+        
+        Exporta una tabla sqlite y nos la deja en forma de SQL Inserts
+        
+        Argumentos:
+        
+            archivo_bd -- Ruta del archivo de base de datos
+
+            nombre_tabla -- Nombre de la tabla a extraer
+
+            archivo_sql_resultado -- Nombre del archivo donde se van a dejar los datos
+
+            bd_destinataria -- Ruta de una base de datos sqlite3 donde también podremos 
+            meter los datos
+
+            borrar_fichero_sql_intermedio -- Poner a True si se desea borrar el archivo intermedio
+        """
         self.anadir_a_fichero("BEGIN TRANSACTION;", archivo_sql_resultado)
         self.extraer_esquema ( archivo_bd, nombre_tabla, archivo_sql_resultado,anadir=True )
         self.extraer_datos_tabla ( archivo_bd, nombre_tabla, archivo_sql_resultado )
@@ -213,6 +281,19 @@ class GestorFicheros(object):
             self.borrar_fichero ( archivo_sql_resultado )
 
     def exportar_lista_tablas (self, archivo_bd, lista_tablas, archivo_sql_resultado):
+        """
+        
+        Exporta un conjunto de tablas sqlite y nos la deja en forma de SQL Inserts
+        
+        Argumentos:
+        
+            archivo_bd -- Ruta del archivo de base de datos
+
+            lista_tablas -- Lista con los nombres de las tablas de lo que queremos exportar
+
+            archivo_sql_resultado -- Nombre del archivo donde se van a dejar los datos
+
+        """
         self.borrar_fichero ( archivo_sql_resultado )
         for t in lista_tablas:
             self.anadir_a_fichero("BEGIN TRANSACTION;", archivo_sql_resultado)
@@ -221,13 +302,41 @@ class GestorFicheros(object):
     
         
     def descargar_fichero(self, url, nombre_fichero_destino, codificacion="utf-8"):
+        """
+        
+        Descarga un fichero de una URL con HTTP
+        
+        Argumentos:
+        
+            url -- Dirección del fichero a descargar
+
+            nombre_fichero_destino -- ruta del fichero local donde descargaremos
+
+            codificacion -- Codificación que queremos que tenga el fichero destino (está a utf-8 por defecto)
+        """
         peticion = requests.get ( url )
         descriptor=open (nombre_fichero_destino, "w", encoding=codificacion)
         descriptor.write ( peticion.text )
         descriptor.close()
         
     def rellenar_fichero_plantilla(self, fichero_plantilla, diccionario,  fichero_salida=None):
+        """
         
+        Rellena un fichero plantilla con los datos de un diccionario
+        
+        Argumentos:
+        
+            fichero_plantilla -- Fichero con la plantilla en formato Jinja2 (es decir con cosas coom {{titulo}} o {{nombre_cliente}})
+
+            diccionario -- diccionario con valores como diccionario["titulo"]='Ejercicio'
+
+            fichero_salida -- Fichero en el que dejaremos el resultado
+
+        Devuelve
+
+            Una cadena con el resultado del rellenado
+            
+        """
         texto_plantilla=self.leer_fichero(fichero_plantilla)
         plantilla=jinja2.Template(texto_plantilla)
         plantilla_rellena=plantilla.render( diccionario )
@@ -239,6 +348,18 @@ class GestorFicheros(object):
     #Funcion para contar las líneas de un fichero con rapidez
     
     def get_num_lineas_fichero(self, filename):
+        """
+        
+        Nos dice el número de líneas de un fichero
+        
+        Argumentos:
+        
+            filename -- Ruta del fichero 
+
+        Devuelve
+
+            Un int con la cantidad de líneas
+        """
         f = open(filename)
         try:
             lines = 1
