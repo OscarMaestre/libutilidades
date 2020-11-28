@@ -120,7 +120,7 @@ class GestorFicheros(object):
             os.mkdir(ruta_completa)
         except FileExistsError:
             return 
-    def get_lineas_fichero(self, nombre_fichero):
+    def get_lineas_fichero(self, nombre_fichero, codificacion="utf-8"):
         """Leer las lineas de un fichero
         
             Argumentos:
@@ -132,7 +132,7 @@ class GestorFicheros(object):
                 lista -- una lista con todas las lineas del fichero sin fin de linea (se usa strip)
         """
         lineas_sin_fin_de_linea=[]
-        with open(nombre_fichero, "r") as f:
+        with open(nombre_fichero, "r", encoding=codificacion) as f:
             lineas=f.readlines()
             f.close()
         for l in lineas:
