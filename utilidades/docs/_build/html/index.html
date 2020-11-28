@@ -44,6 +44,17 @@
 <dt id="utilidades.genericas.Utilidades.Utilidades">
 <em class="property">class </em><code class="sig-prename descclassname">utilidades.genericas.Utilidades.</code><code class="sig-name descname">Utilidades</code><a class="reference internal" href="_modules/utilidades/genericas/Utilidades.html#Utilidades"><span class="viewcode-link">[fuente]</span></a><a class="headerlink" href="#utilidades.genericas.Utilidades.Utilidades" title="Enlazar permanentemente con esta definición">¶</a></dt>
 <dd><dl class="py method">
+<dt id="utilidades.genericas.Utilidades.Utilidades.anadir_tabuladores">
+<em class="property">static </em><code class="sig-name descname">anadir_tabuladores</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">texto</span></em>, <em class="sig-param"><span class="n">num_tabs</span><span class="o">=</span><span class="default_value">1</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/utilidades/genericas/Utilidades.html#Utilidades.anadir_tabuladores"><span class="viewcode-link">[fuente]</span></a><a class="headerlink" href="#utilidades.genericas.Utilidades.Utilidades.anadir_tabuladores" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Dado un texto añade tabuladores a todos los comienzos de línea</p>
+<p>Argumentos:</p>
+<blockquote>
+<div><p>texto – Texto a tabular</p>
+<p>num_tabs – Cantidad de tabuladores a añadir al principio</p>
+</div></blockquote>
+</dd></dl>
+
+<dl class="py method">
 <dt id="utilidades.genericas.Utilidades.Utilidades.elegir_elemento_al_azar">
 <em class="property">static </em><code class="sig-name descname">elegir_elemento_al_azar</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">lista</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/utilidades/genericas/Utilidades.html#Utilidades.elegir_elemento_al_azar"><span class="viewcode-link">[fuente]</span></a><a class="headerlink" href="#utilidades.genericas.Utilidades.Utilidades.elegir_elemento_al_azar" title="Enlazar permanentemente con esta definición">¶</a></dt>
 <dd><p>Devuelve un elemento al azar de una lista</p>
@@ -54,6 +65,28 @@
 <p>Devuelve</p>
 <blockquote>
 <div><p>Un elemento cualquiera de la lista o error si la lista está vacía</p>
+</div></blockquote>
+</dd></dl>
+
+<dl class="py method">
+<dt id="utilidades.genericas.Utilidades.Utilidades.embellecer_html">
+<em class="property">static </em><code class="sig-name descname">embellecer_html</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">cadena_html</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/utilidades/genericas/Utilidades.html#Utilidades.embellecer_html"><span class="viewcode-link">[fuente]</span></a><a class="headerlink" href="#utilidades.genericas.Utilidades.Utilidades.embellecer_html" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Dada una cadena HTML embellece el resultado y
+lo alinea</p>
+<p>Argumentos:</p>
+<blockquote>
+<div><p>cadena_xml – Cadena a embellecer</p>
+</div></blockquote>
+</dd></dl>
+
+<dl class="py method">
+<dt id="utilidades.genericas.Utilidades.Utilidades.embellecer_xml">
+<em class="property">static </em><code class="sig-name descname">embellecer_xml</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">cadena_xml</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/utilidades/genericas/Utilidades.html#Utilidades.embellecer_xml"><span class="viewcode-link">[fuente]</span></a><a class="headerlink" href="#utilidades.genericas.Utilidades.Utilidades.embellecer_xml" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Dada una cadena XML embellece el resultado y
+lo alinea</p>
+<p>Argumentos:</p>
+<blockquote>
+<div><p>cadena_xml – Cadena a embellecer</p>
 </div></blockquote>
 </dd></dl>
 
@@ -504,7 +537,7 @@ meter los datos</p>
 
 <dl class="py method">
 <dt id="utilidades.ficheros.GestorFicheros.GestorFicheros.get_lineas_fichero">
-<code class="sig-name descname">get_lineas_fichero</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">nombre_fichero</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/utilidades/ficheros/GestorFicheros.html#GestorFicheros.get_lineas_fichero"><span class="viewcode-link">[fuente]</span></a><a class="headerlink" href="#utilidades.ficheros.GestorFicheros.GestorFicheros.get_lineas_fichero" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<code class="sig-name descname">get_lineas_fichero</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">nombre_fichero</span></em>, <em class="sig-param"><span class="n">codificacion</span><span class="o">=</span><span class="default_value">'utf-8'</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/utilidades/ficheros/GestorFicheros.html#GestorFicheros.get_lineas_fichero"><span class="viewcode-link">[fuente]</span></a><a class="headerlink" href="#utilidades.ficheros.GestorFicheros.GestorFicheros.get_lineas_fichero" title="Enlazar permanentemente con esta definición">¶</a></dt>
 <dd><p>Leer las lineas de un fichero</p>
 <p>Argumentos:</p>
 <blockquote>

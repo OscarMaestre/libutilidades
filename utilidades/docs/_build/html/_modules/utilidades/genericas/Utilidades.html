@@ -35,8 +35,60 @@
   <h1>Código fuente para utilidades.genericas.Utilidades</h1><div class="highlight"><pre>
 <span></span><span class="kn">from</span> <span class="nn">random</span> <span class="k">import</span> <span class="n">randint</span>
 <span class="kn">import</span> <span class="nn">telegram_send</span>
+<span class="kn">from</span> <span class="nn">bs4</span> <span class="k">import</span> <span class="n">BeautifulSoup</span>
 
 <div class="viewcode-block" id="Utilidades"><a class="viewcode-back" href="../../../index.html#utilidades.genericas.Utilidades.Utilidades">[documentos]</a><span class="k">class</span> <span class="nc">Utilidades</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+
+<div class="viewcode-block" id="Utilidades.anadir_tabuladores"><a class="viewcode-back" href="../../../index.html#utilidades.genericas.Utilidades.Utilidades.anadir_tabuladores">[documentos]</a>    <span class="nd">@staticmethod</span>
+    <span class="k">def</span> <span class="nf">anadir_tabuladores</span><span class="p">(</span><span class="n">texto</span><span class="p">,</span> <span class="n">num_tabs</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+
+<span class="sd">        Dado un texto añade tabuladores a todos los comienzos de línea</span>
+
+<span class="sd">        Argumentos:</span>
+
+<span class="sd">            texto -- Texto a tabular</span>
+
+<span class="sd">            num_tabs -- Cantidad de tabuladores a añadir al principio</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">lineas</span><span class="o">=</span><span class="n">texto</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
+        <span class="n">prefijo</span> <span class="o">=</span> <span class="s2">&quot;</span><span class="se">\t</span><span class="s2">&quot;</span><span class="o">*</span><span class="n">num_tabs</span>
+        <span class="n">lineas_con_tab</span><span class="o">=</span><span class="p">[</span><span class="n">prefijo</span><span class="o">+</span><span class="n">linea</span> <span class="k">for</span> <span class="n">linea</span> <span class="ow">in</span> <span class="n">lineas</span><span class="p">]</span>
+        <span class="k">return</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">lineas_con_tab</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="Utilidades.embellecer_xml"><a class="viewcode-back" href="../../../index.html#utilidades.genericas.Utilidades.Utilidades.embellecer_xml">[documentos]</a>    <span class="nd">@staticmethod</span>
+    <span class="k">def</span> <span class="nf">embellecer_xml</span><span class="p">(</span><span class="n">cadena_xml</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        </span>
+<span class="sd">        Dada una cadena XML embellece el resultado y</span>
+<span class="sd">        lo alinea</span>
+<span class="sd">        </span>
+<span class="sd">        Argumentos:</span>
+<span class="sd">        </span>
+<span class="sd">            cadena_xml -- Cadena a embellecer</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">sopa</span><span class="o">=</span><span class="n">BeautifulSoup</span><span class="p">(</span><span class="n">cadena_xml</span><span class="p">,</span> <span class="s1">&#39;xml&#39;</span><span class="p">)</span>
+        <span class="n">embellecido</span><span class="o">=</span><span class="n">sopa</span><span class="o">.</span><span class="n">prettify</span><span class="p">()</span>
+        
+        <span class="k">return</span> <span class="n">embellecido</span></div>
+
+<div class="viewcode-block" id="Utilidades.embellecer_html"><a class="viewcode-back" href="../../../index.html#utilidades.genericas.Utilidades.Utilidades.embellecer_html">[documentos]</a>    <span class="nd">@staticmethod</span>
+    <span class="k">def</span> <span class="nf">embellecer_html</span><span class="p">(</span><span class="n">cadena_html</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        </span>
+<span class="sd">        Dada una cadena HTML embellece el resultado y</span>
+<span class="sd">        lo alinea</span>
+<span class="sd">        </span>
+<span class="sd">        Argumentos:</span>
+<span class="sd">        </span>
+<span class="sd">            cadena_xml -- Cadena a embellecer</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">sopa</span><span class="o">=</span><span class="n">BeautifulSoup</span><span class="p">(</span><span class="n">cadena_html</span><span class="p">,</span> <span class="s1">&#39;html.parser&#39;</span><span class="p">)</span>
+        <span class="n">embellecido</span><span class="o">=</span><span class="n">sopa</span><span class="o">.</span><span class="n">prettify</span><span class="p">()</span>
+        
+        <span class="k">return</span> <span class="n">embellecido</span></div>
+
 <div class="viewcode-block" id="Utilidades.enviar_mensaje_por_telegram"><a class="viewcode-back" href="../../../index.html#utilidades.genericas.Utilidades.Utilidades.enviar_mensaje_por_telegram">[documentos]</a>    <span class="nd">@staticmethod</span>
     <span class="k">def</span> <span class="nf">enviar_mensaje_por_telegram</span><span class="p">(</span><span class="n">mensaje</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
