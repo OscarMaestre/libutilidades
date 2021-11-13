@@ -20,7 +20,8 @@ setup(name='utilidades',
                 'utilidades.mensajeria',
                 'utilidades.basedatos',
                 'utilidades.cadenas',
-                'utilidades.internet'],
+                'utilidades.internet',
+                'utilidades.ip'],
       package_data={'utilidades.modelos':ficheros_especialidades},
       include_package_data=True
 )
