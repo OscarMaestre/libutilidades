@@ -4,9 +4,12 @@ import ipaddress
 
 class GeneradorIPV4Azar(object):
 
-    def __init__(self, num_ejercicio) -> None:
+    def __init__(self, num_ejercicio, cantidad_bits_mascara=None) -> None:
         self.primer_byte=randint(8, 52)
-        self.bits_mascara=randint(10, 28)
+        if cantidad_bits_mascara!=None:
+            self.bits_mascara=cantidad_bits_mascara
+        else:
+            self.bits_mascara=randint(10, 28)
         #print("Mascara:/"+str(self.bits_mascara))
         self.bits_host=32-self.bits_mascara
         self.secuencia_binaria=self.generar()
@@ -28,6 +31,18 @@ class GeneradorIPV4Azar(object):
         cadena=".".join(bytes_ip)
         return cadena
 
+    def get_direccion_en_binario(self, direccion):
+        trozos=str(direccion).split("/")
+        binario='{:#b}'.format(ipaddress.IPv4Address(trozos[0]))
+        binario=binario[2:]
+        bytes=[
+            binario[0:8],
+            binario[8:16],
+            binario[16:24],
+            binario[24:32]
+        ]
+        resultado=".".join(bytes)
+        return resultado
     def get_mascara_en_decimal(self):
         prefijo="1"*self.bits_mascara
         sufijo ="0"*self.bits_host
