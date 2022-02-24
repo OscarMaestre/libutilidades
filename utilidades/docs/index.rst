@@ -44,7 +44,11 @@ Clase GestorFicheros
 .. autoclass:: utilidades.ficheros.GestorFicheros.GestorFicheros
    :members:
 
+Clase GeneradorIPV4Azar
+========================
 
+.. autoclass:: utilidades.ip.ipv4.GeneradorIPV4Azar
+   :members:
 
 Indices and tables
 ==================

@@ -42,7 +42,7 @@
 
 <span class="kn">import</span> <span class="nn">requests</span><span class="o">,</span> <span class="nn">json</span>
 
-<span class="kn">from</span> <span class="nn">utilidades.modelos.Modelos</span> <span class="k">import</span> <span class="o">*</span>
+<span class="kn">from</span> <span class="nn">utilidades.modelos.Modelos</span> <span class="kn">import</span> <span class="o">*</span>
 
 <span class="n">OFFSET_DEFECTO</span><span class="o">=-</span><span class="mi">1</span>
 
@@ -85,30 +85,30 @@
 <span class="n">RESULT</span><span class="o">=</span><span class="s2">&quot;result&quot;</span>
 
 <span class="k">class</span> <span class="nc">Chat</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
-    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">objeto_json</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">objeto_json</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">first_name</span><span class="o">=</span><span class="n">objeto_json</span><span class="p">[</span><span class="n">CLAVE_NOMBRE_CHAT</span><span class="p">]</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">id</span><span class="o">=</span><span class="n">objeto_json</span><span class="p">[</span><span class="n">ID_CHAT</span><span class="p">]</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">type</span><span class="o">=</span><span class="n">objeto_json</span><span class="p">[</span><span class="n">TIPO_CHAT</span><span class="p">]</span>
         
 <span class="k">class</span> <span class="nc">From</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
-    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">objeto_json</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">objeto_json</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">first_name</span><span class="o">=</span><span class="n">objeto_json</span><span class="p">[</span><span class="n">CLAVE_NOMBRE_FROM</span><span class="p">]</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">id</span><span class="o">=</span><span class="n">objeto_json</span><span class="p">[</span><span class="n">CLAVE_ID_FROM</span><span class="p">]</span>
         
 <span class="k">class</span> <span class="nc">Message</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
-    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">objeto_json</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">objeto_json</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">message_id</span><span class="o">=</span><span class="n">objeto_json</span><span class="p">[</span><span class="n">CLAVE_MESSAGE_ID</span><span class="p">]</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">chat</span><span class="o">=</span><span class="n">Chat</span><span class="p">(</span><span class="n">objeto_json</span><span class="p">[</span><span class="n">CLAVE_CHAT</span><span class="p">])</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">date</span><span class="o">=</span><span class="n">objeto_json</span><span class="p">[</span><span class="n">CLAVE_DATE</span><span class="p">]</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">el_from</span><span class="o">=</span><span class="n">From</span> <span class="p">(</span> <span class="n">objeto_json</span><span class="p">[</span><span class="n">CLAVE_FROM</span><span class="p">]</span> <span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">text</span><span class="o">=</span><span class="n">objeto_json</span><span class="p">[</span><span class="n">CLAVE_TEXT</span><span class="p">]</span>
     
-    <span class="k">def</span> <span class="nf">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">return</span> <span class="s2">&quot;&lt;Text: </span><span class="si">{0}</span><span class="s2">&gt;&quot;</span><span class="o">.</span><span class="n">format</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">text</span><span class="p">)</span>
         
 <div class="viewcode-block" id="Update"><a class="viewcode-back" href="../../../index.html#utilidades.mensajeria.telegram.Update">[documentos]</a><span class="k">class</span> <span class="nc">Update</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Actualización recibida&quot;&quot;&quot;</span>
-    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">objeto_json</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">objeto_json</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">update_id</span><span class="o">=</span><span class="n">objeto_json</span><span class="p">[</span><span class="n">CLAVE_UPDATE_ID</span><span class="p">]</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">message</span><span class="o">=</span><span class="n">Message</span><span class="p">(</span><span class="n">objeto_json</span><span class="p">[</span><span class="n">CLAVE_MESSAGE</span><span class="p">])</span>
 <div class="viewcode-block" id="Update.es_alta"><a class="viewcode-back" href="../../../index.html#utilidades.mensajeria.telegram.Update.es_alta">[documentos]</a>    <span class="k">def</span> <span class="nf">es_alta</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
@@ -127,12 +127,12 @@
             <span class="k">return</span> <span class="p">(</span><span class="kc">True</span><span class="p">,</span> <span class="n">texto_mensaje</span><span class="p">[</span><span class="n">longitud_texto_alta</span><span class="o">+</span><span class="mi">1</span><span class="p">:]</span> <span class="p">)</span> 
         <span class="k">return</span> <span class="p">(</span><span class="kc">False</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span></div>
         
-    <span class="k">def</span> <span class="nf">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">return</span> <span class="s2">&quot;&lt;id: </span><span class="si">{0}</span><span class="s2">, </span><span class="si">{1}</span><span class="s2">&gt;&quot;</span><span class="o">.</span><span class="n">format</span> <span class="p">(</span> <span class="bp">self</span><span class="o">.</span><span class="n">update_id</span><span class="p">,</span> <span class="nb">str</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">message</span><span class="p">)</span> <span class="p">)</span></div>
     
 <div class="viewcode-block" id="GestorTelegram"><a class="viewcode-back" href="../../../index.html#utilidades.mensajeria.telegram.GestorTelegram">[documentos]</a><span class="k">class</span> <span class="nc">GestorTelegram</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Gestiona los mensajes de Telegram&quot;&quot;&quot;</span>
-    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">token</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">token</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">token</span><span class="o">=</span><span class="n">token</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">URL_BASE</span><span class="o">=</span><span class="s2">&quot;https://api.telegram.org/bot&quot;</span>
 <div class="viewcode-block" id="GestorTelegram.getUpdates"><a class="viewcode-back" href="../../../index.html#utilidades.mensajeria.telegram.GestorTelegram.getUpdates">[documentos]</a>    <span class="k">def</span> <span class="nf">getUpdates</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">offset</span><span class="o">=</span><span class="n">OFFSET_DEFECTO</span><span class="p">):</span>

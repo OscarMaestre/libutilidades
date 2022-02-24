@@ -5,6 +5,13 @@ import ipaddress
 class GeneradorIPV4Azar(object):
 
     def __init__(self, num_ejercicio, cantidad_bits_mascara=None) -> None:
+        """Constructor
+        
+            Argumentos:
+            
+                num_ejercicio -- Número de ejercicio con el que aparecerá 
+                
+                cantidad_bits_mascara -- Cantidad de bits a 1 en la máscara"""
         self.primer_byte=randint(8, 52)
         if cantidad_bits_mascara!=None:
             self.bits_mascara=cantidad_bits_mascara
@@ -19,9 +26,17 @@ class GeneradorIPV4Azar(object):
         self.direccion=ipaddress.IPv4Network(
             self.cadena+"/"+str(self.bits_mascara)
         )
+        self.todos_hosts=list(self.direccion.hosts())
+        self.mascara_en_decimal=self.get_mascara_en_decimal()
         self.num_ejercicio=num_ejercicio
 
     def convertir_a_decimal(self, secuencia_binaria):
+        """Dada una secuencia en binario de 32 bits nos devuelve
+        la dirección en decimal.
+        
+            Argumentos:
+            
+                secuencia_binaria -- secuencia de 32 bits"""
         bytes_ip=[]
         for i in range(0, 4):
             li=i*8
@@ -32,6 +47,12 @@ class GeneradorIPV4Azar(object):
         return cadena
 
     def get_direccion_en_binario(self, direccion):
+        """Dada una dirección en decimal como 192.168.1.39/24
+        nos devuelve el equivalente en binario
+        
+            Argumentos:
+            
+                direccion -- Dirección en decimal como 192.168.1.39/24"""
         trozos=str(direccion).split("/")
         binario='{:#b}'.format(ipaddress.IPv4Address(trozos[0]))
         binario=binario[2:]
@@ -44,13 +65,27 @@ class GeneradorIPV4Azar(object):
         resultado=".".join(bytes)
         return resultado
     def get_mascara_en_decimal(self):
+        """Devuelve la máscara de la dirección actual en decimal"""
         prefijo="1"*self.bits_mascara
         sufijo ="0"*self.bits_host
         mascara=prefijo+sufijo
         return self.convertir_a_decimal(mascara)
 
-    def generar(self):
+    def get_ip_host(self, num_host=0):
+        """Genera una IP válida de host:
         
+            Argumentos:
+            
+                num_host -- Número de host (se extrae la IP número X del vector total de IPs
+        
+            Devuelve:
+
+                (ip, mascara) -- Tupla con una IP y una máscara, todo en strings"""
+        ip_host=str(self.todos_hosts[num_host])
+        return (ip_host, self.mascara_en_decimal)
+        
+    def generar(self):
+        """Genera una dirección IP de red (no de host) al azar"""
         posibles_generadores=[]
         bits_host="0"*self.bits_host
         if self.bits_mascara>=24:
@@ -70,10 +105,28 @@ class GeneradorIPV4Azar(object):
             return generador(self.bits_mascara)+bits_host
             
     def generar_clase_a(self, num_bits):
+        """Genera una dirección de clase A en la que haya
+        tantos bits de red como se nos pida.
+        
+            Argumentos:
+            
+                num_bits -- número de bits de red"""
         return "0"+self.get_secuencia_azar_bits(num_bits-1)
     def generar_clase_b(self, num_bits):
+        """Genera una dirección de clase B en la que haya
+        tantos bits de red como se nos pida.
+        
+            Argumentos:
+            
+                num_bits -- número de bits de red"""
         return "10"+self.get_secuencia_azar_bits(num_bits-2)
     def generar_clase_c(self, num_bits):
+        """Genera una dirección de clase C en la que haya
+        tantos bits de red como se nos pida.
+        
+            Argumentos:
+            
+                num_bits -- número de bits de red"""
         return "110"+self.get_secuencia_azar_bits(num_bits-3)
     
     def get_bit(self):

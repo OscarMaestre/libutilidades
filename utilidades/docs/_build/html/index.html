@@ -618,6 +618,105 @@ meter los datos</p>
 </dd></dl>
 
 </div>
+<div class="section" id="clase-generadoripv4azar">
+<h1>Clase GeneradorIPV4Azar<a class="headerlink" href="#clase-generadoripv4azar" title="Enlazar permanentemente con este título">¶</a></h1>
+<dl class="py class">
+<dt id="utilidades.ip.ipv4.GeneradorIPV4Azar">
+<em class="property">class </em><code class="sig-prename descclassname">utilidades.ip.ipv4.</code><code class="sig-name descname">GeneradorIPV4Azar</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">num_ejercicio</span></em>, <em class="sig-param"><span class="n">cantidad_bits_mascara</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/utilidades/ip/ipv4.html#GeneradorIPV4Azar"><span class="viewcode-link">[fuente]</span></a><a class="headerlink" href="#utilidades.ip.ipv4.GeneradorIPV4Azar" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><dl class="py method">
+<dt id="utilidades.ip.ipv4.GeneradorIPV4Azar.convertir_a_decimal">
+<code class="sig-name descname">convertir_a_decimal</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">secuencia_binaria</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/utilidades/ip/ipv4.html#GeneradorIPV4Azar.convertir_a_decimal"><span class="viewcode-link">[fuente]</span></a><a class="headerlink" href="#utilidades.ip.ipv4.GeneradorIPV4Azar.convertir_a_decimal" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Dada una secuencia en binario de 32 bits nos devuelve
+la dirección en decimal.</p>
+<blockquote>
+<div><p>Argumentos:</p>
+<blockquote>
+<div><p>secuencia_binaria – secuencia de 32 bits</p>
+</div></blockquote>
+</div></blockquote>
+</dd></dl>
+
+<dl class="py method">
+<dt id="utilidades.ip.ipv4.GeneradorIPV4Azar.generar">
+<code class="sig-name descname">generar</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/utilidades/ip/ipv4.html#GeneradorIPV4Azar.generar"><span class="viewcode-link">[fuente]</span></a><a class="headerlink" href="#utilidades.ip.ipv4.GeneradorIPV4Azar.generar" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Genera una dirección IP de red (no de host) al azar</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="utilidades.ip.ipv4.GeneradorIPV4Azar.generar_clase_a">
+<code class="sig-name descname">generar_clase_a</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">num_bits</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/utilidades/ip/ipv4.html#GeneradorIPV4Azar.generar_clase_a"><span class="viewcode-link">[fuente]</span></a><a class="headerlink" href="#utilidades.ip.ipv4.GeneradorIPV4Azar.generar_clase_a" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Genera una dirección de clase A en la que haya
+tantos bits de red como se nos pida.</p>
+<blockquote>
+<div><p>Argumentos:</p>
+<blockquote>
+<div><p>num_bits – número de bits de red</p>
+</div></blockquote>
+</div></blockquote>
+</dd></dl>
+
+<dl class="py method">
+<dt id="utilidades.ip.ipv4.GeneradorIPV4Azar.generar_clase_b">
+<code class="sig-name descname">generar_clase_b</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">num_bits</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/utilidades/ip/ipv4.html#GeneradorIPV4Azar.generar_clase_b"><span class="viewcode-link">[fuente]</span></a><a class="headerlink" href="#utilidades.ip.ipv4.GeneradorIPV4Azar.generar_clase_b" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Genera una dirección de clase B en la que haya
+tantos bits de red como se nos pida.</p>
+<blockquote>
+<div><p>Argumentos:</p>
+<blockquote>
+<div><p>num_bits – número de bits de red</p>
+</div></blockquote>
+</div></blockquote>
+</dd></dl>
+
+<dl class="py method">
+<dt id="utilidades.ip.ipv4.GeneradorIPV4Azar.generar_clase_c">
+<code class="sig-name descname">generar_clase_c</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">num_bits</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/utilidades/ip/ipv4.html#GeneradorIPV4Azar.generar_clase_c"><span class="viewcode-link">[fuente]</span></a><a class="headerlink" href="#utilidades.ip.ipv4.GeneradorIPV4Azar.generar_clase_c" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Genera una dirección de clase C en la que haya
+tantos bits de red como se nos pida.</p>
+<blockquote>
+<div><p>Argumentos:</p>
+<blockquote>
+<div><p>num_bits – número de bits de red</p>
+</div></blockquote>
+</div></blockquote>
+</dd></dl>
+
+<dl class="py method">
+<dt id="utilidades.ip.ipv4.GeneradorIPV4Azar.get_direccion_en_binario">
+<code class="sig-name descname">get_direccion_en_binario</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">direccion</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/utilidades/ip/ipv4.html#GeneradorIPV4Azar.get_direccion_en_binario"><span class="viewcode-link">[fuente]</span></a><a class="headerlink" href="#utilidades.ip.ipv4.GeneradorIPV4Azar.get_direccion_en_binario" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Dada una dirección en decimal como 192.168.1.39/24
+nos devuelve el equivalente en binario</p>
+<blockquote>
+<div><p>Argumentos:</p>
+<blockquote>
+<div><p>direccion – Dirección en decimal como 192.168.1.39/24</p>
+</div></blockquote>
+</div></blockquote>
+</dd></dl>
+
+<dl class="py method">
+<dt id="utilidades.ip.ipv4.GeneradorIPV4Azar.get_ip_host">
+<code class="sig-name descname">get_ip_host</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">num_host</span><span class="o">=</span><span class="default_value">0</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/utilidades/ip/ipv4.html#GeneradorIPV4Azar.get_ip_host"><span class="viewcode-link">[fuente]</span></a><a class="headerlink" href="#utilidades.ip.ipv4.GeneradorIPV4Azar.get_ip_host" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Genera una IP válida de host:</p>
+<p>Argumentos:</p>
+<blockquote>
+<div><p>num_host – Número de host (se extrae la IP número X del vector total de IPs</p>
+</div></blockquote>
+<p>Devuelve:</p>
+<blockquote>
+<div><p>(ip, mascara) – Tupla con una IP y una máscara, todo en strings</p>
+</div></blockquote>
+</dd></dl>
+
+<dl class="py method">
+<dt id="utilidades.ip.ipv4.GeneradorIPV4Azar.get_mascara_en_decimal">
+<code class="sig-name descname">get_mascara_en_decimal</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/utilidades/ip/ipv4.html#GeneradorIPV4Azar.get_mascara_en_decimal"><span class="viewcode-link">[fuente]</span></a><a class="headerlink" href="#utilidades.ip.ipv4.GeneradorIPV4Azar.get_mascara_en_decimal" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Devuelve la máscara de la dirección actual en decimal</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
 <div class="section" id="indices-and-tables">
 <h1>Indices and tables<a class="headerlink" href="#indices-and-tables" title="Enlazar permanentemente con este título">¶</a></h1>
 <ul class="simple">

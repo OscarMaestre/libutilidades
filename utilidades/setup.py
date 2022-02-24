@@ -21,7 +21,8 @@ setup(name='utilidades',
                 'utilidades.basedatos',
                 'utilidades.cadenas',
                 'utilidades.internet',
-                'utilidades.ip'],
+                'utilidades.ip',
+                'utilidades.cisco'],
       package_data={'utilidades.modelos':ficheros_especialidades},
       include_package_data=True
 )
