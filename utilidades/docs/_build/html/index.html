@@ -183,6 +183,76 @@ lo alinea</p>
 </dd></dl>
 
 </div>
+<div class="section" id="clase-gestorbd">
+<h1>Clase GestorBD<a class="headerlink" href="#clase-gestorbd" title="Enlazar permanentemente con este título">¶</a></h1>
+<dl class="py class">
+<dt id="utilidades.basedatos.GestorBD.GestorBD">
+<em class="property">class </em><code class="sig-prename descclassname">utilidades.basedatos.GestorBD.</code><code class="sig-name descname">GestorBD</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">archivo_db</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/utilidades/basedatos/GestorBD.html#GestorBD"><span class="viewcode-link">[fuente]</span></a><a class="headerlink" href="#utilidades.basedatos.GestorBD.GestorBD" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><dl class="py method">
+<dt id="utilidades.basedatos.GestorBD.GestorBD.activar_depuracion">
+<code class="sig-name descname">activar_depuracion</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/utilidades/basedatos/GestorBD.html#GestorBD.activar_depuracion"><span class="viewcode-link">[fuente]</span></a><a class="headerlink" href="#utilidades.basedatos.GestorBD.GestorBD.activar_depuracion" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Activa la depuración SQL</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="utilidades.basedatos.GestorBD.GestorBD.cuantos_cumplen_select">
+<code class="sig-name descname">cuantos_cumplen_select</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">select</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/utilidades/basedatos/GestorBD.html#GestorBD.cuantos_cumplen_select"><span class="viewcode-link">[fuente]</span></a><a class="headerlink" href="#utilidades.basedatos.GestorBD.GestorBD.cuantos_cumplen_select" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Devuelve el número de filas que devuelve un SELECT</p>
+<p>Argumentos:</p>
+<blockquote>
+<div><p>select – Sentencia SQL SELECT</p>
+</div></blockquote>
+</dd></dl>
+
+<dl class="py method">
+<dt id="utilidades.basedatos.GestorBD.GestorBD.desactivar_depuracion">
+<code class="sig-name descname">desactivar_depuracion</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/utilidades/basedatos/GestorBD.html#GestorBD.desactivar_depuracion"><span class="viewcode-link">[fuente]</span></a><a class="headerlink" href="#utilidades.basedatos.GestorBD.GestorBD.desactivar_depuracion" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Activa la depuración SQL</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="utilidades.basedatos.GestorBD.GestorBD.ejecutar_sentencias">
+<code class="sig-name descname">ejecutar_sentencias</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">lista_sentencias</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/utilidades/basedatos/GestorBD.html#GestorBD.ejecutar_sentencias"><span class="viewcode-link">[fuente]</span></a><a class="headerlink" href="#utilidades.basedatos.GestorBD.GestorBD.ejecutar_sentencias" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Ejecuta varias sentencias SQL</p>
+<p>Argumentos:</p>
+<blockquote>
+<div><p>lista_sentencias – Array con una lista de cadenas SQL con SELECTs</p>
+</div></blockquote>
+</dd></dl>
+
+<dl class="py method">
+<dt id="utilidades.basedatos.GestorBD.GestorBD.get_filas">
+<code class="sig-name descname">get_filas</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">select</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/utilidades/basedatos/GestorBD.html#GestorBD.get_filas"><span class="viewcode-link">[fuente]</span></a><a class="headerlink" href="#utilidades.basedatos.GestorBD.GestorBD.get_filas" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Extrae un conjunto de filas</p>
+<p>Argumentos:</p>
+<blockquote>
+<div><p>select – Sentencia SELECT que recupera varias filas con varios campos</p>
+</div></blockquote>
+</dd></dl>
+
+<dl class="py method">
+<dt id="utilidades.basedatos.GestorBD.GestorBD.get_nombres_columnas">
+<code class="sig-name descname">get_nombres_columnas</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/utilidades/basedatos/GestorBD.html#GestorBD.get_nombres_columnas"><span class="viewcode-link">[fuente]</span></a><a class="headerlink" href="#utilidades.basedatos.GestorBD.GestorBD.get_nombres_columnas" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Extrae los nombres de las columnas de la última sentencia SELECT</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="utilidades.basedatos.GestorBD.GestorBD.get_unico_valor">
+<code class="sig-name descname">get_unico_valor</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">sql_con_valor_unico</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/utilidades/basedatos/GestorBD.html#GestorBD.get_unico_valor"><span class="viewcode-link">[fuente]</span></a><a class="headerlink" href="#utilidades.basedatos.GestorBD.GestorBD.get_unico_valor" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Devuelve el valor que hay dentro de un SELECT
+que devuelve un solo valor</p>
+<blockquote>
+<div><p>Argumentos:</p>
+<blockquote>
+<div><p>sql_con_valor_unico – Sentencia SELECT que se supone que
+extrae UNA ÚNICA FILA y de esa ÚNICA FILA extrae UN SOLO CAMPO</p>
+</div></blockquote>
+</div></blockquote>
+</dd></dl>
+
+</dd></dl>
+
+</div>
 <div class="section" id="clase-procesadorpdf">
 <h1>Clase ProcesadorPDF<a class="headerlink" href="#clase-procesadorpdf" title="Enlazar permanentemente con este título">¶</a></h1>
 <dl class="py class">

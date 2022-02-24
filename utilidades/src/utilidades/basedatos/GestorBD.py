@@ -43,12 +43,21 @@ class GestorBD(object):
         return FIN_SQL_ACCESS
     
     def activar_depuracion(self):
+        """Activa la depuración SQL"""
         self.debug=True
         
     def desactivar_depuracion(self):
+        """Activa la depuración SQL"""
         self.debug=False
         
     def get_unico_valor(self, sql_con_valor_unico):
+        """Devuelve el valor que hay dentro de un SELECT
+        que devuelve un solo valor
+        
+            Argumentos:
+            
+                sql_con_valor_unico -- Sentencia SELECT que se supone que
+                extrae UNA ÚNICA FILA y de esa ÚNICA FILA extrae UN SOLO CAMPO"""
         if self.debug:
             print (sql_con_valor_unico)
         filas=self.get_filas(sql_con_valor_unico)
@@ -56,6 +65,11 @@ class GestorBD(object):
         return filas[0][0]
     
     def ejecutar_sentencias(self, lista_sentencias):
+        """Ejecuta varias sentencias SQL
+        
+            Argumentos:
+            
+                lista_sentencias -- Array con una lista de cadenas SQL con SELECTs"""
         for sql in lista_sentencias:
             if self.debug:
                 print("-"*20)
@@ -69,9 +83,19 @@ class GestorBD(object):
         self.conexion.commit()
     
     def get_filas(self, select):
+        """Extrae un conjunto de filas 
+        
+            Argumentos:
+            
+                select -- Sentencia SELECT que recupera varias filas con varios campos"""
         filas=self.cursor.execute(select)
         return filas.fetchall()
     def cuantos_cumplen_select(self, select):
+        """Devuelve el número de filas que devuelve un SELECT
+        
+            Argumentos:
+            
+                select -- Sentencia SQL SELECT"""
         filas=self.get_filas(select)
         return len(filas)
     def __del__(self):
@@ -79,7 +103,9 @@ class GestorBD(object):
         
     def get_descripcion(self):
         return self.cursor.description
+        
     def get_nombres_columnas(self):
+        """Extrae los nombres de las columnas de la última sentencia SELECT"""
         descripciones=self.cursor.description
         nombres_columnas=[]
         for d in descripciones:

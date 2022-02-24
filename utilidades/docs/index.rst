@@ -32,9 +32,15 @@ Clase Updates
 .. autoclass:: utilidades.mensajeria.telegram.Update
    :members:
    
+Clase GestorBD
+==========================
+
+.. autoclass:: utilidades.basedatos.GestorBD.GestorBD
+   :members:
    
 Clase ProcesadorPDF
 ========================
+
 .. autoclass:: utilidades.ficheros.ProcesadorPDF.ProcesadorPDF
    :members:
 
