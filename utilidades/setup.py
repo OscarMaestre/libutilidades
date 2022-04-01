@@ -4,13 +4,13 @@
 #from distutils.core import setup
 import os
 from setuptools import setup
-ficheros_especialidades=[]
-ficheros_especialidades.append ( os.sep.join(["utilidades","modelos","Especialidades0597.txt"]))
-#print (ficheros_especialidades)
+
+
 setup(name='utilidades',
       version='1.0',
       package_dir={'':'src'},
       packages=['utilidades',
+                'utilidades.imagenes',
                 'utilidades.documentos',
                 'utilidades.email',
                 'utilidades.fechas',
@@ -24,7 +24,9 @@ setup(name='utilidades',
                 'utilidades.internet',
                 'utilidades.ip',
                 'utilidades.cisco'],
-      package_data={'utilidades.modelos':ficheros_especialidades},
+
+        #Si queremos incluir un fichero "estático" meterlo
+        #en el Manifest.in
       include_package_data=True
 )
 

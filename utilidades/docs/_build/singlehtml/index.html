@@ -1,40 +1,35 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
+<!DOCTYPE html>
 
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html lang="es">
   <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>documentación de Modulo de utilidades para Python - 1.0</title>
-    
-    <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-    
-    <script type="text/javascript">
-      var DOCUMENTATION_OPTIONS = {
-        URL_ROOT:    './',
-        VERSION:     '1.0',
-        COLLAPSE_INDEX: false,
-        FILE_SUFFIX: '.html',
-        HAS_SOURCE:  true
-      };
-    </script>
-    <script type="text/javascript" src="_static/jquery.js"></script>
-    <script type="text/javascript" src="_static/underscore.js"></script>
-    <script type="text/javascript" src="_static/doctools.js"></script>
-    <script type="text/javascript" src="_static/translations.js"></script>
-    <link rel="top" title="None" href="index.html#document-index" />
+    <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
+    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/language_data.js"></script>
+    <script src="_static/translations.js"></script>
+    <link rel="index" title="Índice" href="genindex.html" />
+    <link rel="search" title="Búsqueda" href="search.html" />
    
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
   
   <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
 
-  </head>
-  <body role="document">  
+  </head><body>
+  
 
     <div class="document">
       <div class="documentwrapper">
         <div class="bodywrapper">
+          
+
           <div class="body" role="main">
             
   <div class="section" id="modulo-de-utilidades-para-python">
@@ -43,44 +38,110 @@
 <div class="toctree-wrapper compound">
 </div>
 </div>
+<div class="section" id="clase-utilidades">
+<h1>Clase Utilidades<a class="headerlink" href="#clase-utilidades" title="Enlazar permanentemente con este título">¶</a></h1>
+<dl class="py class">
+<dt id="utilidades.genericas.Utilidades.Utilidades">
+<em class="property">class </em><code class="sig-prename descclassname">utilidades.genericas.Utilidades.</code><code class="sig-name descname">Utilidades</code><a class="headerlink" href="#utilidades.genericas.Utilidades.Utilidades" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><dl class="py method">
+<dt id="utilidades.genericas.Utilidades.Utilidades.anadir_tabuladores">
+<em class="property">static </em><code class="sig-name descname">anadir_tabuladores</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">texto</span></em>, <em class="sig-param"><span class="n">num_tabs</span><span class="o">=</span><span class="default_value">1</span></em><span class="sig-paren">)</span><a class="headerlink" href="#utilidades.genericas.Utilidades.Utilidades.anadir_tabuladores" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Dado un texto añade tabuladores a todos los comienzos de línea</p>
+<p>Argumentos:</p>
+<blockquote>
+<div><p>texto – Texto a tabular</p>
+<p>num_tabs – Cantidad de tabuladores a añadir al principio</p>
+</div></blockquote>
+</dd></dl>
+
+<dl class="py method">
+<dt id="utilidades.genericas.Utilidades.Utilidades.elegir_elemento_al_azar">
+<em class="property">static </em><code class="sig-name descname">elegir_elemento_al_azar</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">lista</span></em><span class="sig-paren">)</span><a class="headerlink" href="#utilidades.genericas.Utilidades.Utilidades.elegir_elemento_al_azar" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Devuelve un elemento al azar de una lista</p>
+<p>Argumentos:</p>
+<blockquote>
+<div><p>lista – Lista con elementos</p>
+</div></blockquote>
+<p>Devuelve</p>
+<blockquote>
+<div><p>Un elemento cualquiera de la lista o error si la lista está vacía</p>
+</div></blockquote>
+</dd></dl>
+
+<dl class="py method">
+<dt id="utilidades.genericas.Utilidades.Utilidades.embellecer_html">
+<em class="property">static </em><code class="sig-name descname">embellecer_html</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">cadena_html</span></em><span class="sig-paren">)</span><a class="headerlink" href="#utilidades.genericas.Utilidades.Utilidades.embellecer_html" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Dada una cadena HTML embellece el resultado y
+lo alinea</p>
+<p>Argumentos:</p>
+<blockquote>
+<div><p>cadena_xml – Cadena a embellecer</p>
+</div></blockquote>
+</dd></dl>
+
+<dl class="py method">
+<dt id="utilidades.genericas.Utilidades.Utilidades.embellecer_xml">
+<em class="property">static </em><code class="sig-name descname">embellecer_xml</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">cadena_xml</span></em><span class="sig-paren">)</span><a class="headerlink" href="#utilidades.genericas.Utilidades.Utilidades.embellecer_xml" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Dada una cadena XML embellece el resultado y
+lo alinea</p>
+<p>Argumentos:</p>
+<blockquote>
+<div><p>cadena_xml – Cadena a embellecer</p>
+</div></blockquote>
+</dd></dl>
+
+<dl class="py method">
+<dt id="utilidades.genericas.Utilidades.Utilidades.enviar_mensaje_por_telegram">
+<em class="property">static </em><code class="sig-name descname">enviar_mensaje_por_telegram</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">mensaje</span></em><span class="sig-paren">)</span><a class="headerlink" href="#utilidades.genericas.Utilidades.Utilidades.enviar_mensaje_por_telegram" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Envía un mensaje a través del BotAvisador</p>
+<p>Argumentos:</p>
+<blockquote>
+<div><p>mensaje – Mensaje  a enviar</p>
+</div></blockquote>
+</dd></dl>
+
+</dd></dl>
+
+</div>
 <div class="section" id="clase-gestortelegram">
 <h1>Clase GestorTelegram<a class="headerlink" href="#clase-gestortelegram" title="Enlazar permanentemente con este título">¶</a></h1>
 <p>Un ejemplo de código</p>
-<dl class="class">
+<dl class="py class">
 <dt id="utilidades.mensajeria.telegram.GestorTelegram">
-<em class="property">class </em><code class="descclassname">utilidades.mensajeria.telegram.</code><code class="descname">GestorTelegram</code><span class="sig-paren">(</span><em>token</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/utilidades/mensajeria/telegram.html#GestorTelegram"><span class="viewcode-link">[fuente]</span></a><a class="headerlink" href="#utilidades.mensajeria.telegram.GestorTelegram" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<em class="property">class </em><code class="sig-prename descclassname">utilidades.mensajeria.telegram.</code><code class="sig-name descname">GestorTelegram</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">token</span></em><span class="sig-paren">)</span><a class="headerlink" href="#utilidades.mensajeria.telegram.GestorTelegram" title="Enlazar permanentemente con esta definición">¶</a></dt>
 <dd><p>Gestiona los mensajes de Telegram</p>
-<dl class="method">
+<dl class="py method">
 <dt id="utilidades.mensajeria.telegram.GestorTelegram.dar_de_alta">
-<code class="descname">dar_de_alta</code><span class="sig-paren">(</span><em>chat_id</em>, <em>resto_texto</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/utilidades/mensajeria/telegram.html#GestorTelegram.dar_de_alta"><span class="viewcode-link">[fuente]</span></a><a class="headerlink" href="#utilidades.mensajeria.telegram.GestorTelegram.dar_de_alta" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<code class="sig-name descname">dar_de_alta</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">chat_id</span></em>, <em class="sig-param"><span class="n">resto_texto</span></em><span class="sig-paren">)</span><a class="headerlink" href="#utilidades.mensajeria.telegram.GestorTelegram.dar_de_alta" title="Enlazar permanentemente con esta definición">¶</a></dt>
 <dd><p>Da de alta a una persona</p>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="utilidades.mensajeria.telegram.GestorTelegram.enviar_mensaje_alta_no_realizada">
-<code class="descname">enviar_mensaje_alta_no_realizada</code><span class="sig-paren">(</span><em>chat_id</em>, <em>dni</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/utilidades/mensajeria/telegram.html#GestorTelegram.enviar_mensaje_alta_no_realizada"><span class="viewcode-link">[fuente]</span></a><a class="headerlink" href="#utilidades.mensajeria.telegram.GestorTelegram.enviar_mensaje_alta_no_realizada" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<code class="sig-name descname">enviar_mensaje_alta_no_realizada</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">chat_id</span></em>, <em class="sig-param"><span class="n">dni</span></em><span class="sig-paren">)</span><a class="headerlink" href="#utilidades.mensajeria.telegram.GestorTelegram.enviar_mensaje_alta_no_realizada" title="Enlazar permanentemente con esta definición">¶</a></dt>
 <dd><p>Envia el mensaje que indica que el alta no se ha hecho</p>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="utilidades.mensajeria.telegram.GestorTelegram.enviar_mensaje_alta_realizada">
-<code class="descname">enviar_mensaje_alta_realizada</code><span class="sig-paren">(</span><em>chat_id</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/utilidades/mensajeria/telegram.html#GestorTelegram.enviar_mensaje_alta_realizada"><span class="viewcode-link">[fuente]</span></a><a class="headerlink" href="#utilidades.mensajeria.telegram.GestorTelegram.enviar_mensaje_alta_realizada" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<code class="sig-name descname">enviar_mensaje_alta_realizada</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">chat_id</span></em><span class="sig-paren">)</span><a class="headerlink" href="#utilidades.mensajeria.telegram.GestorTelegram.enviar_mensaje_alta_realizada" title="Enlazar permanentemente con esta definición">¶</a></dt>
 <dd><p>Envia el mensaje que indica que el alta no se ha hecho</p>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="utilidades.mensajeria.telegram.GestorTelegram.enviar_mensaje_ayuda">
-<code class="descname">enviar_mensaje_ayuda</code><span class="sig-paren">(</span><em>chat_id</em>, <em>dni</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/utilidades/mensajeria/telegram.html#GestorTelegram.enviar_mensaje_ayuda"><span class="viewcode-link">[fuente]</span></a><a class="headerlink" href="#utilidades.mensajeria.telegram.GestorTelegram.enviar_mensaje_ayuda" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<code class="sig-name descname">enviar_mensaje_ayuda</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">chat_id</span></em>, <em class="sig-param"><span class="n">dni</span></em><span class="sig-paren">)</span><a class="headerlink" href="#utilidades.mensajeria.telegram.GestorTelegram.enviar_mensaje_ayuda" title="Enlazar permanentemente con esta definición">¶</a></dt>
 <dd><p>Envia el mensaje de ayuda estándar</p>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="utilidades.mensajeria.telegram.GestorTelegram.getUpdates">
-<code class="descname">getUpdates</code><span class="sig-paren">(</span><em>offset=-1</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/utilidades/mensajeria/telegram.html#GestorTelegram.getUpdates"><span class="viewcode-link">[fuente]</span></a><a class="headerlink" href="#utilidades.mensajeria.telegram.GestorTelegram.getUpdates" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<code class="sig-name descname">getUpdates</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">offset</span><span class="o">=</span><span class="default_value">- 1</span></em><span class="sig-paren">)</span><a class="headerlink" href="#utilidades.mensajeria.telegram.GestorTelegram.getUpdates" title="Enlazar permanentemente con esta definición">¶</a></dt>
 <dd><p>Descarga las actualizaciones en forma de una lista de objetos Update.</p>
 <p>Argumentos:</p>
 <blockquote>
-<div>offset &#8211; Identificador del primer update_id. Debería ser el último recogido +1</div></blockquote>
+<div><p>offset – Identificador del primer update_id. Debería ser el último recogido +1</p>
+</div></blockquote>
 <p>Devuelve</p>
 <blockquote>
 <div><p>Una lista de updates si todo va bien</p>
@@ -88,14 +149,14 @@
 </div></blockquote>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="utilidades.mensajeria.telegram.GestorTelegram.sendMessage">
-<code class="descname">sendMessage</code><span class="sig-paren">(</span><em>chat_id</em>, <em>text</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/utilidades/mensajeria/telegram.html#GestorTelegram.sendMessage"><span class="viewcode-link">[fuente]</span></a><a class="headerlink" href="#utilidades.mensajeria.telegram.GestorTelegram.sendMessage" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<code class="sig-name descname">sendMessage</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">chat_id</span></em>, <em class="sig-param"><span class="n">text</span></em><span class="sig-paren">)</span><a class="headerlink" href="#utilidades.mensajeria.telegram.GestorTelegram.sendMessage" title="Enlazar permanentemente con esta definición">¶</a></dt>
 <dd><p>Envia un mensaje</p>
 <p>Parametros:</p>
 <blockquote>
-<div><p>chat_id &#8211; id del chat al que enviar el texto</p>
-<p>text &#8211; texto a enviar</p>
+<div><p>chat_id – id del chat al que enviar el texto</p>
+<p>text – texto a enviar</p>
 </div></blockquote>
 </dd></dl>
 
@@ -104,18 +165,17 @@
 </div>
 <div class="section" id="clase-updates">
 <h1>Clase Updates<a class="headerlink" href="#clase-updates" title="Enlazar permanentemente con este título">¶</a></h1>
-<dl class="class">
+<dl class="py class">
 <dt id="utilidades.mensajeria.telegram.Update">
-<em class="property">class </em><code class="descclassname">utilidades.mensajeria.telegram.</code><code class="descname">Update</code><span class="sig-paren">(</span><em>objeto_json</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/utilidades/mensajeria/telegram.html#Update"><span class="viewcode-link">[fuente]</span></a><a class="headerlink" href="#utilidades.mensajeria.telegram.Update" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<em class="property">class </em><code class="sig-prename descclassname">utilidades.mensajeria.telegram.</code><code class="sig-name descname">Update</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">objeto_json</span></em><span class="sig-paren">)</span><a class="headerlink" href="#utilidades.mensajeria.telegram.Update" title="Enlazar permanentemente con esta definición">¶</a></dt>
 <dd><p>Actualización recibida</p>
-<dl class="method">
+<dl class="py method">
 <dt id="utilidades.mensajeria.telegram.Update.es_alta">
-<code class="descname">es_alta</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/utilidades/mensajeria/telegram.html#Update.es_alta"><span class="viewcode-link">[fuente]</span></a><a class="headerlink" href="#utilidades.mensajeria.telegram.Update.es_alta" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<code class="sig-name descname">es_alta</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#utilidades.mensajeria.telegram.Update.es_alta" title="Enlazar permanentemente con esta definición">¶</a></dt>
 <dd><p>Nos dice si un mensaje recibido es un alta o no.</p>
-<dl class="docutils">
-<dt>Devuelve</dt>
-<dd><p class="first">(True, resto_mensaje) &#8211; Si es un mensaje de alta</p>
-<p class="last">(False, None) &#8211; Si no es un mensaje de alta</p>
+<dl>
+<dt>Devuelve</dt><dd><p>(True, resto_mensaje) – Si es un mensaje de alta</p>
+<p>(False, None) – Si no es un mensaje de alta</p>
 </dd>
 </dl>
 </dd></dl>
@@ -123,226 +183,314 @@
 </dd></dl>
 
 </div>
-<div class="section" id="clase-procesadorpdf">
-<h1>Clase ProcesadorPDF<a class="headerlink" href="#clase-procesadorpdf" title="Enlazar permanentemente con este título">¶</a></h1>
-<dl class="class">
-<dt id="utilidades.ficheros.ProcesadorPDF.ProcesadorPDF">
-<em class="property">class </em><code class="descclassname">utilidades.ficheros.ProcesadorPDF.</code><code class="descname">ProcesadorPDF</code><a class="reference internal" href="_modules/utilidades/ficheros/ProcesadorPDF.html#ProcesadorPDF"><span class="viewcode-link">[fuente]</span></a><a class="headerlink" href="#utilidades.ficheros.ProcesadorPDF.ProcesadorPDF" title="Enlazar permanentemente con esta definición">¶</a></dt>
-<dd><p>Procesa archivos PDF convertidos a texto</p>
-<dl class="method">
-<dt id="utilidades.ficheros.ProcesadorPDF.ProcesadorPDF.abrir_fichero_txt">
-<code class="descname">abrir_fichero_txt</code><span class="sig-paren">(</span><em>nombre_fichero_txt</em>, <em>codificacion='utf-8'</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/utilidades/ficheros/ProcesadorPDF.html#ProcesadorPDF.abrir_fichero_txt"><span class="viewcode-link">[fuente]</span></a><a class="headerlink" href="#utilidades.ficheros.ProcesadorPDF.ProcesadorPDF.abrir_fichero_txt" title="Enlazar permanentemente con esta definición">¶</a></dt>
-<dd><p>Abre un fichero txt para empezar a procesarlo</p>
+<div class="section" id="clase-gestorbd">
+<h1>Clase GestorBD<a class="headerlink" href="#clase-gestorbd" title="Enlazar permanentemente con este título">¶</a></h1>
+<dl class="py class">
+<dt id="utilidades.basedatos.GestorBD.GestorBD">
+<em class="property">class </em><code class="sig-prename descclassname">utilidades.basedatos.GestorBD.</code><code class="sig-name descname">GestorBD</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">archivo_db</span></em><span class="sig-paren">)</span><a class="headerlink" href="#utilidades.basedatos.GestorBD.GestorBD" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><dl class="py method">
+<dt id="utilidades.basedatos.GestorBD.GestorBD.activar_depuracion">
+<code class="sig-name descname">activar_depuracion</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#utilidades.basedatos.GestorBD.GestorBD.activar_depuracion" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Activa la depuración SQL</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="utilidades.basedatos.GestorBD.GestorBD.cuantos_cumplen_select">
+<code class="sig-name descname">cuantos_cumplen_select</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">select</span></em><span class="sig-paren">)</span><a class="headerlink" href="#utilidades.basedatos.GestorBD.GestorBD.cuantos_cumplen_select" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Devuelve el número de filas que devuelve un SELECT</p>
 <p>Argumentos:</p>
 <blockquote>
-<div><p>nombre_fichero_txt &#8211; nombre del fichero txt</p>
-<p>codificacion &#8211; codificación del fichero</p>
+<div><p>select – Sentencia SQL SELECT</p>
 </div></blockquote>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
+<dt id="utilidades.basedatos.GestorBD.GestorBD.desactivar_depuracion">
+<code class="sig-name descname">desactivar_depuracion</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#utilidades.basedatos.GestorBD.GestorBD.desactivar_depuracion" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Activa la depuración SQL</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="utilidades.basedatos.GestorBD.GestorBD.ejecutar_sentencias">
+<code class="sig-name descname">ejecutar_sentencias</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">lista_sentencias</span></em><span class="sig-paren">)</span><a class="headerlink" href="#utilidades.basedatos.GestorBD.GestorBD.ejecutar_sentencias" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Ejecuta varias sentencias SQL</p>
+<p>Argumentos:</p>
+<blockquote>
+<div><p>lista_sentencias – Array con una lista de cadenas SQL con SELECTs</p>
+</div></blockquote>
+</dd></dl>
+
+<dl class="py method">
+<dt id="utilidades.basedatos.GestorBD.GestorBD.get_filas">
+<code class="sig-name descname">get_filas</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">select</span></em><span class="sig-paren">)</span><a class="headerlink" href="#utilidades.basedatos.GestorBD.GestorBD.get_filas" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Extrae un conjunto de filas</p>
+<p>Argumentos:</p>
+<blockquote>
+<div><p>select – Sentencia SELECT que recupera varias filas con varios campos</p>
+</div></blockquote>
+</dd></dl>
+
+<dl class="py method">
+<dt id="utilidades.basedatos.GestorBD.GestorBD.get_nombres_columnas">
+<code class="sig-name descname">get_nombres_columnas</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#utilidades.basedatos.GestorBD.GestorBD.get_nombres_columnas" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Extrae los nombres de las columnas de la última sentencia SELECT</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="utilidades.basedatos.GestorBD.GestorBD.get_unico_valor">
+<code class="sig-name descname">get_unico_valor</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">sql_con_valor_unico</span></em><span class="sig-paren">)</span><a class="headerlink" href="#utilidades.basedatos.GestorBD.GestorBD.get_unico_valor" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Devuelve el valor que hay dentro de un SELECT
+que devuelve un solo valor</p>
+<blockquote>
+<div><p>Argumentos:</p>
+<blockquote>
+<div><p>sql_con_valor_unico – Sentencia SELECT que se supone que
+extrae UNA ÚNICA FILA y de esa ÚNICA FILA extrae UN SOLO CAMPO</p>
+</div></blockquote>
+</div></blockquote>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="clase-procesadorpdf">
+<h1>Clase ProcesadorPDF<a class="headerlink" href="#clase-procesadorpdf" title="Enlazar permanentemente con este título">¶</a></h1>
+<dl class="py class">
+<dt id="utilidades.ficheros.ProcesadorPDF.ProcesadorPDF">
+<em class="property">class </em><code class="sig-prename descclassname">utilidades.ficheros.ProcesadorPDF.</code><code class="sig-name descname">ProcesadorPDF</code><a class="headerlink" href="#utilidades.ficheros.ProcesadorPDF.ProcesadorPDF" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Procesa archivos PDF convertidos a texto</p>
+<dl class="py method">
+<dt id="utilidades.ficheros.ProcesadorPDF.ProcesadorPDF.abrir_fichero_txt">
+<code class="sig-name descname">abrir_fichero_txt</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">nombre_fichero_txt</span></em>, <em class="sig-param"><span class="n">codificacion</span><span class="o">=</span><span class="default_value">'utf-8'</span></em><span class="sig-paren">)</span><a class="headerlink" href="#utilidades.ficheros.ProcesadorPDF.ProcesadorPDF.abrir_fichero_txt" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Abre un fichero txt para empezar a procesarlo</p>
+<p>Argumentos:</p>
+<blockquote>
+<div><p>nombre_fichero_txt – nombre del fichero txt</p>
+<p>codificacion – codificación del fichero</p>
+</div></blockquote>
+</dd></dl>
+
+<dl class="py method">
 <dt id="utilidades.ficheros.ProcesadorPDF.ProcesadorPDF.avanzar_buscando_codigo_centro">
-<code class="descname">avanzar_buscando_codigo_centro</code><span class="sig-paren">(</span><em>con_c=False</em>, <em>debe_estar_en_misma_linea=True</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/utilidades/ficheros/ProcesadorPDF.html#ProcesadorPDF.avanzar_buscando_codigo_centro"><span class="viewcode-link">[fuente]</span></a><a class="headerlink" href="#utilidades.ficheros.ProcesadorPDF.ProcesadorPDF.avanzar_buscando_codigo_centro" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<code class="sig-name descname">avanzar_buscando_codigo_centro</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">con_c</span><span class="o">=</span><span class="default_value">False</span></em>, <em class="sig-param"><span class="n">debe_estar_en_misma_linea</span><span class="o">=</span><span class="default_value">True</span></em><span class="sig-paren">)</span><a class="headerlink" href="#utilidades.ficheros.ProcesadorPDF.ProcesadorPDF.avanzar_buscando_codigo_centro" title="Enlazar permanentemente con esta definición">¶</a></dt>
 <dd><p>Avanza el procesador buscando un codigo de centro</p>
 <p>Argumentos:</p>
 <blockquote>
-<div><p>con_c &#8211; Si es True se busca un codigo acabado en &#8216;C&#8217;, si es False se busca sin &#8216;C&#8217; al final</p>
-<p>debe_estar_en_misma_linea &#8211; Si es True el procesador se mantiene siempre en la misma linea,
+<div><p>con_c – Si es True se busca un codigo acabado en “C”, si es False se busca sin “C” al final</p>
+<p>debe_estar_en_misma_linea – Si es True el procesador se mantiene siempre en la misma linea,
 si es False se le permite avanzar hacia delante</p>
 </div></blockquote>
 <p>Devuelve:</p>
 <blockquote>
-<div>Un código de centro o ProcesadorPDF.PATRON_NO_ENCONTRADO</div></blockquote>
+<div><p>Un código de centro o ProcesadorPDF.PATRON_NO_ENCONTRADO</p>
+</div></blockquote>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="utilidades.ficheros.ProcesadorPDF.ProcesadorPDF.avanzar_buscando_patron">
-<code class="descname">avanzar_buscando_patron</code><span class="sig-paren">(</span><em>expr_regular</em>, <em>debe_estar_en_misma_linea=True</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/utilidades/ficheros/ProcesadorPDF.html#ProcesadorPDF.avanzar_buscando_patron"><span class="viewcode-link">[fuente]</span></a><a class="headerlink" href="#utilidades.ficheros.ProcesadorPDF.ProcesadorPDF.avanzar_buscando_patron" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<code class="sig-name descname">avanzar_buscando_patron</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">expr_regular</span></em>, <em class="sig-param"><span class="n">debe_estar_en_misma_linea</span><span class="o">=</span><span class="default_value">True</span></em><span class="sig-paren">)</span><a class="headerlink" href="#utilidades.ficheros.ProcesadorPDF.ProcesadorPDF.avanzar_buscando_patron" title="Enlazar permanentemente con esta definición">¶</a></dt>
 <dd><p>Hace avanzar el procesador buscando un cierto patrón</p>
 <p>Argumentos:</p>
 <blockquote>
-<div><p>expr_regular &#8211; patrón a buscar (ya debe estar compilado)</p>
-<p>debe_estar_en_misma_linea &#8211; True por defecto, obliga a buscar sin avanzar a la siguiente línea. Si
+<div><p>expr_regular – patrón a buscar (ya debe estar compilado)</p>
+<p>debe_estar_en_misma_linea – True por defecto, obliga a buscar sin avanzar a la siguiente línea. Si
 se pone a False y el patrón no está se devuelve ProcesadorPDF.PATRON_NO_ENCONTRADO</p>
 </div></blockquote>
 <p>Devuelve:</p>
 <blockquote>
-<div>(ini, fin, texto) &#8211; Tupla con 3 elementos que pueden ser ProcesadorPDF.PATRON_NO_ENCONTRADO</div></blockquote>
+<div><p>(ini, fin, texto) – Tupla con 3 elementos que pueden ser ProcesadorPDF.PATRON_NO_ENCONTRADO</p>
+</div></blockquote>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="utilidades.ficheros.ProcesadorPDF.ProcesadorPDF.convertir_a_txt">
-<code class="descname">convertir_a_txt</code><span class="sig-paren">(</span><em>nombre_pdf</em>, <em>evitar_reconversiones=True</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/utilidades/ficheros/ProcesadorPDF.html#ProcesadorPDF.convertir_a_txt"><span class="viewcode-link">[fuente]</span></a><a class="headerlink" href="#utilidades.ficheros.ProcesadorPDF.ProcesadorPDF.convertir_a_txt" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<code class="sig-name descname">convertir_a_txt</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">nombre_pdf</span></em>, <em class="sig-param"><span class="n">evitar_reconversiones</span><span class="o">=</span><span class="default_value">True</span></em><span class="sig-paren">)</span><a class="headerlink" href="#utilidades.ficheros.ProcesadorPDF.ProcesadorPDF.convertir_a_txt" title="Enlazar permanentemente con esta definición">¶</a></dt>
 <dd><p>Convierte un archivo PDF a texto</p>
 <p>Argumentos:</p>
 <blockquote>
-<div><p>nombre_pdf &#8211; Nombre del fichero PDF</p>
-<p>evitar_reconversiones &#8211; False por defecto, evita reconvertir un fichero si ya se pasó de PDF a TXT</p>
+<div><p>nombre_pdf – Nombre del fichero PDF</p>
+<p>evitar_reconversiones – False por defecto, evita reconvertir un fichero si ya se pasó de PDF a TXT</p>
 </div></blockquote>
 <p>Devuelve:</p>
 <blockquote>
-<div>nombre_txt &#8211; Nombre del fichero TXT (sin importar si ha sido reconvertido)</div></blockquote>
+<div><p>nombre_txt – Nombre del fichero TXT (sin importar si ha sido reconvertido)</p>
+</div></blockquote>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="utilidades.ficheros.ProcesadorPDF.ProcesadorPDF.convertir_decimal_baremo_a_float">
-<code class="descname">convertir_decimal_baremo_a_float</code><span class="sig-paren">(</span><em>str_decimal</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/utilidades/ficheros/ProcesadorPDF.html#ProcesadorPDF.convertir_decimal_baremo_a_float"><span class="viewcode-link">[fuente]</span></a><a class="headerlink" href="#utilidades.ficheros.ProcesadorPDF.ProcesadorPDF.convertir_decimal_baremo_a_float" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<code class="sig-name descname">convertir_decimal_baremo_a_float</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">str_decimal</span></em><span class="sig-paren">)</span><a class="headerlink" href="#utilidades.ficheros.ProcesadorPDF.ProcesadorPDF.convertir_decimal_baremo_a_float" title="Enlazar permanentemente con esta definición">¶</a></dt>
 <dd><p>Dado un decimal de los que aparecen en los baremos de
 los concursos de traslados lo convierte a un tipo
 float de Python</p>
 <p>Argumentos:</p>
 <blockquote>
-<div>str_decimal &#8211; cadena con el decimal a convertir</div></blockquote>
+<div><p>str_decimal – cadena con el decimal a convertir</p>
+</div></blockquote>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="utilidades.ficheros.ProcesadorPDF.ProcesadorPDF.eof">
-<code class="descname">eof</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/utilidades/ficheros/ProcesadorPDF.html#ProcesadorPDF.eof"><span class="viewcode-link">[fuente]</span></a><a class="headerlink" href="#utilidades.ficheros.ProcesadorPDF.ProcesadorPDF.eof" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<code class="sig-name descname">eof</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#utilidades.ficheros.ProcesadorPDF.ProcesadorPDF.eof" title="Enlazar permanentemente con esta definición">¶</a></dt>
 <dd><p>Nos dice si se ha llegado al final del fichero</p>
 </dd></dl>
 
-<dl class="attribute">
+<dl class="py attribute">
 <dt id="utilidades.ficheros.ProcesadorPDF.ProcesadorPDF.expr_regular_codigo_centro_con_c">
-<code class="descname">expr_regular_codigo_centro_con_c</code><em class="property"> = None</em><a class="headerlink" href="#utilidades.ficheros.ProcesadorPDF.ProcesadorPDF.expr_regular_codigo_centro_con_c" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<code class="sig-name descname">expr_regular_codigo_centro_con_c</code><a class="headerlink" href="#utilidades.ficheros.ProcesadorPDF.ProcesadorPDF.expr_regular_codigo_centro_con_c" title="Enlazar permanentemente con esta definición">¶</a></dt>
 <dd><p>Expresion regular para códigos de centro buscando la letra C final</p>
 </dd></dl>
 
-<dl class="attribute">
+<dl class="py attribute">
 <dt id="utilidades.ficheros.ProcesadorPDF.ProcesadorPDF.expr_regular_codigo_centro_sin_c">
-<code class="descname">expr_regular_codigo_centro_sin_c</code><em class="property"> = None</em><a class="headerlink" href="#utilidades.ficheros.ProcesadorPDF.ProcesadorPDF.expr_regular_codigo_centro_sin_c" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<code class="sig-name descname">expr_regular_codigo_centro_sin_c</code><a class="headerlink" href="#utilidades.ficheros.ProcesadorPDF.ProcesadorPDF.expr_regular_codigo_centro_sin_c" title="Enlazar permanentemente con esta definición">¶</a></dt>
 <dd><p>Expresion regular para códigos de centro sin buscar la letra C final</p>
 </dd></dl>
 
-<dl class="attribute">
+<dl class="py attribute">
 <dt id="utilidades.ficheros.ProcesadorPDF.ProcesadorPDF.expr_regular_dni">
-<code class="descname">expr_regular_dni</code><em class="property"> = None</em><a class="headerlink" href="#utilidades.ficheros.ProcesadorPDF.ProcesadorPDF.expr_regular_dni" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<code class="sig-name descname">expr_regular_dni</code><a class="headerlink" href="#utilidades.ficheros.ProcesadorPDF.ProcesadorPDF.expr_regular_dni" title="Enlazar permanentemente con esta definición">¶</a></dt>
 <dd><p>Expresion regular para el dni</p>
 </dd></dl>
 
-<dl class="attribute">
+<dl class="py attribute">
 <dt id="utilidades.ficheros.ProcesadorPDF.ProcesadorPDF.expr_regular_nombre">
-<code class="descname">expr_regular_nombre</code><em class="property"> = None</em><a class="headerlink" href="#utilidades.ficheros.ProcesadorPDF.ProcesadorPDF.expr_regular_nombre" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<code class="sig-name descname">expr_regular_nombre</code><a class="headerlink" href="#utilidades.ficheros.ProcesadorPDF.ProcesadorPDF.expr_regular_nombre" title="Enlazar permanentemente con esta definición">¶</a></dt>
 <dd><p>Expresion regular para el nombre de persona [A-ZÁÉÍÓÚÜÑ ]+,[A-ZÁÉÍÓÚÜÑ ]</p>
 </dd></dl>
 
-<dl class="method">
+<dl class="py attribute">
+<dt id="utilidades.ficheros.ProcesadorPDF.ProcesadorPDF.expr_regular_numero_orden_interinos">
+<code class="sig-name descname">expr_regular_numero_orden_interinos</code><a class="headerlink" href="#utilidades.ficheros.ProcesadorPDF.ProcesadorPDF.expr_regular_numero_orden_interinos" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Expresion regular para número de orden de interino</p>
+</dd></dl>
+
+<dl class="py method">
 <dt id="utilidades.ficheros.ProcesadorPDF.ProcesadorPDF.extraer_dni">
-<code class="descname">extraer_dni</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/utilidades/ficheros/ProcesadorPDF.html#ProcesadorPDF.extraer_dni"><span class="viewcode-link">[fuente]</span></a><a class="headerlink" href="#utilidades.ficheros.ProcesadorPDF.ProcesadorPDF.extraer_dni" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<code class="sig-name descname">extraer_dni</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#utilidades.ficheros.ProcesadorPDF.ProcesadorPDF.extraer_dni" title="Enlazar permanentemente con esta definición">¶</a></dt>
 <dd><p>Extrae el dni de la linea actual</p>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="utilidades.ficheros.ProcesadorPDF.ProcesadorPDF.fila_anterior">
-<code class="descname">fila_anterior</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/utilidades/ficheros/ProcesadorPDF.html#ProcesadorPDF.fila_anterior"><span class="viewcode-link">[fuente]</span></a><a class="headerlink" href="#utilidades.ficheros.ProcesadorPDF.ProcesadorPDF.fila_anterior" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<code class="sig-name descname">fila_anterior</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#utilidades.ficheros.ProcesadorPDF.ProcesadorPDF.fila_anterior" title="Enlazar permanentemente con esta definición">¶</a></dt>
 <dd><p>Retrocede a la fila anterior</p>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="utilidades.ficheros.ProcesadorPDF.ProcesadorPDF.get_especialidades">
-<code class="descname">get_especialidades</code><span class="sig-paren">(</span><em>linea</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/utilidades/ficheros/ProcesadorPDF.html#ProcesadorPDF.get_especialidades"><span class="viewcode-link">[fuente]</span></a><a class="headerlink" href="#utilidades.ficheros.ProcesadorPDF.ProcesadorPDF.get_especialidades" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<code class="sig-name descname">get_especialidades</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">linea</span></em><span class="sig-paren">)</span><a class="headerlink" href="#utilidades.ficheros.ProcesadorPDF.ProcesadorPDF.get_especialidades" title="Enlazar permanentemente con esta definición">¶</a></dt>
 <dd><p>Devuelve la lista de posible especialidades de maestros</p>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="utilidades.ficheros.ProcesadorPDF.ProcesadorPDF.get_linea_actual">
-<code class="descname">get_linea_actual</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/utilidades/ficheros/ProcesadorPDF.html#ProcesadorPDF.get_linea_actual"><span class="viewcode-link">[fuente]</span></a><a class="headerlink" href="#utilidades.ficheros.ProcesadorPDF.ProcesadorPDF.get_linea_actual" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<code class="sig-name descname">get_linea_actual</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#utilidades.ficheros.ProcesadorPDF.ProcesadorPDF.get_linea_actual" title="Enlazar permanentemente con esta definición">¶</a></dt>
 <dd><p>Devuelve el texto con la linea actual</p>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="utilidades.ficheros.ProcesadorPDF.ProcesadorPDF.get_linea_anterior">
-<code class="descname">get_linea_anterior</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/utilidades/ficheros/ProcesadorPDF.html#ProcesadorPDF.get_linea_anterior"><span class="viewcode-link">[fuente]</span></a><a class="headerlink" href="#utilidades.ficheros.ProcesadorPDF.ProcesadorPDF.get_linea_anterior" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<code class="sig-name descname">get_linea_anterior</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#utilidades.ficheros.ProcesadorPDF.ProcesadorPDF.get_linea_anterior" title="Enlazar permanentemente con esta definición">¶</a></dt>
 <dd><p>Devuelve el texto con la linea anterior a la actual</p>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="utilidades.ficheros.ProcesadorPDF.ProcesadorPDF.get_linea_siguiente">
-<code class="descname">get_linea_siguiente</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/utilidades/ficheros/ProcesadorPDF.html#ProcesadorPDF.get_linea_siguiente"><span class="viewcode-link">[fuente]</span></a><a class="headerlink" href="#utilidades.ficheros.ProcesadorPDF.ProcesadorPDF.get_linea_siguiente" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<code class="sig-name descname">get_linea_siguiente</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#utilidades.ficheros.ProcesadorPDF.ProcesadorPDF.get_linea_siguiente" title="Enlazar permanentemente con esta definición">¶</a></dt>
 <dd><p>Devuelve el texto con la linea siguiente a la actual</p>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="utilidades.ficheros.ProcesadorPDF.ProcesadorPDF.get_nombre_persona">
-<code class="descname">get_nombre_persona</code><span class="sig-paren">(</span><em>linea</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/utilidades/ficheros/ProcesadorPDF.html#ProcesadorPDF.get_nombre_persona"><span class="viewcode-link">[fuente]</span></a><a class="headerlink" href="#utilidades.ficheros.ProcesadorPDF.ProcesadorPDF.get_nombre_persona" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<code class="sig-name descname">get_nombre_persona</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">linea</span></em><span class="sig-paren">)</span><a class="headerlink" href="#utilidades.ficheros.ProcesadorPDF.ProcesadorPDF.get_nombre_persona" title="Enlazar permanentemente con esta definición">¶</a></dt>
 <dd><p>Indica si se encuentra un nombre de persona</p>
 <p>Argumentos</p>
 <blockquote>
-<div>linea &#8211; Linea en la que se busca el nombre de persona</div></blockquote>
+<div><p>linea – Linea en la que se busca el nombre de persona</p>
+</div></blockquote>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="utilidades.ficheros.ProcesadorPDF.ProcesadorPDF.linea_actual_contiene_codigo_centro">
-<code class="descname">linea_actual_contiene_codigo_centro</code><span class="sig-paren">(</span><em>con_c=False</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/utilidades/ficheros/ProcesadorPDF.html#ProcesadorPDF.linea_actual_contiene_codigo_centro"><span class="viewcode-link">[fuente]</span></a><a class="headerlink" href="#utilidades.ficheros.ProcesadorPDF.ProcesadorPDF.linea_actual_contiene_codigo_centro" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<code class="sig-name descname">linea_actual_contiene_codigo_centro</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">con_c</span><span class="o">=</span><span class="default_value">False</span></em><span class="sig-paren">)</span><a class="headerlink" href="#utilidades.ficheros.ProcesadorPDF.ProcesadorPDF.linea_actual_contiene_codigo_centro" title="Enlazar permanentemente con esta definición">¶</a></dt>
 <dd><p>Indica si la linea actual contiene un codigo de centro</p>
 <p>Argumentos</p>
 <blockquote>
-<div>con_c &#8211; Nos dice si hay que buscar con C al final o no</div></blockquote>
-<p>Devuelve:</p>
-<blockquote>
-<div>(inicio, fin, texto) &#8211; Tupla con la posicion de inicio, la de final y el texto
-encontrado. Si no aparece nada se devuelve la constante ProcesadorPDF.PATRON_NO_ENCONTRADO</div></blockquote>
-</dd></dl>
-
-<dl class="method">
-<dt id="utilidades.ficheros.ProcesadorPDF.ProcesadorPDF.linea_actual_contiene_codigo_localidad">
-<code class="descname">linea_actual_contiene_codigo_localidad</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/utilidades/ficheros/ProcesadorPDF.html#ProcesadorPDF.linea_actual_contiene_codigo_localidad"><span class="viewcode-link">[fuente]</span></a><a class="headerlink" href="#utilidades.ficheros.ProcesadorPDF.ProcesadorPDF.linea_actual_contiene_codigo_localidad" title="Enlazar permanentemente con esta definición">¶</a></dt>
-<dd><blockquote>
-<div>Indica si la linea actual contiene un codigo de localidad</div></blockquote>
-<p>Devuelve:</p>
-<blockquote>
-<div>(inicio, fin, texto) &#8211; Tupla con la posicion de inicio, la de final y el texto
-encontrado. Si no aparece nada se devuelve la constante ProcesadorPDF.PATRON_NO_ENCONTRADO</div></blockquote>
-</dd></dl>
-
-<dl class="method">
-<dt id="utilidades.ficheros.ProcesadorPDF.ProcesadorPDF.linea_actual_contiene_patron">
-<code class="descname">linea_actual_contiene_patron</code><span class="sig-paren">(</span><em>expr_regular</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/utilidades/ficheros/ProcesadorPDF.html#ProcesadorPDF.linea_actual_contiene_patron"><span class="viewcode-link">[fuente]</span></a><a class="headerlink" href="#utilidades.ficheros.ProcesadorPDF.ProcesadorPDF.linea_actual_contiene_patron" title="Enlazar permanentemente con esta definición">¶</a></dt>
-<dd><p>Indica si la linea actual contiene una cierta expresion regular</p>
-<p>Argumentos:</p>
-<blockquote>
-<div>expr_regular &#8211; expresión regular ya compilada</div></blockquote>
-<p>Devuelve:</p>
-<blockquote>
-<div>(inicio, fin, texto) &#8211; Tupla con la posicion de inicio, la de final y el texto
-encontrado. Si no aparece nada se devuelve la constante ProcesadorPDF.PATRON_NO_ENCONTRADO</div></blockquote>
-</dd></dl>
-
-<dl class="method">
-<dt id="utilidades.ficheros.ProcesadorPDF.ProcesadorPDF.linea_contiene_patron">
-<code class="descname">linea_contiene_patron</code><span class="sig-paren">(</span><em>expr_regular</em>, <em>linea</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/utilidades/ficheros/ProcesadorPDF.html#ProcesadorPDF.linea_contiene_patron"><span class="viewcode-link">[fuente]</span></a><a class="headerlink" href="#utilidades.ficheros.ProcesadorPDF.ProcesadorPDF.linea_contiene_patron" title="Enlazar permanentemente con esta definición">¶</a></dt>
-<dd><p>Dice si una linea contiene un patron</p>
-<p>Argumentos:</p>
-<blockquote>
-<div><p>expr_regular &#8211; Expresión regular ya compilada</p>
-<p>linea &#8211; línea en la que buscar el texto</p>
+<div><p>con_c – Nos dice si hay que buscar con C al final o no</p>
 </div></blockquote>
 <p>Devuelve:</p>
 <blockquote>
-<div>(inicio, fin, texto) &#8211; Tupla con la posicion de inicio, la de final y el texto
-encontrado. Si no aparece nada se devuelve la constante ProcesadorPDF.PATRON_NO_ENCONTRADO</div></blockquote>
+<div><p>(inicio, fin, texto) – Tupla con la posicion de inicio, la de final y el texto
+encontrado. Si no aparece nada se devuelve la constante ProcesadorPDF.PATRON_NO_ENCONTRADO</p>
+</div></blockquote>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
+<dt id="utilidades.ficheros.ProcesadorPDF.ProcesadorPDF.linea_actual_contiene_codigo_localidad">
+<code class="sig-name descname">linea_actual_contiene_codigo_localidad</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#utilidades.ficheros.ProcesadorPDF.ProcesadorPDF.linea_actual_contiene_codigo_localidad" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><blockquote>
+<div><p>Indica si la linea actual contiene un codigo de localidad</p>
+</div></blockquote>
+<p>Devuelve:</p>
+<blockquote>
+<div><p>(inicio, fin, texto) – Tupla con la posicion de inicio, la de final y el texto
+encontrado. Si no aparece nada se devuelve la constante ProcesadorPDF.PATRON_NO_ENCONTRADO</p>
+</div></blockquote>
+</dd></dl>
+
+<dl class="py method">
+<dt id="utilidades.ficheros.ProcesadorPDF.ProcesadorPDF.linea_actual_contiene_patron">
+<code class="sig-name descname">linea_actual_contiene_patron</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">expr_regular</span></em><span class="sig-paren">)</span><a class="headerlink" href="#utilidades.ficheros.ProcesadorPDF.ProcesadorPDF.linea_actual_contiene_patron" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Indica si la linea actual contiene una cierta expresion regular</p>
+<p>Argumentos:</p>
+<blockquote>
+<div><p>expr_regular – expresión regular ya compilada</p>
+</div></blockquote>
+<p>Devuelve:</p>
+<blockquote>
+<div><p>(inicio, fin, texto) – Tupla con la posicion de inicio, la de final y el texto
+encontrado. Si no aparece nada se devuelve la constante ProcesadorPDF.PATRON_NO_ENCONTRADO</p>
+</div></blockquote>
+</dd></dl>
+
+<dl class="py method">
+<dt id="utilidades.ficheros.ProcesadorPDF.ProcesadorPDF.linea_contiene_patron">
+<code class="sig-name descname">linea_contiene_patron</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">expr_regular</span></em>, <em class="sig-param"><span class="n">linea</span></em><span class="sig-paren">)</span><a class="headerlink" href="#utilidades.ficheros.ProcesadorPDF.ProcesadorPDF.linea_contiene_patron" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Dice si una linea contiene un patron</p>
+<p>Argumentos:</p>
+<blockquote>
+<div><p>expr_regular – Expresión regular ya compilada</p>
+<p>linea – línea en la que buscar el texto</p>
+</div></blockquote>
+<p>Devuelve:</p>
+<blockquote>
+<div><p>(inicio, fin, texto) – Tupla con la posicion de inicio, la de final y el texto
+encontrado. Si no aparece nada se devuelve la constante ProcesadorPDF.PATRON_NO_ENCONTRADO</p>
+</div></blockquote>
+</dd></dl>
+
+<dl class="py method">
 <dt id="utilidades.ficheros.ProcesadorPDF.ProcesadorPDF.retroceder_linea">
-<code class="descname">retroceder_linea</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/utilidades/ficheros/ProcesadorPDF.html#ProcesadorPDF.retroceder_linea"><span class="viewcode-link">[fuente]</span></a><a class="headerlink" href="#utilidades.ficheros.ProcesadorPDF.ProcesadorPDF.retroceder_linea" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<code class="sig-name descname">retroceder_linea</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#utilidades.ficheros.ProcesadorPDF.ProcesadorPDF.retroceder_linea" title="Enlazar permanentemente con esta definición">¶</a></dt>
 <dd><p>Retrocede a la fila anterior</p>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="utilidades.ficheros.ProcesadorPDF.ProcesadorPDF.saltar_linea">
-<code class="descname">saltar_linea</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/utilidades/ficheros/ProcesadorPDF.html#ProcesadorPDF.saltar_linea"><span class="viewcode-link">[fuente]</span></a><a class="headerlink" href="#utilidades.ficheros.ProcesadorPDF.ProcesadorPDF.saltar_linea" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<code class="sig-name descname">saltar_linea</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#utilidades.ficheros.ProcesadorPDF.ProcesadorPDF.saltar_linea" title="Enlazar permanentemente con esta definición">¶</a></dt>
 <dd><p>Salta a la linea siguiente</p>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="utilidades.ficheros.ProcesadorPDF.ProcesadorPDF.siguiente_fila">
-<code class="descname">siguiente_fila</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/utilidades/ficheros/ProcesadorPDF.html#ProcesadorPDF.siguiente_fila"><span class="viewcode-link">[fuente]</span></a><a class="headerlink" href="#utilidades.ficheros.ProcesadorPDF.ProcesadorPDF.siguiente_fila" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<code class="sig-name descname">siguiente_fila</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#utilidades.ficheros.ProcesadorPDF.ProcesadorPDF.siguiente_fila" title="Enlazar permanentemente con esta definición">¶</a></dt>
 <dd><p>Avanza a la siguiente fila de texto</p>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="utilidades.ficheros.ProcesadorPDF.ProcesadorPDF.siguiente_linea">
-<code class="descname">siguiente_linea</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/utilidades/ficheros/ProcesadorPDF.html#ProcesadorPDF.siguiente_linea"><span class="viewcode-link">[fuente]</span></a><a class="headerlink" href="#utilidades.ficheros.ProcesadorPDF.ProcesadorPDF.siguiente_linea" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<code class="sig-name descname">siguiente_linea</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#utilidades.ficheros.ProcesadorPDF.ProcesadorPDF.siguiente_linea" title="Enlazar permanentemente con esta definición">¶</a></dt>
 <dd><p>Devuelve la siguiente linea</p>
 </dd></dl>
 
@@ -351,69 +499,289 @@ encontrado. Si no aparece nada se devuelve la constante ProcesadorPDF.PATRON_NO_
 </div>
 <div class="section" id="clase-gestorficheros">
 <h1>Clase GestorFicheros<a class="headerlink" href="#clase-gestorficheros" title="Enlazar permanentemente con este título">¶</a></h1>
-<dl class="class">
+<dl class="py class">
 <dt id="utilidades.ficheros.GestorFicheros.GestorFicheros">
-<em class="property">class </em><code class="descclassname">utilidades.ficheros.GestorFicheros.</code><code class="descname">GestorFicheros</code><a class="reference internal" href="_modules/utilidades/ficheros/GestorFicheros.html#GestorFicheros"><span class="viewcode-link">[fuente]</span></a><a class="headerlink" href="#utilidades.ficheros.GestorFicheros.GestorFicheros" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<em class="property">class </em><code class="sig-prename descclassname">utilidades.ficheros.GestorFicheros.</code><code class="sig-name descname">GestorFicheros</code><a class="headerlink" href="#utilidades.ficheros.GestorFicheros.GestorFicheros" title="Enlazar permanentemente con esta definición">¶</a></dt>
 <dd><p>Simplica las operaciones con ficheros</p>
-<dl class="method">
+<dl class="py method">
+<dt id="utilidades.ficheros.GestorFicheros.GestorFicheros.descargar_fichero">
+<code class="sig-name descname">descargar_fichero</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">url</span></em>, <em class="sig-param"><span class="n">nombre_fichero_destino</span></em>, <em class="sig-param"><span class="n">codificacion</span><span class="o">=</span><span class="default_value">'utf-8'</span></em><span class="sig-paren">)</span><a class="headerlink" href="#utilidades.ficheros.GestorFicheros.GestorFicheros.descargar_fichero" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Descarga un fichero de una URL con HTTP</p>
+<p>Argumentos:</p>
+<blockquote>
+<div><p>url – Dirección del fichero a descargar</p>
+<p>nombre_fichero_destino – ruta del fichero local donde descargaremos</p>
+<p>codificacion – Codificación que queremos que tenga el fichero destino (está a utf-8 por defecto)</p>
+</div></blockquote>
+</dd></dl>
+
+<dl class="py method">
 <dt id="utilidades.ficheros.GestorFicheros.GestorFicheros.ejecutar_comando">
-<code class="descname">ejecutar_comando</code><span class="sig-paren">(</span><em>comando</em>, <em>fichero</em>, <em>*args</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/utilidades/ficheros/GestorFicheros.html#GestorFicheros.ejecutar_comando"><span class="viewcode-link">[fuente]</span></a><a class="headerlink" href="#utilidades.ficheros.GestorFicheros.GestorFicheros.ejecutar_comando" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<code class="sig-name descname">ejecutar_comando</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">comando</span></em>, <em class="sig-param"><span class="n">fichero</span></em>, <em class="sig-param"><span class="o">*</span><span class="n">args</span></em><span class="sig-paren">)</span><a class="headerlink" href="#utilidades.ficheros.GestorFicheros.GestorFicheros.ejecutar_comando" title="Enlazar permanentemente con esta definición">¶</a></dt>
 <dd><p>Ejecuta un comando</p>
 <p>Argumentos:</p>
 <blockquote>
-<div><p>comando &#8211; nombre del comando a ejecutar (sin ./)</p>
-<p>fichero &#8211; parametro obligatorio, poner &#8220;&#8221; si es necesario</p>
-<p>args &#8211; resto de parámetros</p>
+<div><p>comando – nombre del comando a ejecutar (sin ./)</p>
+<p>fichero – parametro obligatorio, poner «» si es necesario</p>
+<p>args – resto de parámetros</p>
 </div></blockquote>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
+<dt id="utilidades.ficheros.GestorFicheros.GestorFicheros.enviar_texto_a_comando">
+<code class="sig-name descname">enviar_texto_a_comando</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">texto</span></em>, <em class="sig-param"><span class="n">comando</span></em><span class="sig-paren">)</span><a class="headerlink" href="#utilidades.ficheros.GestorFicheros.GestorFicheros.enviar_texto_a_comando" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Envia un texto a un comando al estilo echo &lt;texto&gt; | comando</p>
+<p>Argumentos:</p>
+<blockquote>
+<div><p>texto – Texto a enviar</p>
+<p>comando – Comando a ejecutar</p>
+</div></blockquote>
+</dd></dl>
+
+<dl class="py method">
 <dt id="utilidades.ficheros.GestorFicheros.GestorFicheros.existe_fichero">
-<code class="descname">existe_fichero</code><span class="sig-paren">(</span><em>nombre_fichero</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/utilidades/ficheros/GestorFicheros.html#GestorFicheros.existe_fichero"><span class="viewcode-link">[fuente]</span></a><a class="headerlink" href="#utilidades.ficheros.GestorFicheros.GestorFicheros.existe_fichero" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<code class="sig-name descname">existe_fichero</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">nombre_fichero</span></em><span class="sig-paren">)</span><a class="headerlink" href="#utilidades.ficheros.GestorFicheros.GestorFicheros.existe_fichero" title="Enlazar permanentemente con esta definición">¶</a></dt>
 <dd><p>Nos dice si un fichero existe o no</p>
 <p>Argumentos:</p>
 <blockquote>
-<div>nombre_fichero &#8211; Nombre del fichero a comprobar</div></blockquote>
+<div><p>nombre_fichero – Nombre del fichero a comprobar</p>
+</div></blockquote>
 <p>Devuelve</p>
 <blockquote>
-<div><p>True &#8211; si el fichero existe</p>
-<p>False &#8211; si el fichero no existe</p>
+<div><p>True – si el fichero existe</p>
+<p>False – si el fichero no existe</p>
 </div></blockquote>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
+<dt id="utilidades.ficheros.GestorFicheros.GestorFicheros.exportar_lista_tablas">
+<code class="sig-name descname">exportar_lista_tablas</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">archivo_bd</span></em>, <em class="sig-param"><span class="n">lista_tablas</span></em>, <em class="sig-param"><span class="n">archivo_sql_resultado</span></em><span class="sig-paren">)</span><a class="headerlink" href="#utilidades.ficheros.GestorFicheros.GestorFicheros.exportar_lista_tablas" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Exporta un conjunto de tablas sqlite y nos la deja en forma de SQL Inserts</p>
+<p>Argumentos:</p>
+<blockquote>
+<div><p>archivo_bd – Ruta del archivo de base de datos</p>
+<p>lista_tablas – Lista con los nombres de las tablas de lo que queremos exportar</p>
+<p>archivo_sql_resultado – Nombre del archivo donde se van a dejar los datos</p>
+</div></blockquote>
+</dd></dl>
+
+<dl class="py method">
+<dt id="utilidades.ficheros.GestorFicheros.GestorFicheros.exportar_tabla">
+<code class="sig-name descname">exportar_tabla</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">archivo_bd</span></em>, <em class="sig-param"><span class="n">nombre_tabla</span></em>, <em class="sig-param"><span class="n">archivo_sql_resultado</span></em>, <em class="sig-param"><span class="n">bd_destinataria</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">borrar_fichero_sql_intermedio</span><span class="o">=</span><span class="default_value">True</span></em><span class="sig-paren">)</span><a class="headerlink" href="#utilidades.ficheros.GestorFicheros.GestorFicheros.exportar_tabla" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Exporta una tabla sqlite y nos la deja en forma de SQL Inserts</p>
+<p>Argumentos:</p>
+<blockquote>
+<div><p>archivo_bd – Ruta del archivo de base de datos</p>
+<p>nombre_tabla – Nombre de la tabla a extraer</p>
+<p>archivo_sql_resultado – Nombre del archivo donde se van a dejar los datos</p>
+<p>bd_destinataria – Ruta de una base de datos sqlite3 donde también podremos 
+meter los datos</p>
+<p>borrar_fichero_sql_intermedio – Poner a True si se desea borrar el archivo intermedio</p>
+</div></blockquote>
+</dd></dl>
+
+<dl class="py method">
+<dt id="utilidades.ficheros.GestorFicheros.GestorFicheros.extraer_datos_tabla">
+<code class="sig-name descname">extraer_datos_tabla</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">archivo_bd</span></em>, <em class="sig-param"><span class="n">nombre_tabla</span></em>, <em class="sig-param"><span class="n">archivo_sql_resultado</span></em>, <em class="sig-param"><span class="n">anadir</span><span class="o">=</span><span class="default_value">True</span></em><span class="sig-paren">)</span><a class="headerlink" href="#utilidades.ficheros.GestorFicheros.GestorFicheros.extraer_datos_tabla" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Extrae los datos de una tabla de una base de datos sqlite3</p>
+<p>Argumentos:</p>
+<blockquote>
+<div><p>archivo_bd – Ruta del archivo de base de datos</p>
+<p>nombre_tabla – Nombre de la tabla a extraer</p>
+<p>archivo_sql_resultado – Nombre del archivo donde se van a dejar los datos</p>
+<p>anadir – Se puede poner a True si deseamos que los datos se concatenen a un archivo ya existente</p>
+</div></blockquote>
+</dd></dl>
+
+<dl class="py method">
+<dt id="utilidades.ficheros.GestorFicheros.GestorFicheros.extraer_esquema">
+<code class="sig-name descname">extraer_esquema</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">archivo_bd</span></em>, <em class="sig-param"><span class="n">nombre_tabla</span></em>, <em class="sig-param"><span class="n">archivo_sql_resultado</span></em>, <em class="sig-param"><span class="n">anadir</span><span class="o">=</span><span class="default_value">False</span></em><span class="sig-paren">)</span><a class="headerlink" href="#utilidades.ficheros.GestorFicheros.GestorFicheros.extraer_esquema" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Extrae el esquema de una tabla de un fichero sqlite</p>
+<p>Argumentos:</p>
+<blockquote>
+<div><p>archivo_bd – Ruta del archivo de base de datos</p>
+<p>nombre_tabla – Nombre de la tabla a extraer</p>
+<p>archivo_sql_resultado – Nombre del archivo donde se va a dejar la tabla</p>
+</div></blockquote>
+</dd></dl>
+
+<dl class="py method">
 <dt id="utilidades.ficheros.GestorFicheros.GestorFicheros.get_lineas_fichero">
-<code class="descname">get_lineas_fichero</code><span class="sig-paren">(</span><em>nombre_fichero</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/utilidades/ficheros/GestorFicheros.html#GestorFicheros.get_lineas_fichero"><span class="viewcode-link">[fuente]</span></a><a class="headerlink" href="#utilidades.ficheros.GestorFicheros.GestorFicheros.get_lineas_fichero" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<code class="sig-name descname">get_lineas_fichero</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">nombre_fichero</span></em>, <em class="sig-param"><span class="n">codificacion</span><span class="o">=</span><span class="default_value">'utf-8'</span></em><span class="sig-paren">)</span><a class="headerlink" href="#utilidades.ficheros.GestorFicheros.GestorFicheros.get_lineas_fichero" title="Enlazar permanentemente con esta definición">¶</a></dt>
 <dd><p>Leer las lineas de un fichero</p>
 <p>Argumentos:</p>
 <blockquote>
-<div>nombre_fichero &#8211; nombre del fichero a leer</div></blockquote>
+<div><p>nombre_fichero – nombre del fichero a leer</p>
+</div></blockquote>
 <p>Devuelve:</p>
 <blockquote>
-<div>lista &#8211; una lista con todas las lineas del fichero sin fin de linea (se usa strip)</div></blockquote>
+<div><p>lista – una lista con todas las lineas del fichero sin fin de linea (se usa strip)</p>
+</div></blockquote>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
+<dt id="utilidades.ficheros.GestorFicheros.GestorFicheros.get_num_lineas_fichero">
+<code class="sig-name descname">get_num_lineas_fichero</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">filename</span></em><span class="sig-paren">)</span><a class="headerlink" href="#utilidades.ficheros.GestorFicheros.GestorFicheros.get_num_lineas_fichero" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Nos dice el número de líneas de un fichero</p>
+<p>Argumentos:</p>
+<blockquote>
+<div><p>filename – Ruta del fichero</p>
+</div></blockquote>
+<p>Devuelve</p>
+<blockquote>
+<div><p>Un int con la cantidad de líneas</p>
+</div></blockquote>
+</dd></dl>
+
+<dl class="py method">
 <dt id="utilidades.ficheros.GestorFicheros.GestorFicheros.leer_fichero">
-<code class="descname">leer_fichero</code><span class="sig-paren">(</span><em>nombre_fichero</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/utilidades/ficheros/GestorFicheros.html#GestorFicheros.leer_fichero"><span class="viewcode-link">[fuente]</span></a><a class="headerlink" href="#utilidades.ficheros.GestorFicheros.GestorFicheros.leer_fichero" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<code class="sig-name descname">leer_fichero</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">nombre_fichero</span></em><span class="sig-paren">)</span><a class="headerlink" href="#utilidades.ficheros.GestorFicheros.GestorFicheros.leer_fichero" title="Enlazar permanentemente con esta definición">¶</a></dt>
 <dd><p>Leer todo un fichero</p>
 <p>Argumentos:</p>
 <blockquote>
-<div>nombre_fichero &#8211; nombre del fichero a leer</div></blockquote>
+<div><p>nombre_fichero – nombre del fichero a leer</p>
+</div></blockquote>
 <p>Devuelve:</p>
 <blockquote>
-<div>cadena &#8211; una cadena con todo el fichero completo</div></blockquote>
+<div><p>cadena – una cadena con todo el fichero completo</p>
+</div></blockquote>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="utilidades.ficheros.GestorFicheros.GestorFicheros.leer_linea_fichero">
-<code class="descname">leer_linea_fichero</code><span class="sig-paren">(</span><em>num_linea</em>, <em>nombre_fichero</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/utilidades/ficheros/GestorFicheros.html#GestorFicheros.leer_linea_fichero"><span class="viewcode-link">[fuente]</span></a><a class="headerlink" href="#utilidades.ficheros.GestorFicheros.GestorFicheros.leer_linea_fichero" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<code class="sig-name descname">leer_linea_fichero</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">num_linea</span></em>, <em class="sig-param"><span class="n">nombre_fichero</span></em><span class="sig-paren">)</span><a class="headerlink" href="#utilidades.ficheros.GestorFicheros.GestorFicheros.leer_linea_fichero" title="Enlazar permanentemente con esta definición">¶</a></dt>
 <dd><p>Devuelve una linea de un fichero.</p>
 <p>Argumentos:</p>
 <blockquote>
-<div><p>num_linea &#8211; Numero de línea a leer</p>
-<p>nombre_fichero &#8211; Cadena con la ruta del fichero a leer</p>
+<div><p>num_linea – Numero de línea a leer</p>
+<p>nombre_fichero – Cadena con la ruta del fichero a leer</p>
 </div></blockquote>
+</dd></dl>
+
+<dl class="py method">
+<dt id="utilidades.ficheros.GestorFicheros.GestorFicheros.rellenar_fichero_plantilla">
+<code class="sig-name descname">rellenar_fichero_plantilla</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">fichero_plantilla</span></em>, <em class="sig-param"><span class="n">diccionario</span></em>, <em class="sig-param"><span class="n">fichero_salida</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#utilidades.ficheros.GestorFicheros.GestorFicheros.rellenar_fichero_plantilla" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Rellena un fichero plantilla con los datos de un diccionario</p>
+<p>Argumentos:</p>
+<blockquote>
+<div><p>fichero_plantilla – Fichero con la plantilla en formato Jinja2 (es decir con cosas coom {{titulo}} o {{nombre_cliente}})</p>
+<p>diccionario – diccionario con valores como diccionario[«titulo»]=”Ejercicio”</p>
+<p>fichero_salida – Fichero en el que dejaremos el resultado</p>
+</div></blockquote>
+<p>Devuelve</p>
+<blockquote>
+<div><p>Una cadena con el resultado del rellenado</p>
+</div></blockquote>
+</dd></dl>
+
+<dl class="py method">
+<dt id="utilidades.ficheros.GestorFicheros.GestorFicheros.renombrar_fichero">
+<code class="sig-name descname">renombrar_fichero</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">nombre_viejo</span></em>, <em class="sig-param"><span class="n">nombre_nuevo</span></em><span class="sig-paren">)</span><a class="headerlink" href="#utilidades.ficheros.GestorFicheros.GestorFicheros.renombrar_fichero" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Renombra un fichero</p>
+<p>Argumentos:</p>
+<blockquote>
+<div><p>nombre_viejo – Nombre del fichero a renombrar</p>
+<p>nombre_nuevo – Nuevo nombre que tendrá despues</p>
+</div></blockquote>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="clase-generadoripv4azar">
+<h1>Clase GeneradorIPV4Azar<a class="headerlink" href="#clase-generadoripv4azar" title="Enlazar permanentemente con este título">¶</a></h1>
+<dl class="py class">
+<dt id="utilidades.ip.ipv4.GeneradorIPV4Azar">
+<em class="property">class </em><code class="sig-prename descclassname">utilidades.ip.ipv4.</code><code class="sig-name descname">GeneradorIPV4Azar</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">num_ejercicio</span></em>, <em class="sig-param"><span class="n">cantidad_bits_mascara</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#utilidades.ip.ipv4.GeneradorIPV4Azar" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><dl class="py method">
+<dt id="utilidades.ip.ipv4.GeneradorIPV4Azar.convertir_a_decimal">
+<code class="sig-name descname">convertir_a_decimal</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">secuencia_binaria</span></em><span class="sig-paren">)</span><a class="headerlink" href="#utilidades.ip.ipv4.GeneradorIPV4Azar.convertir_a_decimal" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Dada una secuencia en binario de 32 bits nos devuelve
+la dirección en decimal.</p>
+<blockquote>
+<div><p>Argumentos:</p>
+<blockquote>
+<div><p>secuencia_binaria – secuencia de 32 bits</p>
+</div></blockquote>
+</div></blockquote>
+</dd></dl>
+
+<dl class="py method">
+<dt id="utilidades.ip.ipv4.GeneradorIPV4Azar.generar">
+<code class="sig-name descname">generar</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#utilidades.ip.ipv4.GeneradorIPV4Azar.generar" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Genera una dirección IP de red (no de host) al azar</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="utilidades.ip.ipv4.GeneradorIPV4Azar.generar_clase_a">
+<code class="sig-name descname">generar_clase_a</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">num_bits</span></em><span class="sig-paren">)</span><a class="headerlink" href="#utilidades.ip.ipv4.GeneradorIPV4Azar.generar_clase_a" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Genera una dirección de clase A en la que haya
+tantos bits de red como se nos pida.</p>
+<blockquote>
+<div><p>Argumentos:</p>
+<blockquote>
+<div><p>num_bits – número de bits de red</p>
+</div></blockquote>
+</div></blockquote>
+</dd></dl>
+
+<dl class="py method">
+<dt id="utilidades.ip.ipv4.GeneradorIPV4Azar.generar_clase_b">
+<code class="sig-name descname">generar_clase_b</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">num_bits</span></em><span class="sig-paren">)</span><a class="headerlink" href="#utilidades.ip.ipv4.GeneradorIPV4Azar.generar_clase_b" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Genera una dirección de clase B en la que haya
+tantos bits de red como se nos pida.</p>
+<blockquote>
+<div><p>Argumentos:</p>
+<blockquote>
+<div><p>num_bits – número de bits de red</p>
+</div></blockquote>
+</div></blockquote>
+</dd></dl>
+
+<dl class="py method">
+<dt id="utilidades.ip.ipv4.GeneradorIPV4Azar.generar_clase_c">
+<code class="sig-name descname">generar_clase_c</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">num_bits</span></em><span class="sig-paren">)</span><a class="headerlink" href="#utilidades.ip.ipv4.GeneradorIPV4Azar.generar_clase_c" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Genera una dirección de clase C en la que haya
+tantos bits de red como se nos pida.</p>
+<blockquote>
+<div><p>Argumentos:</p>
+<blockquote>
+<div><p>num_bits – número de bits de red</p>
+</div></blockquote>
+</div></blockquote>
+</dd></dl>
+
+<dl class="py method">
+<dt id="utilidades.ip.ipv4.GeneradorIPV4Azar.get_direccion_en_binario">
+<code class="sig-name descname">get_direccion_en_binario</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">direccion</span></em><span class="sig-paren">)</span><a class="headerlink" href="#utilidades.ip.ipv4.GeneradorIPV4Azar.get_direccion_en_binario" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Dada una dirección en decimal como 192.168.1.39/24
+nos devuelve el equivalente en binario</p>
+<blockquote>
+<div><p>Argumentos:</p>
+<blockquote>
+<div><p>direccion – Dirección en decimal como 192.168.1.39/24</p>
+</div></blockquote>
+</div></blockquote>
+</dd></dl>
+
+<dl class="py method">
+<dt id="utilidades.ip.ipv4.GeneradorIPV4Azar.get_ip_host">
+<code class="sig-name descname">get_ip_host</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">num_host</span><span class="o">=</span><span class="default_value">0</span></em><span class="sig-paren">)</span><a class="headerlink" href="#utilidades.ip.ipv4.GeneradorIPV4Azar.get_ip_host" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Genera una IP válida de host:</p>
+<p>Argumentos:</p>
+<blockquote>
+<div><p>num_host – Número de host (se extrae la IP número X del vector total de IPs</p>
+</div></blockquote>
+<p>Devuelve:</p>
+<blockquote>
+<div><p>(ip, mascara) – Tupla con una IP y una máscara, todo en strings</p>
+</div></blockquote>
+</dd></dl>
+
+<dl class="py method">
+<dt id="utilidades.ip.ipv4.GeneradorIPV4Azar.get_mascara_en_decimal">
+<code class="sig-name descname">get_mascara_en_decimal</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#utilidades.ip.ipv4.GeneradorIPV4Azar.get_mascara_en_decimal" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Devuelve la máscara de la dirección actual en decimal</p>
 </dd></dl>
 
 </dd></dl>
@@ -422,28 +790,45 @@ encontrado. Si no aparece nada se devuelve la constante ProcesadorPDF.PATRON_NO_
 <div class="section" id="indices-and-tables">
 <h1>Indices and tables<a class="headerlink" href="#indices-and-tables" title="Enlazar permanentemente con este título">¶</a></h1>
 <ul class="simple">
-<li><a class="reference internal" href="genindex.html"><span>Índice</span></a></li>
-<li><a class="reference internal" href="py-modindex.html"><span>Índice de Módulos</span></a></li>
-<li><a class="reference internal" href="search.html"><span>Página de Búsqueda</span></a></li>
+<li><p><a class="reference internal" href="genindex.html"><span class="std std-ref">Índice</span></a></p></li>
+<li><p><a class="reference internal" href="py-modindex.html"><span class="std std-ref">Índice de Módulos</span></a></p></li>
+<li><p><a class="reference internal" href="search.html"><span class="std std-ref">Página de Búsqueda</span></a></p></li>
 </ul>
 </div>
 
 
           </div>
+          
         </div>
       </div>
       <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
         <div class="sphinxsidebarwrapper">
-  <h3><a href="index.html#document-index">Tabla de Contenidos</a></h3>
-  <ul class="simple">
-</ul>
+<h1 class="logo"><a href="#">Modulo de utilidades para Python</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navegación</h3>
+
 <div class="relations">
 <h3>Related Topics</h3>
 <ul>
-  <li><a href="index.html#document-index">Documentation overview</a><ul>
+  <li><a href="#">Documentation overview</a><ul>
   </ul></li>
 </ul>
 </div>
+
+
+
+
+
+
+
+
         </div>
       </div>
       <div class="clearer"></div>
@@ -452,8 +837,8 @@ encontrado. Si no aparece nada se devuelve la constante ProcesadorPDF.PATRON_NO_
       &copy;2016, None.
       
       |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.3.6</a>
-      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.7</a>
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 3.3.1</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
       
     </div>
 
