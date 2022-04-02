@@ -69,7 +69,7 @@ class Vagrantile(object):
 
         self.ficheros_para_copiar=[]
         self.comandos=[]
-
+        self.nombre_tarjeta_puente=None
 
     def abrir_puerto(self, puerto_en_anfitrion, puerto_en_invitado, ip_invitado=None, ip_anfitrion=None):
         puerto=PuertoAbierto(puerto_en_invitado, puerto_en_anfitrion, ip_invitado, ip_anfitrion)
@@ -77,9 +77,10 @@ class Vagrantile(object):
         
     def anadir_comando(self, comando):
         self.comandos.append(comando)
-        
-    def anadir_tarjeta_puente(self):
+
+    def anadir_tarjeta_puente(self, nombre_tarjeta):
         self.num_tarjetas_puente=self.num_tarjetas_puente+1
+        self.nombre_tarjeta_puente=nombre_tarjeta
 
     def anadir_carpeta_compartida(self, carpeta_en_anfitrion, carpeta_en_invitado):
         self.carpeta_compartida_anfitrion=carpeta_en_anfitrion
@@ -103,7 +104,7 @@ class Vagrantile(object):
         return "\n".join(lineas)
 
     def get_tarjetas_puente(self):
-        configuracion=["    config.vm.network \"public_network\""]
+        configuracion=["    config.vm.network \"public_network\", bridge: \"{0}\"".format(self.nombre_tarjeta_puente)]
         lineas=self.num_tarjetas_puente * configuracion
         return "\n".join(lineas)
 
