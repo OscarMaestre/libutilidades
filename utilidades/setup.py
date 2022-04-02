@@ -23,6 +23,7 @@ setup(name='utilidades',
                 'utilidades.cadenas',
                 'utilidades.internet',
                 'utilidades.ip',
+                'utilidades.vagrant',
                 'utilidades.cisco'],
 
         #Si queremos incluir un fichero "estático" meterlo
