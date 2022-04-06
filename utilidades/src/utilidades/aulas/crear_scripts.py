@@ -13,6 +13,7 @@ MIN_PC=1
 MAX_PC=20
 
 #Si hay otros ordenadores con otras IP poner aquí su último byte y su nombre
+#Por ejemplo, el PC con la IP xxx.xxx.xxx.100 suele ser el "PC-PROFESOR"
 OTROS_PC=[100]
 NOMBRES_OTROS_PC=["PROFESOR"]
 NOMBRE_TARJETA_RED="Ethernet"
@@ -22,11 +23,67 @@ PLANTILLA_NOMBRE_PC="PC{0}"
 PLANTILLA_NOMBRE_COMPLETO_ORDENADOR="{0}-{1}"
 
 BITS_MASCARA=24
+MASCARA="255.255.255.0"
+NOMBRE_TARJETA_RED="Ethernet"
 
-PLANTILLA_SCRIPT_IP="""
-New-NetIPAddress –InterfaceAlias 'Ethernet' –IPv4Address '{0}' –PrefixLength {1} -DefaultGateway '{2}'
+IP_DNS_1="10.1.0.1"
+IP_DNS_2="8.8.8.8"
+
+#Esto se podrá usar más adelante, cuando declaren obsoleto el netsh
+POWER_SHELL_PLANTILLA_SCRIPT_IP="""
+New-NetIPAddress –InterfaceAlias 'Ethernet' –IPAddress '{0}' –PrefixLength {1} -DefaultGateway '{2}'
+read-host "Pulsa una tecla"
 """
 
+PLANTILLA_SCRIPT_IP="""
+netsh interface ip set address name= \"{3}\" static {0} {1} {2}
+@echo Comprueba si hay algún error y pulsa una tecla
+@pause
+@echo.
+@echo.
+@echo.
+@echo Ahora vamos a poner los DNS
+netsh interface ip set dns "{3}\" static {4} 
+netsh interface ip add dns \"{3}\" {5} index=2
+@echo.
+@echo.
+@echo.
+@echo.
+@echo Comprueba si hay algún error y luego pulsa una tecla. Si hay un error puedes pulsar Ctrl+C para no seguir
+@echo.
+@echo.
+@pause
+@cls
+@echo Ahora vamos a ejecutar IPCONFIG para ver si la configuración está bien
+@pause
+@cls
+@ipconfig
+@pause
+@cls
+@echo Vamos a ejecutar algún ping para ver si la red funciona.
+@pause
+@set ip={2}
+@echo Ejecutando ping...
+@echo.
+@echo.
+@echo.
+ping -n 1 %ip% | find "TTL"
+@pause
+@if not errorlevel 1 set error="Parece que ping ha funcionado y todo ha ido bien"
+@if errorlevel 1 set error="Parece que ping ha fallado, comprueba si la IP estába bien, si el cable del PC está puesto y si el switch está encendido"
+@cls
+@echo.
+@echo *****************************************************
+@echo %error%
+@echo *****************************************************
+@echo.
+
+@echo.
+@echo Pulsa una tecla para finalizar la ejecución
+@echo.
+@echo.
+@pause
+"""
 
 
 def get_numero_con_ceros(numero):
@@ -91,11 +148,11 @@ def crear_script_cambio_ip(num_aula, num_pc):
     PLANTILLA_IP="10.{0}.0.{1}"
     GATEWAY="10.{0}.0.254"
     DNS=["10.1.0.1", "8.8.4.4"]
-    ruta_script=get_ruta_script_pc(num_aula, num_pc, "02-Cambiar-IP.ps1")
+    ruta_script=get_ruta_script_pc(num_aula, num_pc, "02-Cambiar-IP.bat")
     
     ip_final=PLANTILLA_IP.format(num_aula, num_pc)
     gw_final=GATEWAY.format(num_aula)
-    texto_script=PLANTILLA_SCRIPT_IP.format(ip_final, BITS_MASCARA, gw_final)
+    texto_script=PLANTILLA_SCRIPT_IP.format(ip_final, MASCARA, gw_final, NOMBRE_TARJETA_RED, IP_DNS_1, IP_DNS_2)
     guardar_texto_en_archivo(ruta_script, texto_script)
 
 def crear_todo():
