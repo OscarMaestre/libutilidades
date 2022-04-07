@@ -12,21 +12,11 @@ MAX_AULA=15
 MIN_PC=1
 MAX_PC=20
 
-#Si hay otros ordenadores con otras IP poner aquí su último byte y su nombre
-#Por ejemplo, el PC con la IP xxx.xxx.xxx.100 suele ser el "PC-PROFESOR"
-OTROS_PC=[100, 101]
-NOMBRES_OTROS_PC=["PROFESOR", "BORRAR"]
 
 
 #Pon aquí el nombre que tenga la tarjeta de red en Windows
 NOMBRE_TARJETA_RED="Ethernet"
 
-# Plantillas para los nombres de los equipos. 
-# En principio los equipos se llaman algo como AULAB09-PC04
-# Todo tiene dos digitos y si no los hay se rellena con 0, ejemplo PC04 o PC17
-PLANTILLA_NOMBRE_AULA="AULAB{0}"
-PLANTILLA_NOMBRE_PC="PC{0}"
-PLANTILLA_NOMBRE_COMPLETO_ORDENADOR="{0}-{1}"
 
 #Los bits de mascara se usan en Powershell
 BITS_MASCARA=24
@@ -166,27 +156,8 @@ def get_numero_con_ceros(numero):
     cadena_con_ceros=cadena.zfill(2)
     return cadena_con_ceros
 
-def get_otros_nombres_equipo(num_pc):
-    for pos, valor in enumerate(OTROS_PC):
-        if valor==num_pc:
-            return NOMBRES_OTROS_PC[pos]
-    return "DESCONOCIDO"
 
-def get_nombre_aula(num_aula):
-    return PLANTILLA_NOMBRE_AULA.format(get_numero_con_ceros(num_aula))
 
-def get_nombre_pc(num_pc):
-    return PLANTILLA_NOMBRE_PC.format(get_numero_con_ceros(num_pc))
-
-def get_nombre_completo_pc(num_aula, num_pc):
-    #print(num_pc)
-    if num_pc>MAX_PC:
-        num_pc=get_otros_nombres_equipo(num_pc)
-    nombre_aula=get_nombre_aula(num_aula)
-    nombre_pc=get_nombre_pc(num_pc)
-
-    texto=PLANTILLA_NOMBRE_COMPLETO_ORDENADOR.format(nombre_aula, nombre_pc)
-    return texto
 
 def crear_directorio_si_no_existe(ruta):
     try:
