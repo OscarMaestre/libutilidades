@@ -81,7 +81,7 @@ netsh interface ip add dns \"{3}\" {5}
 ping -n 1 %ip% | find "TTL"
 @pause
 @if not errorlevel 1 set error="Parece que ping ha funcionado y todo ha ido bien"
-@if errorlevel 1 set error="Parece que ping ha fallado, comprueba si la IP estába bien, si el cable del PC está puesto y si el switch está encendido"
+@if errorlevel 1 set error="Parece que ping ha fallado, comprueba si la IP estaba bien, si el cable del PC está puesto y si el switch está encendido"
 @cls
 @echo.
 @echo *****************************************************
@@ -129,7 +129,7 @@ PLANTILLA_COMANDO_RENOMBRAR_EQUIPO="""
 @echo.
 @pause
 
-WMIC ComputerSystem where Name="COMPUTER-NAME" call Rename Name={0}
+WMIC ComputerSystem where Name="%COMPUTERNAME%" call Rename Name="{0}"
 @echo.
 @echo.
 @echo.
@@ -158,6 +158,8 @@ netdom.exe join %computername% /domain:{0} /UserD:{1}\{2} /PasswordD:{3} /reboot
 @echo.
 @pause
 """
+
+
 
 def get_numero_con_ceros(numero):
     cadena=str(numero)
