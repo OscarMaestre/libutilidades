@@ -3,7 +3,7 @@ class GestorNombres(object):
         self.num_aula_sin_ceros = num_aula_sin_ceros
         self.num_pc_sin_ceros   = num_pc_sin_ceros
         self.num_aula_con_ceros = self.get_numero_con_ceros()
-        self.num_pc_con_ceros   = self..get_numero_con_ceros()
+        self.num_pc_con_ceros   = self.get_numero_con_ceros()
 
         # Plantillas para los nombres de los equipos. 
         # En principio los equipos se llaman algo como AULAB09-PC04

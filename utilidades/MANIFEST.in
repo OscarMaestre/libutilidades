@@ -1,4 +1,4 @@
 include *.txt
 include src/utilidades/modelos/*.txt
 
-recursive-include src/utilidades/imagenes/fuentes/ *
+recursive-include src/utilidades/imagenes/fuentes *
