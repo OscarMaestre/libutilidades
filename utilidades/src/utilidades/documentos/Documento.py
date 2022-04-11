@@ -193,8 +193,39 @@ class Documento(object):
 """
         texto=PLANTILLA_FIGURA.format(ruta_imagen, porcentaje_escalado, alineacion, texto_alternativo)
         return texto
+
+
+    def anadir_bloque_codigo(self, programa, lenguaje):
+        """Añade un bloque de código
         
-    def guardar(self):
-        with open (self.nombre_archivo) as fich:
-            fich.write(texto)
+            Parámetros:
+                programa: texto del programa
+                lenguaje: lenguaje en el que está escrito"""
+        PLANTILLA="""
+.. code-block:: {0}
+
+{1}
+"""
+        texto_tabulado=self.tabular_texto(programa)
+        texto_final=PLANTILLA.format(lenguaje, texto_tabulado)
+        self.anadir_parrafo(texto_final)
+
+    def anadir_literal(self, texto):
+        """Añade un texto literal"""
+        nuevo_texto=self.tabular_texto(texto)
+        self.anadir_parrafo(nuevo_texto)
+
+    def tabular_texto(self, texto):
+        """Pone un tabular al principio de cada línea del texto"""
+        lineas=texto.split("\n")
+        nuevas_lineas=[]
+        for linea in lineas:
+            nueva_linea="\t"+linea
+            nuevas_lineas.append(nueva_linea)
+        nuevo_texto="\n".join(nuevas_lineas)
+        return nuevo_texto
+
+    def guardar(self, codificacion="utf-8"):
+        with open (self.nombre_archivo, "w", encoding=codificacion) as fich:
+            fich.write(self.get_texto())
         

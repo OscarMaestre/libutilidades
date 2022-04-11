@@ -588,6 +588,17 @@ nos devuelve el equivalente en binario</p>
 <dt class="sig sig-object py" id="utilidades.documentos.Documento.Documento">
 <em class="property"><span class="pre">class</span><span class="w">  </span></em><span class="sig-prename descclassname"><span class="pre">utilidades.documentos.Documento.</span></span><span class="sig-name descname"><span class="pre">Documento</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">nombre_archivo</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'documento.rst'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fin_linea</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'\n'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">separador</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'\n\n'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#utilidades.documentos.Documento.Documento" title="Enlazar permanentemente con esta definición">¶</a></dt>
 <dd><dl class="py method">
+<dt class="sig sig-object py" id="utilidades.documentos.Documento.Documento.anadir_bloque_codigo">
+<span class="sig-name descname"><span class="pre">anadir_bloque_codigo</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">programa</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">lenguaje</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#utilidades.documentos.Documento.Documento.anadir_bloque_codigo" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Añade un bloque de código</p>
+<dl class="simple">
+<dt>Parámetros:</dt><dd><p>programa: texto del programa
+lenguaje: lenguaje en el que está escrito</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
 <dt class="sig sig-object py" id="utilidades.documentos.Documento.Documento.anadir_figura">
 <span class="sig-name descname"><span class="pre">anadir_figura</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ruta_imagen</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">porcentaje_escalado</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">100</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">alineacion</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'center'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">texto_alternativo</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">''</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#utilidades.documentos.Documento.Documento.anadir_figura" title="Enlazar permanentemente con esta definición">¶</a></dt>
 <dd><p>Anade una figura para restructuredtext o Sphinx</p>
@@ -630,6 +641,12 @@ simbolo_alternativo: Indica el simbolo que vamos a poner delante</p>
 <dt>Parametros:</dt><dd><p>vector_lineas: lista de lineas se van a añadir</p>
 </dd>
 </dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="utilidades.documentos.Documento.Documento.anadir_literal">
+<span class="sig-name descname"><span class="pre">anadir_literal</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">texto</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#utilidades.documentos.Documento.Documento.anadir_literal" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Añade un texto literal</p>
 </dd></dl>
 
 <dl class="py method">
@@ -779,6 +796,12 @@ subrayador: símbolo para crear las líneas</p>
 nivel: nivel del título pedido (1,2 o 3)</p>
 </dd>
 </dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="utilidades.documentos.Documento.Documento.tabular_texto">
+<span class="sig-name descname"><span class="pre">tabular_texto</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">texto</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#utilidades.documentos.Documento.Documento.tabular_texto" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Pone un tabular al principio de cada línea del texto</p>
 </dd></dl>
 
 </dd></dl>
