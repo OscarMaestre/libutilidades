@@ -50,6 +50,13 @@ Clase GeneradorIPV4Azar
 .. autoclass:: utilidades.ip.ipv4.GeneradorIPV4Azar
    :members:
 
+Class Documento
+================================================================================
+
+.. autoclass:: utilidades.documentos.Documento.Documento
+   :members:
+
+   
 Indices and tables
 ==================
 

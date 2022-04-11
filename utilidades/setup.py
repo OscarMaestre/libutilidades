@@ -29,6 +29,11 @@ setup(name='utilidades',
 
         #Si queremos incluir un fichero "estático" meterlo
         #en el Manifest.in
-      include_package_data=True
+      include_package_data=True,
+      #Indica aquí los paquetes que sean necesarios
+      install_requires=[
+          "ipaddress",
+          "pytablewriter"
+      ]
 )
 
