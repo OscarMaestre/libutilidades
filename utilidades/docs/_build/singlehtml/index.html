@@ -483,6 +483,181 @@ meter los datos</p>
 </dd></dl>
 
 </section>
+<section id="clase-vagrantfile">
+<h1>Clase Vagrantfile<a class="headerlink" href="#clase-vagrantfile" title="Enlazar permanentemente con este título">¶</a></h1>
+<dl class="py class">
+<dt class="sig sig-object py" id="utilidades.vagrant.Vagrantfile.Vagrantfile">
+<em class="property"><span class="pre">class</span><span class="w">  </span></em><span class="sig-prename descclassname"><span class="pre">utilidades.vagrant.Vagrantfile.</span></span><span class="sig-name descname"><span class="pre">Vagrantfile</span></span><a class="headerlink" href="#utilidades.vagrant.Vagrantfile.Vagrantfile" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><dl class="py method">
+<dt class="sig sig-object py" id="utilidades.vagrant.Vagrantfile.Vagrantfile.abrir_puerto">
+<span class="sig-name descname"><span class="pre">abrir_puerto</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">puerto_en_anfitrion</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">puerto_en_invitado</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ip_invitado</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ip_anfitrion</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#utilidades.vagrant.Vagrantfile.Vagrantfile.abrir_puerto" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><dl class="simple">
+<dt>Abre un puerto en el host anfitrión:</dt><dd><dl class="field-list simple">
+<dt class="field-odd">param puerto_en_anfitrión</dt>
+<dd class="field-odd"><p>puerto en el que va a escuchar el anfitrión.</p>
+</dd>
+<dt class="field-even">param puerto_en_invitado</dt>
+<dd class="field-even"><p>puerto al que se va a redirigir la conexión cuando llegue.</p>
+</dd>
+<dt class="field-odd">param ip_invitado</dt>
+<dd class="field-odd"><p>dirección IP del invitado que va a escuchar.</p>
+</dd>
+<dt class="field-even">param ip_anfitrión</dt>
+<dd class="field-even"><p>dirección IP del anfitrión.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="utilidades.vagrant.Vagrantfile.Vagrantfile.anadir_carpeta_compartida">
+<span class="sig-name descname"><span class="pre">anadir_carpeta_compartida</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">carpeta_en_anfitrion</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">carpeta_en_invitado</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#utilidades.vagrant.Vagrantfile.Vagrantfile.anadir_carpeta_compartida" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Añadir una carpeta compartida.</p>
+<blockquote>
+<div><dl class="field-list simple">
+<dt class="field-odd">param carpeta_en_anfitrion</dt>
+<dd class="field-odd"><p>ruta de la carpeta en el anfitrión.</p>
+</dd>
+<dt class="field-even">param carpeta_en_invitado</dt>
+<dd class="field-even"><p>ruta de la carpeta en el invitado. En Linux pondremos algo como /compartida y en Windows algo como H:</p>
+</dd>
+</dl>
+</div></blockquote>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="utilidades.vagrant.Vagrantfile.Vagrantfile.anadir_comando">
+<span class="sig-name descname"><span class="pre">anadir_comando</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">comando</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#utilidades.vagrant.Vagrantfile.Vagrantfile.anadir_comando" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Añadir un comando que se ejecutará cuando se inyecte la máquina virtual.</p>
+<blockquote>
+<div><dl class="field-list simple">
+<dt class="field-odd">param comando</dt>
+<dd class="field-odd"><p>Comando a añadir.</p>
+</dd>
+</dl>
+</div></blockquote>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="utilidades.vagrant.Vagrantfile.Vagrantfile.anadir_fichero_para_copiar">
+<span class="sig-name descname"><span class="pre">anadir_fichero_para_copiar</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ruta_en_anfitrion</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ruta_en_invitado</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#utilidades.vagrant.Vagrantfile.Vagrantfile.anadir_fichero_para_copiar" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Añadir un fichero que se copiará dentro del invitado, puede ser una carpeta.</p>
+<blockquote>
+<div><dl class="field-list simple">
+<dt class="field-odd">param ruta_en_anfitrion</dt>
+<dd class="field-odd"><p>ruta de la carpeta o fichero en el anfitrión.</p>
+</dd>
+<dt class="field-even">param ruta_en_invitado</dt>
+<dd class="field-even"><p>ruta de la carpeta o fichero donde aparecerá DENTRO del invitado.</p>
+</dd>
+</dl>
+</div></blockquote>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="utilidades.vagrant.Vagrantfile.Vagrantfile.anadir_tarjeta_puente">
+<span class="sig-name descname"><span class="pre">anadir_tarjeta_puente</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">nombre_tarjeta</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#utilidades.vagrant.Vagrantfile.Vagrantfile.anadir_tarjeta_puente" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Añadir una tarjeta en modo puente.</p>
+<blockquote>
+<div><dl class="field-list simple">
+<dt class="field-odd">param nombre_tarjeta</dt>
+<dd class="field-odd"><p>nombre que recibe EN EL ANFITRIÓN la tarjeta con la cual se va a conectar la tarjeta puente que añadamos. En Linux será algo como enp0s3 y en Windows algo como Ethernet</p>
+</dd>
+</dl>
+</div></blockquote>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="utilidades.vagrant.Vagrantfile.Vagrantfile.get_carpetas_compartidas">
+<span class="sig-name descname"><span class="pre">get_carpetas_compartidas</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#utilidades.vagrant.Vagrantfile.Vagrantfile.get_carpetas_compartidas" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>DE USO INTERNO. Devuelve las carpetas compartidas listas para meter
+en el Vagrantfile</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="utilidades.vagrant.Vagrantfile.Vagrantfile.get_comandos">
+<span class="sig-name descname"><span class="pre">get_comandos</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#utilidades.vagrant.Vagrantfile.Vagrantfile.get_comandos" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>DE USO INTERNO. Devuelve los comandos a ejecutar listos para meter
+en el Vagrantfile</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="utilidades.vagrant.Vagrantfile.Vagrantfile.get_ficheros_para_copiar">
+<span class="sig-name descname"><span class="pre">get_ficheros_para_copiar</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#utilidades.vagrant.Vagrantfile.Vagrantfile.get_ficheros_para_copiar" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>DE USO INTERNO. Devuelve los ficheros a copiar listos para meter
+en el Vagrantfile</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="utilidades.vagrant.Vagrantfile.Vagrantfile.get_maquina_base">
+<span class="sig-name descname"><span class="pre">get_maquina_base</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#utilidades.vagrant.Vagrantfile.Vagrantfile.get_maquina_base" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>DE USO INTERNO. Devuelve el nombre de la máquina base para meter
+en el Vagrantfile</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="utilidades.vagrant.Vagrantfile.Vagrantfile.get_puertos">
+<span class="sig-name descname"><span class="pre">get_puertos</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#utilidades.vagrant.Vagrantfile.Vagrantfile.get_puertos" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>DE USO INTERNO. Devuelve los puertos abiertos listos para meter
+en el Vagrantfile</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="utilidades.vagrant.Vagrantfile.Vagrantfile.get_tarjetas_puente">
+<span class="sig-name descname"><span class="pre">get_tarjetas_puente</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#utilidades.vagrant.Vagrantfile.Vagrantfile.get_tarjetas_puente" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>DE USO INTERNO. Devuelve las tarjetas puente listas para meter
+en el Vagrantfile</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="utilidades.vagrant.Vagrantfile.Vagrantfile.get_texto_vagrantfile">
+<span class="sig-name descname"><span class="pre">get_texto_vagrantfile</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#utilidades.vagrant.Vagrantfile.Vagrantfile.get_texto_vagrantfile" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>DE USO INTERNO. Devuelve el texto que irá en el fichero Vagrantfile</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="utilidades.vagrant.Vagrantfile.Vagrantfile.guardar_como">
+<span class="sig-name descname"><span class="pre">guardar_como</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ruta_archivo</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#utilidades.vagrant.Vagrantfile.Vagrantfile.guardar_como" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Guarda el fichero Vagrantfile</p>
+<blockquote>
+<div><dl class="field-list simple">
+<dt class="field-odd">param ruta_archivo</dt>
+<dd class="field-odd"><p>ruta completa donde se guardará el archivo</p>
+</dd>
+</dl>
+</div></blockquote>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="utilidades.vagrant.Vagrantfile.Vagrantfile.set_maquina_base">
+<span class="sig-name descname"><span class="pre">set_maquina_base</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">maquina_base</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#utilidades.vagrant.Vagrantfile.Vagrantfile.set_maquina_base" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Establece el nombre de la máquina base.</p>
+<blockquote>
+<div><dl class="field-list simple">
+<dt class="field-odd">param maquina_base</dt>
+<dd class="field-odd"><p>ruta de la máquina base. Puede ser algo como oscarmaestre/ubuntuserver20 o una ruta completa como M:oxesmaquina.box</p>
+</dd>
+</dl>
+</div></blockquote>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="utilidades.vagrant.Vagrantfile.Vagrantfile.set_megas_ram">
+<span class="sig-name descname"><span class="pre">set_megas_ram</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">megas_ram</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#utilidades.vagrant.Vagrantfile.Vagrantfile.set_megas_ram" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Establece la cantida de RAM de la máquina en megas.</p>
+<blockquote>
+<div><dl class="field-list simple">
+<dt class="field-odd">param megas_ram</dt>
+<dd class="field-odd"><p>Cantidad de RAM en megas</p>
+</dd>
+</dl>
+</div></blockquote>
+</dd></dl>
+
+</dd></dl>
+
+</section>
 <section id="clase-generadoripv4azar">
 <h1>Clase GeneradorIPV4Azar<a class="headerlink" href="#clase-generadoripv4azar" title="Enlazar permanentemente con este título">¶</a></h1>
 <dl class="py class">
@@ -603,10 +778,20 @@ lenguaje: lenguaje en el que está escrito</p>
 <span class="sig-name descname"><span class="pre">anadir_figura</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ruta_imagen</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">porcentaje_escalado</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">100</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">alineacion</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'center'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">texto_alternativo</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">''</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#utilidades.documentos.Documento.Documento.anadir_figura" title="Enlazar permanentemente con esta definición">¶</a></dt>
 <dd><p>Anade una figura para restructuredtext o Sphinx</p>
 <dl class="simple">
-<dt>Parametros:</dt><dd><p>ruta_imagen: ruta a un archivo de imagen.
-porcentaje_escalado: número entero que indica el tamaño a escalar.
-alineacion: puede ser «left», «right» o «center»
-texto_alternativo: Si no se puede ver la imagen en el navegador se mostrará este texto</p>
+<dt>Parametros:</dt><dd><dl class="field-list simple">
+<dt class="field-odd">param ruta_imagen</dt>
+<dd class="field-odd"><p>ruta a un archivo de imagen.</p>
+</dd>
+<dt class="field-even">param porcentaje_escalado</dt>
+<dd class="field-even"><p>número entero que indica el tamaño a escalar.</p>
+</dd>
+<dt class="field-odd">param alineacion</dt>
+<dd class="field-odd"><p>puede ser «left», «right» o «center»</p>
+</dd>
+<dt class="field-even">param texto_alternativo</dt>
+<dd class="field-even"><p>Si no se puede ver la imagen en el navegador se mostrará este texto</p>
+</dd>
+</dl>
 </dd>
 </dl>
 </dd></dl>
@@ -616,7 +801,11 @@ texto_alternativo: Si no se puede ver la imagen en el navegador se mostrará est
 <span class="sig-name descname"><span class="pre">anadir_lineas_con_guion</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">vector_lineas</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#utilidades.documentos.Documento.Documento.anadir_lineas_con_guion" title="Enlazar permanentemente con esta definición">¶</a></dt>
 <dd><p>Genera una lista punteada con guiones</p>
 <dl class="simple">
-<dt>Parametros:</dt><dd><p>vector_lineas: lista de lineas a añadir.</p>
+<dt>Parametros:</dt><dd><dl class="field-list simple">
+<dt class="field-odd">param vector_lineas</dt>
+<dd class="field-odd"><p>lista de lineas a añadir.</p>
+</dd>
+</dl>
 </dd>
 </dl>
 </dd></dl>
@@ -626,9 +815,17 @@ texto_alternativo: Si no se puede ver la imagen en el navegador se mostrará est
 <span class="sig-name descname"><span class="pre">anadir_lineas_numeradas</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">vector_lineas</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">con_numeracion</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">simbolo_alternativo</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'*'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#utilidades.documentos.Documento.Documento.anadir_lineas_numeradas" title="Enlazar permanentemente con esta definición">¶</a></dt>
 <dd><p>Genera una lista numerada</p>
 <dl class="simple">
-<dt>Parametros:</dt><dd><p>vector_lineas: lista con las lineas a añadir
-con_numeracion: Indica si vamos a usar numeros o no
-simbolo_alternativo: Indica el simbolo que vamos a poner delante</p>
+<dt>Parametros:</dt><dd><dl class="field-list simple">
+<dt class="field-odd">param vector_lineas</dt>
+<dd class="field-odd"><p>lista con las lineas a añadir</p>
+</dd>
+<dt class="field-even">param con_numeracion</dt>
+<dd class="field-even"><p>Indica si vamos a usar numeros o no</p>
+</dd>
+<dt class="field-odd">param simbolo_alternativo</dt>
+<dd class="field-odd"><p>Indica el simbolo que vamos a poner delante</p>
+</dd>
+</dl>
 </dd>
 </dl>
 </dd></dl>
@@ -638,7 +835,11 @@ simbolo_alternativo: Indica el simbolo que vamos a poner delante</p>
 <span class="sig-name descname"><span class="pre">anadir_lineas_punteadas</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">vector_lineas</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#utilidades.documentos.Documento.Documento.anadir_lineas_punteadas" title="Enlazar permanentemente con esta definición">¶</a></dt>
 <dd><p>Genera una lista punteada</p>
 <dl class="simple">
-<dt>Parametros:</dt><dd><p>vector_lineas: lista de lineas se van a añadir</p>
+<dt>Parametros:</dt><dd><dl class="field-list simple">
+<dt class="field-odd">param vector_lineas</dt>
+<dd class="field-odd"><p>lista de lineas se van a añadir</p>
+</dd>
+</dl>
 </dd>
 </dl>
 </dd></dl>
@@ -665,23 +866,38 @@ simbolo_alternativo: Indica el simbolo que vamos a poner delante</p>
 <dt class="sig sig-object py" id="utilidades.documentos.Documento.Documento.anadir_tabla">
 <span class="sig-name descname"><span class="pre">anadir_tabla</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">nombre_tabla</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">lista_cabeceras</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">lista_de_listas_con_datos</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#utilidades.documentos.Documento.Documento.anadir_tabla" title="Enlazar permanentemente con esta definición">¶</a></dt>
 <dd><p>Añade una tabla en formato RestructuredText</p>
-<dl class="simple">
-<dt>Parameters:</dt><dd><p>nombre_tabla: nombre con el que la tabla aparece en el documento
-lista_cabeceras: lista de textos que aparecerán en las cabeceras de la tabla
-lista_de_lista_con_datos:lista de listas en las que aparecen las filas de datos</p>
+<blockquote>
+<div><dl class="field-list simple">
+<dt class="field-odd">param nombre_tabla</dt>
+<dd class="field-odd"><p>nombre con el que la tabla aparece en el documento</p>
+</dd>
+<dt class="field-even">param lista_cabeceras</dt>
+<dd class="field-even"><p>lista de textos que aparecerán en las cabeceras de la tabla</p>
+</dd>
+<dt class="field-odd">param lista_de_lista_con_datos</dt>
+<dd class="field-odd"><p>lista de listas en las que aparecen las filas de datos</p>
 </dd>
 </dl>
+</div></blockquote>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="utilidades.documentos.Documento.Documento.anadir_texto_con_linea_arriba_y_abajo">
 <span class="sig-name descname"><span class="pre">anadir_texto_con_linea_arriba_y_abajo</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">titulo</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">subrayador</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#utilidades.documentos.Documento.Documento.anadir_texto_con_linea_arriba_y_abajo" title="Enlazar permanentemente con esta definición">¶</a></dt>
-<dd><p>Añade al documento un texto con el subrayador especificado
-Parametros:</p>
-<blockquote>
-<div><p>titulo: texto del titulo
-subrayador: símbolo para crear las líneas</p>
-</div></blockquote>
+<dd><dl class="simple">
+<dt>Añade al documento un texto con el subrayador especificado</dt><dd><dl class="simple">
+<dt>Parametros: </dt><dd><dl class="field-list simple">
+<dt class="field-odd">param titulo</dt>
+<dd class="field-odd"><p>texto del titulo</p>
+</dd>
+<dt class="field-even">param subrayador</dt>
+<dd class="field-even"><p>símbolo para crear las líneas</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="py method">
@@ -695,8 +911,14 @@ subrayador: símbolo para crear las líneas</p>
 <span class="sig-name descname"><span class="pre">anadir_titulo_de_nivel</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">texto_titulo</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nivel</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#utilidades.documentos.Documento.Documento.anadir_titulo_de_nivel" title="Enlazar permanentemente con esta definición">¶</a></dt>
 <dd><p>Añade un título de nivel 1, 2, o 3</p>
 <dl class="simple">
-<dt>Parametros:</dt><dd><p>titulo: texto del titulo
-nivel: nivel de titulo a generar</p>
+<dt>Parametros:</dt><dd><dl class="field-list simple">
+<dt class="field-odd">param titulo</dt>
+<dd class="field-odd"><p>texto del titulo</p>
+</dd>
+<dt class="field-even">param nivel</dt>
+<dd class="field-even"><p>nivel de titulo a generar</p>
+</dd>
+</dl>
 </dd>
 </dl>
 </dd></dl>
@@ -706,10 +928,20 @@ nivel: nivel de titulo a generar</p>
 <span class="sig-name descname"><span class="pre">get_figura</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ruta_imagen</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">porcentaje_escalado</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">100</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">alineacion</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'center'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">texto_alternativo</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">''</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#utilidades.documentos.Documento.Documento.get_figura" title="Enlazar permanentemente con esta definición">¶</a></dt>
 <dd><p>Genera una figura para restructuredtext o Sphinx</p>
 <dl class="simple">
-<dt>Parametros:</dt><dd><p>ruta_imagen: ruta a un archivo de imagen.
-porcentaje_escalado: número entero que indica el tamaño a escalar.
-alineacion: puede ser «left», «right» o «center»
-texto_alternativo: Si no se puede ver la imagen en el navegador se mostrará este texto</p>
+<dt>Parametros:</dt><dd><dl class="field-list simple">
+<dt class="field-odd">param ruta_imagen</dt>
+<dd class="field-odd"><p>ruta a un archivo de imagen.</p>
+</dd>
+<dt class="field-even">param porcentaje_escalado</dt>
+<dd class="field-even"><p>número entero que indica el tamaño a escalar.</p>
+</dd>
+<dt class="field-odd">param alineacion</dt>
+<dd class="field-odd"><p>puede ser «left», «right» o «center»</p>
+</dd>
+<dt class="field-even">param texto_alternativo</dt>
+<dd class="field-even"><p>Si no se puede ver la imagen en el navegador se mostrará este texto</p>
+</dd>
+</dl>
 </dd>
 </dl>
 </dd></dl>
@@ -719,7 +951,11 @@ texto_alternativo: Si no se puede ver la imagen en el navegador se mostrará est
 <span class="sig-name descname"><span class="pre">get_lineas_con_guion</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">vector_lineas</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#utilidades.documentos.Documento.Documento.get_lineas_con_guion" title="Enlazar permanentemente con esta definición">¶</a></dt>
 <dd><p>Devuelve una lista de líneas con el guión delante</p>
 <dl class="simple">
-<dt>Parametros:</dt><dd><p>vector_lineas: lista de lineas</p>
+<dt>Parametros:</dt><dd><dl class="field-list simple">
+<dt class="field-odd">param vector_lineas</dt>
+<dd class="field-odd"><p>lista de lineas</p>
+</dd>
+</dl>
 </dd>
 </dl>
 </dd></dl>
@@ -728,12 +964,20 @@ texto_alternativo: Si no se puede ver la imagen en el navegador se mostrará est
 <dt class="sig sig-object py" id="utilidades.documentos.Documento.Documento.get_lineas_numeradas">
 <span class="sig-name descname"><span class="pre">get_lineas_numeradas</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">vector_lineas</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">con_numeracion</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">simbolo_alternativo</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'*'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#utilidades.documentos.Documento.Documento.get_lineas_numeradas" title="Enlazar permanentemente con esta definición">¶</a></dt>
 <dd><p>Genera líneas numeradas</p>
-<dl class="simple">
-<dt>Parametros:</dt><dd><p>vector_lineas: lista de lineas a numerar
-con_numeracion: indica si usaremos numeros o no
-simbolo_alternativo: SI NO ESTAMOS NUMERANDO se pondrá este símbolo delante</p>
+<p>Parametros:</p>
+<blockquote>
+<div><dl class="field-list simple">
+<dt class="field-odd">param vector_lineas</dt>
+<dd class="field-odd"><p>lista de lineas a numerar</p>
+</dd>
+<dt class="field-even">param con_numeracion</dt>
+<dd class="field-even"><p>indica si usaremos numeros o no</p>
+</dd>
+<dt class="field-odd">param simbolo_alternativo</dt>
+<dd class="field-odd"><p>SI NO ESTAMOS NUMERANDO se pondrá este símbolo delante</p>
 </dd>
 </dl>
+</div></blockquote>
 </dd></dl>
 
 <dl class="py method">
@@ -741,7 +985,11 @@ simbolo_alternativo: SI NO ESTAMOS NUMERANDO se pondrá este símbolo delante</p
 <span class="sig-name descname"><span class="pre">get_lineas_punteadas</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">vector_lineas</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#utilidades.documentos.Documento.Documento.get_lineas_punteadas" title="Enlazar permanentemente con esta definición">¶</a></dt>
 <dd><p>Genera una lista punteada con el asterisco:</p>
 <dl class="simple">
-<dt>Parametros: </dt><dd><p>vector_lineas: lista de lineas a puntear</p>
+<dt>Parametros: </dt><dd><dl class="field-list simple">
+<dt class="field-odd">param vector_lineas</dt>
+<dd class="field-odd"><p>lista de lineas a puntear</p>
+</dd>
+</dl>
 </dd>
 </dl>
 </dd></dl>
@@ -755,13 +1003,20 @@ simbolo_alternativo: SI NO ESTAMOS NUMERANDO se pondrá este símbolo delante</p
 <dl class="py method">
 <dt class="sig sig-object py" id="utilidades.documentos.Documento.Documento.get_tabla">
 <span class="sig-name descname"><span class="pre">get_tabla</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">nombre_tabla</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">lista_cabeceras</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">lista_de_listas_con_datos</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#utilidades.documentos.Documento.Documento.get_tabla" title="Enlazar permanentemente con esta definición">¶</a></dt>
-<dd><p>Devuelve una tabla en formato RestructuredText</p>
-<dl class="simple">
-<dt>Parameters:</dt><dd><p>nombre_tabla: nombre con el que la tabla aparece en el documento
-lista_cabeceras: lista de textos que aparecerán en las cabeceras de la tabla
-lista_de_lista_con_datos:lista de listas en las que aparecen las filas de datos</p>
+<dd><p>Devuelve una tabla en formato RestructuredText.</p>
+<blockquote>
+<div><dl class="field-list simple">
+<dt class="field-odd">param nombre_tabla</dt>
+<dd class="field-odd"><p>nombre con el que la tabla aparece en el documento</p>
+</dd>
+<dt class="field-even">param lista_cabeceras</dt>
+<dd class="field-even"><p>lista de textos que aparecerán en las cabeceras de la tabla</p>
+</dd>
+<dt class="field-odd">param lista_de_lista_con_datos</dt>
+<dd class="field-odd"><p>lista de listas en las que aparecen las filas de datos</p>
 </dd>
 </dl>
+</div></blockquote>
 </dd></dl>
 
 <dl class="py method">
@@ -775,8 +1030,14 @@ lista_de_lista_con_datos:lista de listas en las que aparecen las filas de datos<
 <span class="sig-name descname"><span class="pre">get_texto_con_linea_arriba_y_abajo</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">titulo</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">subrayador</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#utilidades.documentos.Documento.Documento.get_texto_con_linea_arriba_y_abajo" title="Enlazar permanentemente con esta definición">¶</a></dt>
 <dd><p>Genera un texto con una linea de simbolos arriba y abajo</p>
 <dl class="simple">
-<dt>Parametros: </dt><dd><p>titulo: texto del titulo
-subrayador: símbolo para crear las líneas</p>
+<dt>Parametros: </dt><dd><dl class="field-list simple">
+<dt class="field-odd">param titulo</dt>
+<dd class="field-odd"><p>texto del titulo</p>
+</dd>
+<dt class="field-even">param subrayador</dt>
+<dd class="field-even"><p>símbolo para crear las líneas</p>
+</dd>
+</dl>
 </dd>
 </dl>
 </dd></dl>
@@ -792,8 +1053,14 @@ subrayador: símbolo para crear las líneas</p>
 <span class="sig-name descname"><span class="pre">get_titulo_de_nivel</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">texto_titulo</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nivel</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#utilidades.documentos.Documento.Documento.get_titulo_de_nivel" title="Enlazar permanentemente con esta definición">¶</a></dt>
 <dd><p>Genera un título del nivel pedido</p>
 <dl class="simple">
-<dt>Parametros:</dt><dd><p>texto_titulo: Texto del título
-nivel: nivel del título pedido (1,2 o 3)</p>
+<dt>Parametros:</dt><dd><dl class="field-list simple">
+<dt class="field-odd">param texto_titulo</dt>
+<dd class="field-odd"><p>Texto del título</p>
+</dd>
+<dt class="field-even">param nivel</dt>
+<dd class="field-even"><p>nivel del título pedido (1,2 o 3)</p>
+</dd>
+</dl>
 </dd>
 </dl>
 </dd></dl>

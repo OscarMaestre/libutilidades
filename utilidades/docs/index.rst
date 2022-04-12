@@ -9,7 +9,7 @@ Modulo de utilidades para Python
 Contents:
 
 .. toctree::
-   :maxdepth: 2
+   :maxdepth: 3
 
 Clase Utilidades
 =====================
@@ -43,6 +43,13 @@ Clase GestorFicheros
 
 .. autoclass:: utilidades.ficheros.GestorFicheros.GestorFicheros
    :members:
+
+Clase Vagrantfile
+================================================================================
+
+.. autoclass:: utilidades.vagrant.Vagrantfile.Vagrantfile
+   :members:
+
 
 Clase GeneradorIPV4Azar
 ========================

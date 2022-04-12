@@ -2,6 +2,9 @@ import pytablewriter
 
 class Documento(object):
     def __init__(self, nombre_archivo="documento.rst", fin_linea="\n", separador="\n\n"):
+        """Constructor:
+        
+            :param nombre_archivo: Ruta del archivo donde se va a guardar"""
         self.nombre_archivo     =   nombre_archivo
         self.separador          =   separador
         self.fin_linea          =   fin_linea
@@ -16,18 +19,20 @@ class Documento(object):
 
 
     def anadir_texto_con_linea_arriba_y_abajo(self, titulo, subrayador):
-        """Añade al documento un texto con el subrayador especificado
+        """
+        Añade al documento un texto con el subrayador especificado
             Parametros: 
-                titulo: texto del titulo
-                subrayador: símbolo para crear las líneas"""
+                :param titulo: texto del titulo
+                :param subrayador: símbolo para crear las líneas
+        """
         self.bloques.append(self.get_texto_con_linea_arriba_y_abajo(titulo, subrayador))
 
     def get_texto_con_linea_arriba_y_abajo(self, titulo, subrayador):
         """Genera un texto con una linea de simbolos arriba y abajo
         
             Parametros: 
-                titulo: texto del titulo
-                subrayador: símbolo para crear las líneas"""
+                :param titulo: texto del titulo
+                :param subrayador: símbolo para crear las líneas"""
         longitud_titulo=len(titulo)
         iguales=subrayador*longitud_titulo
         #Por este orden y de arriba a abajo
@@ -60,18 +65,19 @@ class Documento(object):
         """Genera una lista numerada
         
             Parametros:
-                vector_lineas: lista con las lineas a añadir
-                con_numeracion: Indica si vamos a usar numeros o no
-                simbolo_alternativo: Indica el simbolo que vamos a poner delante"""
+                :param vector_lineas: lista con las lineas a añadir
+                :param con_numeracion: Indica si vamos a usar numeros o no
+                :param simbolo_alternativo: Indica el simbolo que vamos a poner delante"""
         self.bloques.append(self.get_lineas_numeradas(vector_lineas,con_numeracion, simbolo_alternativo))
     
     def get_lineas_numeradas(self, vector_lineas, con_numeracion=True, simbolo_alternativo="*"):
         """Genera líneas numeradas
         
             Parametros:
-                vector_lineas: lista de lineas a numerar
-                con_numeracion: indica si usaremos numeros o no
-                simbolo_alternativo: SI NO ESTAMOS NUMERANDO se pondrá este símbolo delante"""
+            
+                :param vector_lineas: lista de lineas a numerar
+                :param con_numeracion: indica si usaremos numeros o no
+                :param simbolo_alternativo: SI NO ESTAMOS NUMERANDO se pondrá este símbolo delante"""
         nuevas_lineas=[]
         for pos, linea in enumerate(vector_lineas):
             inicio = str(pos)+"." if con_numeracion else simbolo_alternativo
@@ -84,14 +90,14 @@ class Documento(object):
         """Genera una lista punteada
         
             Parametros:
-                vector_lineas: lista de lineas se van a añadir"""
+                :param vector_lineas: lista de lineas se van a añadir"""
         self.anadir_lineas_numeradas(vector_lineas, con_numeracion=False)
     
     def get_lineas_punteadas(self, vector_lineas):
         """Genera una lista punteada con el asterisco:
         
             Parametros: 
-                vector_lineas: lista de lineas a puntear"""
+                :param vector_lineas: lista de lineas a puntear"""
         return self.get_lineas_numeradas(vector_lineas, con_numeracion=False)
     
     
@@ -99,14 +105,14 @@ class Documento(object):
         """Genera una lista punteada con guiones
         
             Parametros:
-                vector_lineas: lista de lineas a añadir."""
+                :param vector_lineas: lista de lineas a añadir."""
         self.anadir_lineas_numeradas(vector_lineas, con_numeracion=False, simbolo_alternativo="-")
 
     def get_lineas_con_guion(self, vector_lineas):
         """Devuelve una lista de líneas con el guión delante
         
             Parametros:
-                vector_lineas: lista de lineas"""
+                :param vector_lineas: lista de lineas"""
         self.get_lineas_numeradas(vector_lineas, con_numeracion=False, simbolo_alternativo="-")
 
 
@@ -114,16 +120,16 @@ class Documento(object):
         """Añade un título de nivel 1, 2, o 3
         
             Parametros:
-                titulo: texto del titulo
-                nivel: nivel de titulo a generar"""
+                :param titulo: texto del titulo
+                :param nivel: nivel de titulo a generar"""
         self.bloques.append(self.get_titulo_de_nivel(texto_titulo, nivel))
 
     def get_titulo_de_nivel(self, texto_titulo, nivel=1):
         """Genera un título del nivel pedido
         
             Parametros:
-                texto_titulo: Texto del título
-                nivel: nivel del título pedido (1,2 o 3)"""
+                :param texto_titulo: Texto del título
+                :param nivel: nivel del título pedido (1,2 o 3)"""
         subrayador=self.subrayados[nivel-1]
         texto_subrayados=subrayador*len(texto_titulo)
         #Estructura
@@ -133,23 +139,24 @@ class Documento(object):
         return texto
 
     def anadir_tabla(self, nombre_tabla, lista_cabeceras, lista_de_listas_con_datos):
-        """Añade una tabla en formato RestructuredText
+        """
+        Añade una tabla en formato RestructuredText
 
-            Parameters:
-                nombre_tabla: nombre con el que la tabla aparece en el documento
-                lista_cabeceras: lista de textos que aparecerán en las cabeceras de la tabla
-                lista_de_lista_con_datos:lista de listas en las que aparecen las filas de datos
+            :param nombre_tabla: nombre con el que la tabla aparece en el documento
+            :param lista_cabeceras: lista de textos que aparecerán en las cabeceras de la tabla
+            :param lista_de_lista_con_datos: lista de listas en las que aparecen las filas de datos
         """
         texto=self.get_tabla(nombre_tabla, lista_cabeceras, lista_de_listas_con_datos)
         self.anadir_parrafo(texto)
 
     def get_tabla(self, nombre_tabla, lista_cabeceras, lista_de_listas_con_datos):
-        """Devuelve una tabla en formato RestructuredText
+        """
+        Devuelve una tabla en formato RestructuredText.
 
-            Parameters:
-                nombre_tabla: nombre con el que la tabla aparece en el documento
-                lista_cabeceras: lista de textos que aparecerán en las cabeceras de la tabla
-                lista_de_lista_con_datos:lista de listas en las que aparecen las filas de datos
+            :param nombre_tabla: nombre con el que la tabla aparece en el documento
+            :param lista_cabeceras: lista de textos que aparecerán en las cabeceras de la tabla
+            :param lista_de_lista_con_datos: lista de listas en las que aparecen las filas de datos
+        
         """
         writer = pytablewriter.RstGridTableWriter(
         headers=lista_cabeceras,
@@ -167,10 +174,10 @@ class Documento(object):
         """Anade una figura para restructuredtext o Sphinx
         
             Parametros:
-                ruta_imagen: ruta a un archivo de imagen.
-                porcentaje_escalado: número entero que indica el tamaño a escalar.
-                alineacion: puede ser "left", "right" o "center"
-                texto_alternativo: Si no se puede ver la imagen en el navegador se mostrará este texto"""
+                :param ruta_imagen: ruta a un archivo de imagen.
+                :param porcentaje_escalado: número entero que indica el tamaño a escalar.
+                :param alineacion: puede ser "left", "right" o "center"
+                :param texto_alternativo: Si no se puede ver la imagen en el navegador se mostrará este texto"""
         bloque=self.get_figura(ruta_imagen, porcentaje_escalado, alineacion, texto_alternativo)
         self.anadir_parrafo(bloque)
     
@@ -178,10 +185,10 @@ class Documento(object):
         """Genera una figura para restructuredtext o Sphinx
         
             Parametros:
-                ruta_imagen: ruta a un archivo de imagen.
-                porcentaje_escalado: número entero que indica el tamaño a escalar.
-                alineacion: puede ser "left", "right" o "center"
-                texto_alternativo: Si no se puede ver la imagen en el navegador se mostrará este texto"""
+                :param ruta_imagen: ruta a un archivo de imagen.
+                :param porcentaje_escalado: número entero que indica el tamaño a escalar.
+                :param alineacion: puede ser "left", "right" o "center"
+                :param texto_alternativo: Si no se puede ver la imagen en el navegador se mostrará este texto"""
         PLANTILLA_FIGURA="""
 .. figure:: {0}
    :scale: {1}%

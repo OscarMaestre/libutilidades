@@ -56,7 +56,7 @@ class FicheroParaCopiar(object):
 
 
 
-class Vagrantile(object):
+class Vagrantfile(object):
     def __init__(self):
         self.MEGAS_RAM      =   768
         self.maquina_base   =   "oscarmaestre/ubuntuserver20"
@@ -72,25 +72,58 @@ class Vagrantile(object):
         self.nombre_tarjeta_puente=None
 
     def abrir_puerto(self, puerto_en_anfitrion, puerto_en_invitado, ip_invitado=None, ip_anfitrion=None):
+        """
+        Abre un puerto en el host anfitrión:
+            :param puerto_en_anfitrión: puerto en el que va a escuchar el anfitrión.
+            :param puerto_en_invitado: puerto al que se va a redirigir la conexión cuando llegue.
+            :param ip_invitado: dirección IP del invitado que va a escuchar.
+            :param ip_anfitrión: dirección IP del anfitrión.
+        """
         puerto=PuertoAbierto(puerto_en_invitado, puerto_en_anfitrion, ip_invitado, ip_anfitrion)
         self.puertos_abiertos.append(puerto)
         
     def anadir_comando(self, comando):
+        """
+        Añadir un comando que se ejecutará cuando se inyecte la máquina virtual.
+
+            :param comando: Comando a añadir.
+        """
         self.comandos.append(comando)
 
     def anadir_tarjeta_puente(self, nombre_tarjeta):
+        """
+        Añadir una tarjeta en modo puente.
+
+            :param nombre_tarjeta: nombre que recibe EN EL ANFITRIÓN la tarjeta con la cual se va a conectar la tarjeta puente que añadamos. En Linux será algo como enp0s3 y en Windows algo como Ethernet
+        """
         self.num_tarjetas_puente=self.num_tarjetas_puente+1
         self.nombre_tarjeta_puente=nombre_tarjeta
 
     def anadir_carpeta_compartida(self, carpeta_en_anfitrion, carpeta_en_invitado):
+        """
+        Añadir una carpeta compartida.
+
+            :param carpeta_en_anfitrion: ruta de la carpeta en el anfitrión.
+            :param carpeta_en_invitado: ruta de la carpeta en el invitado. En Linux pondremos algo como /compartida y en Windows algo como H:
+        """
         self.carpeta_compartida_anfitrion=carpeta_en_anfitrion
         self.carpeta_compartida_invitado=carpeta_en_invitado
 
     def anadir_fichero_para_copiar(self, ruta_en_anfitrion, ruta_en_invitado):
+        """
+        Añadir un fichero que se copiará dentro del invitado, puede ser una carpeta.
+
+            :param ruta_en_anfitrion: ruta de la carpeta o fichero en el anfitrión.
+            :param ruta_en_invitado: ruta de la carpeta o fichero donde aparecerá DENTRO del invitado.
+        """
         fichero=FicheroParaCopiar(ruta_en_anfitrion, ruta_en_invitado)
         self.ficheros_para_copiar.append(fichero)
 
     def get_carpetas_compartidas(self):
+        """
+        DE USO INTERNO. Devuelve las carpetas compartidas listas para meter
+        en el Vagrantfile
+        """
         if self.carpeta_compartida_anfitrion==None:
             return ""
         plantilla="    config.vm.synced_folder \"{0}\", \"{1}\""
@@ -98,34 +131,64 @@ class Vagrantile(object):
         return texto
 
     def get_ficheros_para_copiar(self):
+        """
+        DE USO INTERNO. Devuelve los ficheros a copiar listos para meter
+        en el Vagrantfile
+        """
         if self.ficheros_para_copiar==[]:
             return ""
         lineas=[str(fichero) for fichero in self.ficheros_para_copiar]
         return "\n".join(lineas)
 
     def get_tarjetas_puente(self):
+        """
+        DE USO INTERNO. Devuelve las tarjetas puente listas para meter
+        en el Vagrantfile
+        """
         configuracion=["    config.vm.network \"public_network\", bridge: \"{0}\"".format(self.nombre_tarjeta_puente)]
         lineas=self.num_tarjetas_puente * configuracion
         return "\n".join(lineas)
 
     def get_puertos(self):
+        """
+        DE USO INTERNO. Devuelve los puertos abiertos listos para meter
+        en el Vagrantfile
+        """
         if self.puertos_abiertos==[]:
             return ""
         lineas_puertos=[str(puerto) for puerto in self.puertos_abiertos]
         return "\n".join(lineas_puertos)
 
     def set_maquina_base(self, maquina_base):
+        """
+        Establece el nombre de la máquina base.
+
+            :param maquina_base: ruta de la máquina base. Puede ser algo como oscarmaestre/ubuntuserver20 o una ruta completa como M:\boxes\maquina.box
+        """
         self.maquina_base=maquina_base
 
     def set_megas_ram(self, megas_ram):
+        """
+        Establece la cantida de RAM de la máquina en megas.
+
+            :param megas_ram: Cantidad de RAM en megas
+        """
         self.MEGAS_RAM=megas_ram
 
     def get_maquina_base(self):
+        """
+        DE USO INTERNO. Devuelve el nombre de la máquina base para meter
+        en el Vagrantfile
+        """
         plantilla="    config.vm.box = \"{0}\""
         texto=plantilla.format(self.maquina_base)
         return texto
 
     def get_comandos(self):
+        """
+        DE USO INTERNO. Devuelve los comandos a ejecutar listos para meter
+        en el Vagrantfile
+        """
         if self.comandos==[]:
             return ""
         lineas=["        "+comando for comando in self.comandos]
@@ -134,6 +197,9 @@ class Vagrantile(object):
         return provisionado
 
     def get_texto_vagrantfile(self):
+        """
+        DE USO INTERNO. Devuelve el texto que irá en el fichero Vagrantfile
+        """
         bloques=[]
 
         bloques.append(self.get_maquina_base())
@@ -147,6 +213,11 @@ class Vagrantile(object):
         vagrantfile_texto=FICHERO_PLANTILLA.format(texto)
         return vagrantfile_texto
 
-    def guardar_como(self, nombre_archivo):
-        with open(nombre_archivo, "w") as fich:
+    def guardar_como(self, ruta_archivo):
+        """
+        Guarda el fichero Vagrantfile
+
+            :param ruta_archivo: ruta completa donde se guardará el archivo
+        """
+        with open(ruta_archivo, "w") as fich:
             fich.write(self.get_texto_vagrantfile())
