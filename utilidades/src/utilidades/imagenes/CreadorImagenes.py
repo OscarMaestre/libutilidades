@@ -8,6 +8,14 @@ import os
 
 class CreadorImagenes(object):
     def __init__(self, archivo_imagen, archivo_resultado, tamano_fuente=18, paquete_fuente="utilidades.imagenes.fuentes.cantarell", archivo_fuente="Cantarell-Regular.ttf") -> None:
+        """Constructor
+
+            :param archivo_imagen: ruta del archivo de imagen donde vamos a escribir
+            :param archivo_resultado: ruta del archivo donde se va a dejar el resultado.
+            :param tamano_fuente: tamaño de la fuente
+            :param paquete_fuente: paquete de donde se va a cargar la fuente
+            :param archivo_fuente: archivo de fuente TTF con el que se va  escribir 
+        """
         self.imagen=Image.open(archivo_imagen).convert("RGBA")
         self.paquete_fuente=paquete_fuente
         self.archivo_fuente=archivo_fuente
@@ -18,6 +26,7 @@ class CreadorImagenes(object):
         self.archivo_resultado=archivo_resultado    
 
     def get_lista_posibles_fuentes(self):
+        """Devuelve una lista con las posibles fuentes que se pueden usar"""
         fuentes=[]
         directorios_con_fuentes=["cantarell", "liberation-mono", "linux-biolinum", "nimbus-roman-no9-l","nimbus-sans-l","oxygen"]
         for d in directorios_con_fuentes:
@@ -38,6 +47,11 @@ class CreadorImagenes(object):
         return fuentes
     
     def set_fuente(self, ruta_paquete, nombre_archivo_ttf_u_otf):
+        """Cambia la fuente activa
+        
+            :param ruta_paquete: ruta del paquete en forma de nombres separados por puntos (ej utilidades.imagenes.fuentes)
+            :param nombre_archivo_ttf_u_otf: nombre del archivo de tipo de letra en formato TTF u OTF
+        """
         bytes_fichero=open_binary(ruta_paquete, nombre_archivo_ttf_u_otf)
         self.font= ImageFont.truetype(bytes_fichero)
     
@@ -46,10 +60,9 @@ class CreadorImagenes(object):
     def poner_texto(self, texto, x, y, color=(0, 0, 0)):
         """Inserta un texto en la imagen.
         
-            Argumentos:
-            
-            texto:  texto a insertar
-            x,y : coordenadas
+                :param texto:  texto a insertar
+                :param x,y: coordenadas
+                :param color: color en formato (R, G, B)
         """
         self.contexto.text( (x, y), text=texto, font=self.font, fill=color)
         
@@ -57,10 +70,8 @@ class CreadorImagenes(object):
     def poner_textos(self, lista_textos, lista_tuplas_xy, color=(0,0,0)):
         """Inserta un conjunto de textos en las coordenadas correspondientes
 
-            Argumentos:
-
-                lista_textos: una lista de cadenas
-                lista_tuplas_xy: una lista de tuplas con coordenadas (x,y)
+                :param lista_textos: una lista de cadenas
+                :param lista_tuplas_xy: una lista de tuplas con coordenadas (x,y)
         """
         for tupla in zip(lista_textos, lista_tuplas_xy):
             texto=tupla[0]

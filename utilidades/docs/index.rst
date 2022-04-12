@@ -11,61 +11,76 @@ Contents:
 .. toctree::
    :maxdepth: 3
 
-Clase Utilidades
-=====================
-
-.. autoclass:: utilidades.genericas.Utilidades.Utilidades
-   :members:
-
-
-Clase GestorTelegram
-=======================
-
-Un ejemplo de código
-
-.. autoclass:: utilidades.mensajeria.telegram.GestorTelegram
-   :members:
    
-Clase Updates
-====================
-
-.. autoclass:: utilidades.mensajeria.telegram.Update
-   :members:
-   
-   
-Clase ProcesadorPDF
-========================
-.. autoclass:: utilidades.ficheros.ProcesadorPDF.ProcesadorPDF
-   :members:
-
 Clase GestorFicheros
-=====================
+--------------------------------------------------------------------------------
+
 
 .. autoclass:: utilidades.ficheros.GestorFicheros.GestorFicheros
    :members:
 
 Clase Vagrantfile
-================================================================================
+--------------------------------------------------------------------------------
+
 
 .. autoclass:: utilidades.vagrant.Vagrantfile.Vagrantfile
    :members:
 
 
 Clase GeneradorIPV4Azar
-========================
+--------------------------------------------------------------------------------
+
 
 .. autoclass:: utilidades.ip.ipv4.GeneradorIPV4Azar
    :members:
 
+
+Clase CreadorImagenes
+--------------------------------------------------------------------------------
+
+.. autoclass:: utilidades.imagenes.CreadorImagenes.CreadorImagenes
+   :members:
+   :special-members: __init__
+
 Class Documento
-================================================================================
+--------------------------------------------------------------------------------
+
 
 .. autoclass:: utilidades.documentos.Documento.Documento
    :members:
 
-   
-Indices and tables
-==================
+Clase ProcesadorPDF
+--------------------------------------------------------------------------------
+
+
+
+
+.. autoclass:: utilidades.ficheros.ProcesadorPDF.ProcesadorPDF
+   :members:
+
+Class GestorComandos(Aulas)
+--------------------------------------------------------------------------------
+
+.. autoclass:: utilidades.aulas.GestorComandos.GestorComandos
+   :members:
+
+
+Class GestorMensajes(Aulas)
+--------------------------------------------------------------------------------
+
+.. autoclass:: utilidades.aulas.GestorMensajes.GestorMensajes
+   :members:
+
+Class GestorNombres(Aulas)
+--------------------------------------------------------------------------------
+
+.. autoclass:: utilidades.aulas.GestorNombres.GestorNombres
+   :members:
+
+
+Indices y tables
+--------------------------------------------------------------------------------
+
 
 * :ref:`genindex`
 * :ref:`modindex`

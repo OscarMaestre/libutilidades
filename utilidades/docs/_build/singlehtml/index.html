@@ -37,263 +37,8 @@
 <p>Contents:</p>
 <div class="toctree-wrapper compound">
 </div>
-</section>
-<section id="clase-utilidades">
-<h1>Clase Utilidades<a class="headerlink" href="#clase-utilidades" title="Enlazar permanentemente con este título">¶</a></h1>
-</section>
-<section id="clase-gestortelegram">
-<h1>Clase GestorTelegram<a class="headerlink" href="#clase-gestortelegram" title="Enlazar permanentemente con este título">¶</a></h1>
-<p>Un ejemplo de código</p>
-</section>
-<section id="clase-updates">
-<h1>Clase Updates<a class="headerlink" href="#clase-updates" title="Enlazar permanentemente con este título">¶</a></h1>
-</section>
-<section id="clase-procesadorpdf">
-<h1>Clase ProcesadorPDF<a class="headerlink" href="#clase-procesadorpdf" title="Enlazar permanentemente con este título">¶</a></h1>
-<dl class="py class">
-<dt class="sig sig-object py" id="utilidades.ficheros.ProcesadorPDF.ProcesadorPDF">
-<em class="property"><span class="pre">class</span><span class="w">  </span></em><span class="sig-prename descclassname"><span class="pre">utilidades.ficheros.ProcesadorPDF.</span></span><span class="sig-name descname"><span class="pre">ProcesadorPDF</span></span><a class="headerlink" href="#utilidades.ficheros.ProcesadorPDF.ProcesadorPDF" title="Enlazar permanentemente con esta definición">¶</a></dt>
-<dd><p>Procesa archivos PDF convertidos a texto</p>
-<dl class="py method">
-<dt class="sig sig-object py" id="utilidades.ficheros.ProcesadorPDF.ProcesadorPDF.abrir_fichero_txt">
-<span class="sig-name descname"><span class="pre">abrir_fichero_txt</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">nombre_fichero_txt</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">codificacion</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'utf-8'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#utilidades.ficheros.ProcesadorPDF.ProcesadorPDF.abrir_fichero_txt" title="Enlazar permanentemente con esta definición">¶</a></dt>
-<dd><p>Abre un fichero txt para empezar a procesarlo</p>
-<p>Argumentos:</p>
-<blockquote>
-<div><p>nombre_fichero_txt – nombre del fichero txt</p>
-<p>codificacion – codificación del fichero</p>
-</div></blockquote>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="utilidades.ficheros.ProcesadorPDF.ProcesadorPDF.avanzar_buscando_codigo_centro">
-<span class="sig-name descname"><span class="pre">avanzar_buscando_codigo_centro</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">con_c</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">debe_estar_en_misma_linea</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#utilidades.ficheros.ProcesadorPDF.ProcesadorPDF.avanzar_buscando_codigo_centro" title="Enlazar permanentemente con esta definición">¶</a></dt>
-<dd><p>Avanza el procesador buscando un codigo de centro</p>
-<p>Argumentos:</p>
-<blockquote>
-<div><p>con_c – Si es True se busca un codigo acabado en “C”, si es False se busca sin “C” al final</p>
-<p>debe_estar_en_misma_linea – Si es True el procesador se mantiene siempre en la misma linea,
-si es False se le permite avanzar hacia delante</p>
-</div></blockquote>
-<p>Devuelve:</p>
-<blockquote>
-<div><p>Un código de centro o ProcesadorPDF.PATRON_NO_ENCONTRADO</p>
-</div></blockquote>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="utilidades.ficheros.ProcesadorPDF.ProcesadorPDF.avanzar_buscando_patron">
-<span class="sig-name descname"><span class="pre">avanzar_buscando_patron</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">expr_regular</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">debe_estar_en_misma_linea</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#utilidades.ficheros.ProcesadorPDF.ProcesadorPDF.avanzar_buscando_patron" title="Enlazar permanentemente con esta definición">¶</a></dt>
-<dd><p>Hace avanzar el procesador buscando un cierto patrón</p>
-<p>Argumentos:</p>
-<blockquote>
-<div><p>expr_regular – patrón a buscar (ya debe estar compilado)</p>
-<p>debe_estar_en_misma_linea – True por defecto, obliga a buscar sin avanzar a la siguiente línea. Si
-se pone a False y el patrón no está se devuelve ProcesadorPDF.PATRON_NO_ENCONTRADO</p>
-</div></blockquote>
-<p>Devuelve:</p>
-<blockquote>
-<div><p>(ini, fin, texto) – Tupla con 3 elementos que pueden ser ProcesadorPDF.PATRON_NO_ENCONTRADO</p>
-</div></blockquote>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="utilidades.ficheros.ProcesadorPDF.ProcesadorPDF.convertir_a_txt">
-<span class="sig-name descname"><span class="pre">convertir_a_txt</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">nombre_pdf</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">evitar_reconversiones</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#utilidades.ficheros.ProcesadorPDF.ProcesadorPDF.convertir_a_txt" title="Enlazar permanentemente con esta definición">¶</a></dt>
-<dd><p>Convierte un archivo PDF a texto</p>
-<p>Argumentos:</p>
-<blockquote>
-<div><p>nombre_pdf – Nombre del fichero PDF</p>
-<p>evitar_reconversiones – False por defecto, evita reconvertir un fichero si ya se pasó de PDF a TXT</p>
-</div></blockquote>
-<p>Devuelve:</p>
-<blockquote>
-<div><p>nombre_txt – Nombre del fichero TXT (sin importar si ha sido reconvertido)</p>
-</div></blockquote>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="utilidades.ficheros.ProcesadorPDF.ProcesadorPDF.convertir_decimal_baremo_a_float">
-<span class="sig-name descname"><span class="pre">convertir_decimal_baremo_a_float</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">str_decimal</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#utilidades.ficheros.ProcesadorPDF.ProcesadorPDF.convertir_decimal_baremo_a_float" title="Enlazar permanentemente con esta definición">¶</a></dt>
-<dd><p>Dado un decimal de los que aparecen en los baremos de
-los concursos de traslados lo convierte a un tipo
-float de Python</p>
-<p>Argumentos:</p>
-<blockquote>
-<div><p>str_decimal – cadena con el decimal a convertir</p>
-</div></blockquote>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="utilidades.ficheros.ProcesadorPDF.ProcesadorPDF.eof">
-<span class="sig-name descname"><span class="pre">eof</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#utilidades.ficheros.ProcesadorPDF.ProcesadorPDF.eof" title="Enlazar permanentemente con esta definición">¶</a></dt>
-<dd><p>Nos dice si se ha llegado al final del fichero</p>
-</dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="utilidades.ficheros.ProcesadorPDF.ProcesadorPDF.expr_regular_codigo_centro_con_c">
-<span class="sig-name descname"><span class="pre">expr_regular_codigo_centro_con_c</span></span><a class="headerlink" href="#utilidades.ficheros.ProcesadorPDF.ProcesadorPDF.expr_regular_codigo_centro_con_c" title="Enlazar permanentemente con esta definición">¶</a></dt>
-<dd><p>Expresion regular para códigos de centro buscando la letra C final</p>
-</dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="utilidades.ficheros.ProcesadorPDF.ProcesadorPDF.expr_regular_codigo_centro_sin_c">
-<span class="sig-name descname"><span class="pre">expr_regular_codigo_centro_sin_c</span></span><a class="headerlink" href="#utilidades.ficheros.ProcesadorPDF.ProcesadorPDF.expr_regular_codigo_centro_sin_c" title="Enlazar permanentemente con esta definición">¶</a></dt>
-<dd><p>Expresion regular para códigos de centro sin buscar la letra C final</p>
-</dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="utilidades.ficheros.ProcesadorPDF.ProcesadorPDF.expr_regular_dni">
-<span class="sig-name descname"><span class="pre">expr_regular_dni</span></span><a class="headerlink" href="#utilidades.ficheros.ProcesadorPDF.ProcesadorPDF.expr_regular_dni" title="Enlazar permanentemente con esta definición">¶</a></dt>
-<dd><p>Expresion regular para el dni</p>
-</dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="utilidades.ficheros.ProcesadorPDF.ProcesadorPDF.expr_regular_nombre">
-<span class="sig-name descname"><span class="pre">expr_regular_nombre</span></span><a class="headerlink" href="#utilidades.ficheros.ProcesadorPDF.ProcesadorPDF.expr_regular_nombre" title="Enlazar permanentemente con esta definición">¶</a></dt>
-<dd><p>Expresion regular para el nombre de persona [A-ZÁÉÍÓÚÜÑ ]+,[A-ZÁÉÍÓÚÜÑ ]</p>
-</dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="utilidades.ficheros.ProcesadorPDF.ProcesadorPDF.expr_regular_numero_orden_interinos">
-<span class="sig-name descname"><span class="pre">expr_regular_numero_orden_interinos</span></span><a class="headerlink" href="#utilidades.ficheros.ProcesadorPDF.ProcesadorPDF.expr_regular_numero_orden_interinos" title="Enlazar permanentemente con esta definición">¶</a></dt>
-<dd><p>Expresion regular para número de orden de interino</p>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="utilidades.ficheros.ProcesadorPDF.ProcesadorPDF.extraer_dni">
-<span class="sig-name descname"><span class="pre">extraer_dni</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#utilidades.ficheros.ProcesadorPDF.ProcesadorPDF.extraer_dni" title="Enlazar permanentemente con esta definición">¶</a></dt>
-<dd><p>Extrae el dni de la linea actual</p>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="utilidades.ficheros.ProcesadorPDF.ProcesadorPDF.fila_anterior">
-<span class="sig-name descname"><span class="pre">fila_anterior</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#utilidades.ficheros.ProcesadorPDF.ProcesadorPDF.fila_anterior" title="Enlazar permanentemente con esta definición">¶</a></dt>
-<dd><p>Retrocede a la fila anterior</p>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="utilidades.ficheros.ProcesadorPDF.ProcesadorPDF.get_especialidades">
-<span class="sig-name descname"><span class="pre">get_especialidades</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">linea</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#utilidades.ficheros.ProcesadorPDF.ProcesadorPDF.get_especialidades" title="Enlazar permanentemente con esta definición">¶</a></dt>
-<dd><p>Devuelve la lista de posible especialidades de maestros</p>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="utilidades.ficheros.ProcesadorPDF.ProcesadorPDF.get_linea_actual">
-<span class="sig-name descname"><span class="pre">get_linea_actual</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#utilidades.ficheros.ProcesadorPDF.ProcesadorPDF.get_linea_actual" title="Enlazar permanentemente con esta definición">¶</a></dt>
-<dd><p>Devuelve el texto con la linea actual</p>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="utilidades.ficheros.ProcesadorPDF.ProcesadorPDF.get_linea_anterior">
-<span class="sig-name descname"><span class="pre">get_linea_anterior</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#utilidades.ficheros.ProcesadorPDF.ProcesadorPDF.get_linea_anterior" title="Enlazar permanentemente con esta definición">¶</a></dt>
-<dd><p>Devuelve el texto con la linea anterior a la actual</p>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="utilidades.ficheros.ProcesadorPDF.ProcesadorPDF.get_linea_siguiente">
-<span class="sig-name descname"><span class="pre">get_linea_siguiente</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#utilidades.ficheros.ProcesadorPDF.ProcesadorPDF.get_linea_siguiente" title="Enlazar permanentemente con esta definición">¶</a></dt>
-<dd><p>Devuelve el texto con la linea siguiente a la actual</p>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="utilidades.ficheros.ProcesadorPDF.ProcesadorPDF.get_nombre_persona">
-<span class="sig-name descname"><span class="pre">get_nombre_persona</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">linea</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#utilidades.ficheros.ProcesadorPDF.ProcesadorPDF.get_nombre_persona" title="Enlazar permanentemente con esta definición">¶</a></dt>
-<dd><p>Indica si se encuentra un nombre de persona</p>
-<p>Argumentos</p>
-<blockquote>
-<div><p>linea – Linea en la que se busca el nombre de persona</p>
-</div></blockquote>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="utilidades.ficheros.ProcesadorPDF.ProcesadorPDF.linea_actual_contiene_codigo_centro">
-<span class="sig-name descname"><span class="pre">linea_actual_contiene_codigo_centro</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">con_c</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#utilidades.ficheros.ProcesadorPDF.ProcesadorPDF.linea_actual_contiene_codigo_centro" title="Enlazar permanentemente con esta definición">¶</a></dt>
-<dd><p>Indica si la linea actual contiene un codigo de centro</p>
-<p>Argumentos</p>
-<blockquote>
-<div><p>con_c – Nos dice si hay que buscar con C al final o no</p>
-</div></blockquote>
-<p>Devuelve:</p>
-<blockquote>
-<div><p>(inicio, fin, texto) – Tupla con la posicion de inicio, la de final y el texto
-encontrado. Si no aparece nada se devuelve la constante ProcesadorPDF.PATRON_NO_ENCONTRADO</p>
-</div></blockquote>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="utilidades.ficheros.ProcesadorPDF.ProcesadorPDF.linea_actual_contiene_codigo_localidad">
-<span class="sig-name descname"><span class="pre">linea_actual_contiene_codigo_localidad</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#utilidades.ficheros.ProcesadorPDF.ProcesadorPDF.linea_actual_contiene_codigo_localidad" title="Enlazar permanentemente con esta definición">¶</a></dt>
-<dd><blockquote>
-<div><p>Indica si la linea actual contiene un codigo de localidad</p>
-</div></blockquote>
-<p>Devuelve:</p>
-<blockquote>
-<div><p>(inicio, fin, texto) – Tupla con la posicion de inicio, la de final y el texto
-encontrado. Si no aparece nada se devuelve la constante ProcesadorPDF.PATRON_NO_ENCONTRADO</p>
-</div></blockquote>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="utilidades.ficheros.ProcesadorPDF.ProcesadorPDF.linea_actual_contiene_patron">
-<span class="sig-name descname"><span class="pre">linea_actual_contiene_patron</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">expr_regular</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#utilidades.ficheros.ProcesadorPDF.ProcesadorPDF.linea_actual_contiene_patron" title="Enlazar permanentemente con esta definición">¶</a></dt>
-<dd><p>Indica si la linea actual contiene una cierta expresion regular</p>
-<p>Argumentos:</p>
-<blockquote>
-<div><p>expr_regular – expresión regular ya compilada</p>
-</div></blockquote>
-<p>Devuelve:</p>
-<blockquote>
-<div><p>(inicio, fin, texto) – Tupla con la posicion de inicio, la de final y el texto
-encontrado. Si no aparece nada se devuelve la constante ProcesadorPDF.PATRON_NO_ENCONTRADO</p>
-</div></blockquote>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="utilidades.ficheros.ProcesadorPDF.ProcesadorPDF.linea_contiene_patron">
-<span class="sig-name descname"><span class="pre">linea_contiene_patron</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">expr_regular</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">linea</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#utilidades.ficheros.ProcesadorPDF.ProcesadorPDF.linea_contiene_patron" title="Enlazar permanentemente con esta definición">¶</a></dt>
-<dd><p>Dice si una linea contiene un patron</p>
-<p>Argumentos:</p>
-<blockquote>
-<div><p>expr_regular – Expresión regular ya compilada</p>
-<p>linea – línea en la que buscar el texto</p>
-</div></blockquote>
-<p>Devuelve:</p>
-<blockquote>
-<div><p>(inicio, fin, texto) – Tupla con la posicion de inicio, la de final y el texto
-encontrado. Si no aparece nada se devuelve la constante ProcesadorPDF.PATRON_NO_ENCONTRADO</p>
-</div></blockquote>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="utilidades.ficheros.ProcesadorPDF.ProcesadorPDF.retroceder_linea">
-<span class="sig-name descname"><span class="pre">retroceder_linea</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#utilidades.ficheros.ProcesadorPDF.ProcesadorPDF.retroceder_linea" title="Enlazar permanentemente con esta definición">¶</a></dt>
-<dd><p>Retrocede a la fila anterior</p>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="utilidades.ficheros.ProcesadorPDF.ProcesadorPDF.saltar_linea">
-<span class="sig-name descname"><span class="pre">saltar_linea</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#utilidades.ficheros.ProcesadorPDF.ProcesadorPDF.saltar_linea" title="Enlazar permanentemente con esta definición">¶</a></dt>
-<dd><p>Salta a la linea siguiente</p>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="utilidades.ficheros.ProcesadorPDF.ProcesadorPDF.siguiente_fila">
-<span class="sig-name descname"><span class="pre">siguiente_fila</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#utilidades.ficheros.ProcesadorPDF.ProcesadorPDF.siguiente_fila" title="Enlazar permanentemente con esta definición">¶</a></dt>
-<dd><p>Avanza a la siguiente fila de texto</p>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="utilidades.ficheros.ProcesadorPDF.ProcesadorPDF.siguiente_linea">
-<span class="sig-name descname"><span class="pre">siguiente_linea</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#utilidades.ficheros.ProcesadorPDF.ProcesadorPDF.siguiente_linea" title="Enlazar permanentemente con esta definición">¶</a></dt>
-<dd><p>Devuelve la siguiente linea</p>
-</dd></dl>
-
-</dd></dl>
-
-</section>
 <section id="clase-gestorficheros">
-<h1>Clase GestorFicheros<a class="headerlink" href="#clase-gestorficheros" title="Enlazar permanentemente con este título">¶</a></h1>
+<h2>Clase GestorFicheros<a class="headerlink" href="#clase-gestorficheros" title="Enlazar permanentemente con este título">¶</a></h2>
 <dl class="py class">
 <dt class="sig sig-object py" id="utilidades.ficheros.GestorFicheros.GestorFicheros">
 <em class="property"><span class="pre">class</span><span class="w">  </span></em><span class="sig-prename descclassname"><span class="pre">utilidades.ficheros.GestorFicheros.</span></span><span class="sig-name descname"><span class="pre">GestorFicheros</span></span><a class="headerlink" href="#utilidades.ficheros.GestorFicheros.GestorFicheros" title="Enlazar permanentemente con esta definición">¶</a></dt>
@@ -484,7 +229,7 @@ meter los datos</p>
 
 </section>
 <section id="clase-vagrantfile">
-<h1>Clase Vagrantfile<a class="headerlink" href="#clase-vagrantfile" title="Enlazar permanentemente con este título">¶</a></h1>
+<h2>Clase Vagrantfile<a class="headerlink" href="#clase-vagrantfile" title="Enlazar permanentemente con este título">¶</a></h2>
 <dl class="py class">
 <dt class="sig sig-object py" id="utilidades.vagrant.Vagrantfile.Vagrantfile">
 <em class="property"><span class="pre">class</span><span class="w">  </span></em><span class="sig-prename descclassname"><span class="pre">utilidades.vagrant.Vagrantfile.</span></span><span class="sig-name descname"><span class="pre">Vagrantfile</span></span><a class="headerlink" href="#utilidades.vagrant.Vagrantfile.Vagrantfile" title="Enlazar permanentemente con esta definición">¶</a></dt>
@@ -659,7 +404,7 @@ en el Vagrantfile</p>
 
 </section>
 <section id="clase-generadoripv4azar">
-<h1>Clase GeneradorIPV4Azar<a class="headerlink" href="#clase-generadoripv4azar" title="Enlazar permanentemente con este título">¶</a></h1>
+<h2>Clase GeneradorIPV4Azar<a class="headerlink" href="#clase-generadoripv4azar" title="Enlazar permanentemente con este título">¶</a></h2>
 <dl class="py class">
 <dt class="sig sig-object py" id="utilidades.ip.ipv4.GeneradorIPV4Azar">
 <em class="property"><span class="pre">class</span><span class="w">  </span></em><span class="sig-prename descclassname"><span class="pre">utilidades.ip.ipv4.</span></span><span class="sig-name descname"><span class="pre">GeneradorIPV4Azar</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">num_ejercicio</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cantidad_bits_mascara</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#utilidades.ip.ipv4.GeneradorIPV4Azar" title="Enlazar permanentemente con esta definición">¶</a></dt>
@@ -669,10 +414,11 @@ en el Vagrantfile</p>
 <dd><p>Dada una secuencia en binario de 32 bits nos devuelve
 la dirección en decimal.</p>
 <blockquote>
-<div><p>Argumentos:</p>
-<blockquote>
-<div><p>secuencia_binaria – secuencia de 32 bits</p>
-</div></blockquote>
+<div><dl class="field-list simple">
+<dt class="field-odd">param secuencia_binaria</dt>
+<dd class="field-odd"><p>secuencia de 32 bits</p>
+</dd>
+</dl>
 </div></blockquote>
 </dd></dl>
 
@@ -688,10 +434,11 @@ la dirección en decimal.</p>
 <dd><p>Genera una dirección de clase A en la que haya
 tantos bits de red como se nos pida.</p>
 <blockquote>
-<div><p>Argumentos:</p>
-<blockquote>
-<div><p>num_bits – número de bits de red</p>
-</div></blockquote>
+<div><dl class="field-list simple">
+<dt class="field-odd">param num_bits</dt>
+<dd class="field-odd"><p>número de bits de red</p>
+</dd>
+</dl>
 </div></blockquote>
 </dd></dl>
 
@@ -701,10 +448,11 @@ tantos bits de red como se nos pida.</p>
 <dd><p>Genera una dirección de clase B en la que haya
 tantos bits de red como se nos pida.</p>
 <blockquote>
-<div><p>Argumentos:</p>
-<blockquote>
-<div><p>num_bits – número de bits de red</p>
-</div></blockquote>
+<div><dl class="field-list simple">
+<dt class="field-odd">param num_bits</dt>
+<dd class="field-odd"><p>número de bits de red</p>
+</dd>
+</dl>
 </div></blockquote>
 </dd></dl>
 
@@ -714,10 +462,11 @@ tantos bits de red como se nos pida.</p>
 <dd><p>Genera una dirección de clase C en la que haya
 tantos bits de red como se nos pida.</p>
 <blockquote>
-<div><p>Argumentos:</p>
-<blockquote>
-<div><p>num_bits – número de bits de red</p>
-</div></blockquote>
+<div><dl class="field-list simple">
+<dt class="field-odd">param num_bits</dt>
+<dd class="field-odd"><p>número de bits de red</p>
+</dd>
+</dl>
 </div></blockquote>
 </dd></dl>
 
@@ -727,10 +476,11 @@ tantos bits de red como se nos pida.</p>
 <dd><p>Dada una dirección en decimal como 192.168.1.39/24
 nos devuelve el equivalente en binario</p>
 <blockquote>
-<div><p>Argumentos:</p>
-<blockquote>
-<div><p>direccion – Dirección en decimal como 192.168.1.39/24</p>
-</div></blockquote>
+<div><dl class="field-list simple">
+<dt class="field-odd">param direccion</dt>
+<dd class="field-odd"><p>Dirección en decimal como 192.168.1.39/24</p>
+</dd>
+</dl>
 </div></blockquote>
 </dd></dl>
 
@@ -738,14 +488,14 @@ nos devuelve el equivalente en binario</p>
 <dt class="sig sig-object py" id="utilidades.ip.ipv4.GeneradorIPV4Azar.get_ip_host">
 <span class="sig-name descname"><span class="pre">get_ip_host</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">num_host</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#utilidades.ip.ipv4.GeneradorIPV4Azar.get_ip_host" title="Enlazar permanentemente con esta definición">¶</a></dt>
 <dd><p>Genera una IP válida de host:</p>
-<p>Argumentos:</p>
-<blockquote>
-<div><p>num_host – Número de host (se extrae la IP número X del vector total de IPs</p>
-</div></blockquote>
-<p>Devuelve:</p>
-<blockquote>
-<div><p>(ip, mascara) – Tupla con una IP y una máscara, todo en strings</p>
-</div></blockquote>
+<dl class="field-list simple">
+<dt class="field-odd">Parámetros</dt>
+<dd class="field-odd"><p><strong>num_host</strong> – Número de host (se extrae la IP número X del vector total de IPs</p>
+</dd>
+<dt class="field-even">Returns (ip, mascara)</dt>
+<dd class="field-even"><p>Tupla con una IP y una máscara, todo en strings</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="py method">
@@ -754,11 +504,102 @@ nos devuelve el equivalente en binario</p>
 <dd><p>Devuelve la máscara de la dirección actual en decimal</p>
 </dd></dl>
 
+<dl class="py method">
+<dt class="sig sig-object py" id="utilidades.ip.ipv4.GeneradorIPV4Azar.get_todos_hosts">
+<span class="sig-name descname"><span class="pre">get_todos_hosts</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#utilidades.ip.ipv4.GeneradorIPV4Azar.get_todos_hosts" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Devuelve una lista con todos los host de la red generada</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns hosts[]</dt>
+<dd class="field-odd"><p>una lista con todos los host</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="clase-creadorimagenes">
+<h2>Clase CreadorImagenes<a class="headerlink" href="#clase-creadorimagenes" title="Enlazar permanentemente con este título">¶</a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="utilidades.imagenes.CreadorImagenes.CreadorImagenes">
+<em class="property"><span class="pre">class</span><span class="w">  </span></em><span class="sig-prename descclassname"><span class="pre">utilidades.imagenes.CreadorImagenes.</span></span><span class="sig-name descname"><span class="pre">CreadorImagenes</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">archivo_imagen</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">archivo_resultado</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tamano_fuente</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">18</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">paquete_fuente</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'utilidades.imagenes.fuentes.cantarell'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">archivo_fuente</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'Cantarell-Regular.ttf'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#utilidades.imagenes.CreadorImagenes.CreadorImagenes" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><dl class="py method">
+<dt class="sig sig-object py" id="utilidades.imagenes.CreadorImagenes.CreadorImagenes.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">archivo_imagen</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">archivo_resultado</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tamano_fuente</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">18</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">paquete_fuente</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'utilidades.imagenes.fuentes.cantarell'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">archivo_fuente</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'Cantarell-Regular.ttf'</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#utilidades.imagenes.CreadorImagenes.CreadorImagenes.__init__" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Constructor</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parámetros</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>archivo_imagen</strong> – ruta del archivo de imagen donde vamos a escribir</p></li>
+<li><p><strong>archivo_resultado</strong> – ruta del archivo donde se va a dejar el resultado.</p></li>
+<li><p><strong>tamano_fuente</strong> – tamaño de la fuente</p></li>
+<li><p><strong>paquete_fuente</strong> – paquete de donde se va a cargar la fuente</p></li>
+<li><p><strong>archivo_fuente</strong> – archivo de fuente TTF con el que se va  escribir</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="utilidades.imagenes.CreadorImagenes.CreadorImagenes.get_lista_posibles_fuentes">
+<span class="sig-name descname"><span class="pre">get_lista_posibles_fuentes</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#utilidades.imagenes.CreadorImagenes.CreadorImagenes.get_lista_posibles_fuentes" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Devuelve una lista con las posibles fuentes que se pueden usar</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="utilidades.imagenes.CreadorImagenes.CreadorImagenes.guardar">
+<span class="sig-name descname"><span class="pre">guardar</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#utilidades.imagenes.CreadorImagenes.CreadorImagenes.guardar" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Guarda la imagen generada</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="utilidades.imagenes.CreadorImagenes.CreadorImagenes.poner_texto">
+<span class="sig-name descname"><span class="pre">poner_texto</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">texto</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">color</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">(0,</span> <span class="pre">0,</span> <span class="pre">0)</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#utilidades.imagenes.CreadorImagenes.CreadorImagenes.poner_texto" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Inserta un texto en la imagen.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parámetros</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>texto</strong> – texto a insertar</p></li>
+<li><p><strong>x</strong><strong>,</strong><strong>y</strong> – coordenadas</p></li>
+<li><p><strong>color</strong> – color en formato (R, G, B)</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="utilidades.imagenes.CreadorImagenes.CreadorImagenes.poner_textos">
+<span class="sig-name descname"><span class="pre">poner_textos</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">lista_textos</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">lista_tuplas_xy</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">color</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">(0,</span> <span class="pre">0,</span> <span class="pre">0)</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#utilidades.imagenes.CreadorImagenes.CreadorImagenes.poner_textos" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Inserta un conjunto de textos en las coordenadas correspondientes</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parámetros</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>lista_textos</strong> – una lista de cadenas</p></li>
+<li><p><strong>lista_tuplas_xy</strong> – una lista de tuplas con coordenadas (x,y)</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="utilidades.imagenes.CreadorImagenes.CreadorImagenes.set_fuente">
+<span class="sig-name descname"><span class="pre">set_fuente</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ruta_paquete</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nombre_archivo_ttf_u_otf</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#utilidades.imagenes.CreadorImagenes.CreadorImagenes.set_fuente" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Cambia la fuente activa</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parámetros</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>ruta_paquete</strong> – ruta del paquete en forma de nombres separados por puntos (ej utilidades.imagenes.fuentes)</p></li>
+<li><p><strong>nombre_archivo_ttf_u_otf</strong> – nombre del archivo de tipo de letra en formato TTF u OTF</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
 </dd></dl>
 
 </section>
 <section id="class-documento">
-<h1>Class Documento<a class="headerlink" href="#class-documento" title="Enlazar permanentemente con este título">¶</a></h1>
+<h2>Class Documento<a class="headerlink" href="#class-documento" title="Enlazar permanentemente con este título">¶</a></h2>
 <dl class="py class">
 <dt class="sig sig-object py" id="utilidades.documentos.Documento.Documento">
 <em class="property"><span class="pre">class</span><span class="w">  </span></em><span class="sig-prename descclassname"><span class="pre">utilidades.documentos.Documento.</span></span><span class="sig-name descname"><span class="pre">Documento</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">nombre_archivo</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'documento.rst'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fin_linea</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'\n'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">separador</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'\n\n'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#utilidades.documentos.Documento.Documento" title="Enlazar permanentemente con esta definición">¶</a></dt>
@@ -1074,13 +915,332 @@ lenguaje: lenguaje en el que está escrito</p>
 </dd></dl>
 
 </section>
-<section id="indices-and-tables">
-<h1>Indices and tables<a class="headerlink" href="#indices-and-tables" title="Enlazar permanentemente con este título">¶</a></h1>
+<section id="clase-procesadorpdf">
+<h2>Clase ProcesadorPDF<a class="headerlink" href="#clase-procesadorpdf" title="Enlazar permanentemente con este título">¶</a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="utilidades.ficheros.ProcesadorPDF.ProcesadorPDF">
+<em class="property"><span class="pre">class</span><span class="w">  </span></em><span class="sig-prename descclassname"><span class="pre">utilidades.ficheros.ProcesadorPDF.</span></span><span class="sig-name descname"><span class="pre">ProcesadorPDF</span></span><a class="headerlink" href="#utilidades.ficheros.ProcesadorPDF.ProcesadorPDF" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Procesa archivos PDF convertidos a texto</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="utilidades.ficheros.ProcesadorPDF.ProcesadorPDF.abrir_fichero_txt">
+<span class="sig-name descname"><span class="pre">abrir_fichero_txt</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">nombre_fichero_txt</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">codificacion</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'utf-8'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#utilidades.ficheros.ProcesadorPDF.ProcesadorPDF.abrir_fichero_txt" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Abre un fichero txt para empezar a procesarlo</p>
+<p>Argumentos:</p>
+<blockquote>
+<div><p>nombre_fichero_txt – nombre del fichero txt</p>
+<p>codificacion – codificación del fichero</p>
+</div></blockquote>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="utilidades.ficheros.ProcesadorPDF.ProcesadorPDF.avanzar_buscando_codigo_centro">
+<span class="sig-name descname"><span class="pre">avanzar_buscando_codigo_centro</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">con_c</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">debe_estar_en_misma_linea</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#utilidades.ficheros.ProcesadorPDF.ProcesadorPDF.avanzar_buscando_codigo_centro" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Avanza el procesador buscando un codigo de centro</p>
+<p>Argumentos:</p>
+<blockquote>
+<div><p>con_c – Si es True se busca un codigo acabado en “C”, si es False se busca sin “C” al final</p>
+<p>debe_estar_en_misma_linea – Si es True el procesador se mantiene siempre en la misma linea,
+si es False se le permite avanzar hacia delante</p>
+</div></blockquote>
+<p>Devuelve:</p>
+<blockquote>
+<div><p>Un código de centro o ProcesadorPDF.PATRON_NO_ENCONTRADO</p>
+</div></blockquote>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="utilidades.ficheros.ProcesadorPDF.ProcesadorPDF.avanzar_buscando_patron">
+<span class="sig-name descname"><span class="pre">avanzar_buscando_patron</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">expr_regular</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">debe_estar_en_misma_linea</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#utilidades.ficheros.ProcesadorPDF.ProcesadorPDF.avanzar_buscando_patron" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Hace avanzar el procesador buscando un cierto patrón</p>
+<p>Argumentos:</p>
+<blockquote>
+<div><p>expr_regular – patrón a buscar (ya debe estar compilado)</p>
+<p>debe_estar_en_misma_linea – True por defecto, obliga a buscar sin avanzar a la siguiente línea. Si
+se pone a False y el patrón no está se devuelve ProcesadorPDF.PATRON_NO_ENCONTRADO</p>
+</div></blockquote>
+<p>Devuelve:</p>
+<blockquote>
+<div><p>(ini, fin, texto) – Tupla con 3 elementos que pueden ser ProcesadorPDF.PATRON_NO_ENCONTRADO</p>
+</div></blockquote>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="utilidades.ficheros.ProcesadorPDF.ProcesadorPDF.convertir_a_txt">
+<span class="sig-name descname"><span class="pre">convertir_a_txt</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">nombre_pdf</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">evitar_reconversiones</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#utilidades.ficheros.ProcesadorPDF.ProcesadorPDF.convertir_a_txt" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Convierte un archivo PDF a texto</p>
+<p>Argumentos:</p>
+<blockquote>
+<div><p>nombre_pdf – Nombre del fichero PDF</p>
+<p>evitar_reconversiones – False por defecto, evita reconvertir un fichero si ya se pasó de PDF a TXT</p>
+</div></blockquote>
+<p>Devuelve:</p>
+<blockquote>
+<div><p>nombre_txt – Nombre del fichero TXT (sin importar si ha sido reconvertido)</p>
+</div></blockquote>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="utilidades.ficheros.ProcesadorPDF.ProcesadorPDF.convertir_decimal_baremo_a_float">
+<span class="sig-name descname"><span class="pre">convertir_decimal_baremo_a_float</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">str_decimal</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#utilidades.ficheros.ProcesadorPDF.ProcesadorPDF.convertir_decimal_baremo_a_float" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Dado un decimal de los que aparecen en los baremos de
+los concursos de traslados lo convierte a un tipo
+float de Python</p>
+<p>Argumentos:</p>
+<blockquote>
+<div><p>str_decimal – cadena con el decimal a convertir</p>
+</div></blockquote>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="utilidades.ficheros.ProcesadorPDF.ProcesadorPDF.eof">
+<span class="sig-name descname"><span class="pre">eof</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#utilidades.ficheros.ProcesadorPDF.ProcesadorPDF.eof" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Nos dice si se ha llegado al final del fichero</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="utilidades.ficheros.ProcesadorPDF.ProcesadorPDF.expr_regular_codigo_centro_con_c">
+<span class="sig-name descname"><span class="pre">expr_regular_codigo_centro_con_c</span></span><a class="headerlink" href="#utilidades.ficheros.ProcesadorPDF.ProcesadorPDF.expr_regular_codigo_centro_con_c" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Expresion regular para códigos de centro buscando la letra C final</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="utilidades.ficheros.ProcesadorPDF.ProcesadorPDF.expr_regular_codigo_centro_sin_c">
+<span class="sig-name descname"><span class="pre">expr_regular_codigo_centro_sin_c</span></span><a class="headerlink" href="#utilidades.ficheros.ProcesadorPDF.ProcesadorPDF.expr_regular_codigo_centro_sin_c" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Expresion regular para códigos de centro sin buscar la letra C final</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="utilidades.ficheros.ProcesadorPDF.ProcesadorPDF.expr_regular_dni">
+<span class="sig-name descname"><span class="pre">expr_regular_dni</span></span><a class="headerlink" href="#utilidades.ficheros.ProcesadorPDF.ProcesadorPDF.expr_regular_dni" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Expresion regular para el dni</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="utilidades.ficheros.ProcesadorPDF.ProcesadorPDF.expr_regular_nombre">
+<span class="sig-name descname"><span class="pre">expr_regular_nombre</span></span><a class="headerlink" href="#utilidades.ficheros.ProcesadorPDF.ProcesadorPDF.expr_regular_nombre" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Expresion regular para el nombre de persona [A-ZÁÉÍÓÚÜÑ ]+,[A-ZÁÉÍÓÚÜÑ ]</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="utilidades.ficheros.ProcesadorPDF.ProcesadorPDF.expr_regular_numero_orden_interinos">
+<span class="sig-name descname"><span class="pre">expr_regular_numero_orden_interinos</span></span><a class="headerlink" href="#utilidades.ficheros.ProcesadorPDF.ProcesadorPDF.expr_regular_numero_orden_interinos" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Expresion regular para número de orden de interino</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="utilidades.ficheros.ProcesadorPDF.ProcesadorPDF.extraer_dni">
+<span class="sig-name descname"><span class="pre">extraer_dni</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#utilidades.ficheros.ProcesadorPDF.ProcesadorPDF.extraer_dni" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Extrae el dni de la linea actual</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="utilidades.ficheros.ProcesadorPDF.ProcesadorPDF.fila_anterior">
+<span class="sig-name descname"><span class="pre">fila_anterior</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#utilidades.ficheros.ProcesadorPDF.ProcesadorPDF.fila_anterior" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Retrocede a la fila anterior</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="utilidades.ficheros.ProcesadorPDF.ProcesadorPDF.get_especialidades">
+<span class="sig-name descname"><span class="pre">get_especialidades</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">linea</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#utilidades.ficheros.ProcesadorPDF.ProcesadorPDF.get_especialidades" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Devuelve la lista de posible especialidades de maestros</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="utilidades.ficheros.ProcesadorPDF.ProcesadorPDF.get_linea_actual">
+<span class="sig-name descname"><span class="pre">get_linea_actual</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#utilidades.ficheros.ProcesadorPDF.ProcesadorPDF.get_linea_actual" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Devuelve el texto con la linea actual</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="utilidades.ficheros.ProcesadorPDF.ProcesadorPDF.get_linea_anterior">
+<span class="sig-name descname"><span class="pre">get_linea_anterior</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#utilidades.ficheros.ProcesadorPDF.ProcesadorPDF.get_linea_anterior" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Devuelve el texto con la linea anterior a la actual</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="utilidades.ficheros.ProcesadorPDF.ProcesadorPDF.get_linea_siguiente">
+<span class="sig-name descname"><span class="pre">get_linea_siguiente</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#utilidades.ficheros.ProcesadorPDF.ProcesadorPDF.get_linea_siguiente" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Devuelve el texto con la linea siguiente a la actual</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="utilidades.ficheros.ProcesadorPDF.ProcesadorPDF.get_nombre_persona">
+<span class="sig-name descname"><span class="pre">get_nombre_persona</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">linea</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#utilidades.ficheros.ProcesadorPDF.ProcesadorPDF.get_nombre_persona" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Indica si se encuentra un nombre de persona</p>
+<p>Argumentos</p>
+<blockquote>
+<div><p>linea – Linea en la que se busca el nombre de persona</p>
+</div></blockquote>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="utilidades.ficheros.ProcesadorPDF.ProcesadorPDF.linea_actual_contiene_codigo_centro">
+<span class="sig-name descname"><span class="pre">linea_actual_contiene_codigo_centro</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">con_c</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#utilidades.ficheros.ProcesadorPDF.ProcesadorPDF.linea_actual_contiene_codigo_centro" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Indica si la linea actual contiene un codigo de centro</p>
+<p>Argumentos</p>
+<blockquote>
+<div><p>con_c – Nos dice si hay que buscar con C al final o no</p>
+</div></blockquote>
+<p>Devuelve:</p>
+<blockquote>
+<div><p>(inicio, fin, texto) – Tupla con la posicion de inicio, la de final y el texto
+encontrado. Si no aparece nada se devuelve la constante ProcesadorPDF.PATRON_NO_ENCONTRADO</p>
+</div></blockquote>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="utilidades.ficheros.ProcesadorPDF.ProcesadorPDF.linea_actual_contiene_codigo_localidad">
+<span class="sig-name descname"><span class="pre">linea_actual_contiene_codigo_localidad</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#utilidades.ficheros.ProcesadorPDF.ProcesadorPDF.linea_actual_contiene_codigo_localidad" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><blockquote>
+<div><p>Indica si la linea actual contiene un codigo de localidad</p>
+</div></blockquote>
+<p>Devuelve:</p>
+<blockquote>
+<div><p>(inicio, fin, texto) – Tupla con la posicion de inicio, la de final y el texto
+encontrado. Si no aparece nada se devuelve la constante ProcesadorPDF.PATRON_NO_ENCONTRADO</p>
+</div></blockquote>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="utilidades.ficheros.ProcesadorPDF.ProcesadorPDF.linea_actual_contiene_patron">
+<span class="sig-name descname"><span class="pre">linea_actual_contiene_patron</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">expr_regular</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#utilidades.ficheros.ProcesadorPDF.ProcesadorPDF.linea_actual_contiene_patron" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Indica si la linea actual contiene una cierta expresion regular</p>
+<p>Argumentos:</p>
+<blockquote>
+<div><p>expr_regular – expresión regular ya compilada</p>
+</div></blockquote>
+<p>Devuelve:</p>
+<blockquote>
+<div><p>(inicio, fin, texto) – Tupla con la posicion de inicio, la de final y el texto
+encontrado. Si no aparece nada se devuelve la constante ProcesadorPDF.PATRON_NO_ENCONTRADO</p>
+</div></blockquote>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="utilidades.ficheros.ProcesadorPDF.ProcesadorPDF.linea_contiene_patron">
+<span class="sig-name descname"><span class="pre">linea_contiene_patron</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">expr_regular</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">linea</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#utilidades.ficheros.ProcesadorPDF.ProcesadorPDF.linea_contiene_patron" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Dice si una linea contiene un patron</p>
+<p>Argumentos:</p>
+<blockquote>
+<div><p>expr_regular – Expresión regular ya compilada</p>
+<p>linea – línea en la que buscar el texto</p>
+</div></blockquote>
+<p>Devuelve:</p>
+<blockquote>
+<div><p>(inicio, fin, texto) – Tupla con la posicion de inicio, la de final y el texto
+encontrado. Si no aparece nada se devuelve la constante ProcesadorPDF.PATRON_NO_ENCONTRADO</p>
+</div></blockquote>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="utilidades.ficheros.ProcesadorPDF.ProcesadorPDF.retroceder_linea">
+<span class="sig-name descname"><span class="pre">retroceder_linea</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#utilidades.ficheros.ProcesadorPDF.ProcesadorPDF.retroceder_linea" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Retrocede a la fila anterior</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="utilidades.ficheros.ProcesadorPDF.ProcesadorPDF.saltar_linea">
+<span class="sig-name descname"><span class="pre">saltar_linea</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#utilidades.ficheros.ProcesadorPDF.ProcesadorPDF.saltar_linea" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Salta a la linea siguiente</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="utilidades.ficheros.ProcesadorPDF.ProcesadorPDF.siguiente_fila">
+<span class="sig-name descname"><span class="pre">siguiente_fila</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#utilidades.ficheros.ProcesadorPDF.ProcesadorPDF.siguiente_fila" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Avanza a la siguiente fila de texto</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="utilidades.ficheros.ProcesadorPDF.ProcesadorPDF.siguiente_linea">
+<span class="sig-name descname"><span class="pre">siguiente_linea</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#utilidades.ficheros.ProcesadorPDF.ProcesadorPDF.siguiente_linea" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Devuelve la siguiente linea</p>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="class-gestorcomandos-aulas">
+<h2>Class GestorComandos(Aulas)<a class="headerlink" href="#class-gestorcomandos-aulas" title="Enlazar permanentemente con este título">¶</a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="utilidades.aulas.GestorComandos.GestorComandos">
+<em class="property"><span class="pre">class</span><span class="w">  </span></em><span class="sig-prename descclassname"><span class="pre">utilidades.aulas.GestorComandos.</span></span><span class="sig-name descname"><span class="pre">GestorComandos</span></span><a class="headerlink" href="#utilidades.aulas.GestorComandos.GestorComandos" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd></dd></dl>
+
+</section>
+<section id="class-gestormensajes-aulas">
+<h2>Class GestorMensajes(Aulas)<a class="headerlink" href="#class-gestormensajes-aulas" title="Enlazar permanentemente con este título">¶</a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="utilidades.aulas.GestorMensajes.GestorMensajes">
+<em class="property"><span class="pre">class</span><span class="w">  </span></em><span class="sig-prename descclassname"><span class="pre">utilidades.aulas.GestorMensajes.</span></span><span class="sig-name descname"><span class="pre">GestorMensajes</span></span><a class="headerlink" href="#utilidades.aulas.GestorMensajes.GestorMensajes" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><dl class="py method">
+<dt class="sig sig-object py" id="utilidades.aulas.GestorMensajes.GestorMensajes.get_cabecera">
+<em class="property"><span class="pre">static</span><span class="w">  </span></em><span class="sig-name descname"><span class="pre">get_cabecera</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">texto_cabecera</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#utilidades.aulas.GestorMensajes.GestorMensajes.get_cabecera" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Genera la cabecera de un archivo BAT</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="utilidades.aulas.GestorMensajes.GestorMensajes.get_mensaje_con_pausa">
+<em class="property"><span class="pre">static</span><span class="w">  </span></em><span class="sig-name descname"><span class="pre">get_mensaje_con_pausa</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">texto</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#utilidades.aulas.GestorMensajes.GestorMensajes.get_mensaje_con_pausa" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Genera un mensaje que exigirá al usuario pulsar una tecla</p>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="class-gestornombres-aulas">
+<h2>Class GestorNombres(Aulas)<a class="headerlink" href="#class-gestornombres-aulas" title="Enlazar permanentemente con este título">¶</a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="utilidades.aulas.GestorNombres.GestorNombres">
+<em class="property"><span class="pre">class</span><span class="w">  </span></em><span class="sig-prename descclassname"><span class="pre">utilidades.aulas.GestorNombres.</span></span><span class="sig-name descname"><span class="pre">GestorNombres</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">num_aula_sin_ceros</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">num_pc_sin_ceros</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#utilidades.aulas.GestorNombres.GestorNombres" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><dl class="py method">
+<dt class="sig sig-object py" id="utilidades.aulas.GestorNombres.GestorNombres.get_nombre_aula">
+<span class="sig-name descname"><span class="pre">get_nombre_aula</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#utilidades.aulas.GestorNombres.GestorNombres.get_nombre_aula" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Devuelve el nombre estándar del aula</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="utilidades.aulas.GestorNombres.GestorNombres.get_nombre_completo_pc">
+<span class="sig-name descname"><span class="pre">get_nombre_completo_pc</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#utilidades.aulas.GestorNombres.GestorNombres.get_nombre_completo_pc" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Devuelve el nombre del PC en formato AULABXX-PCXX</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="utilidades.aulas.GestorNombres.GestorNombres.get_nombre_pc">
+<span class="sig-name descname"><span class="pre">get_nombre_pc</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#utilidades.aulas.GestorNombres.GestorNombres.get_nombre_pc" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Devuelve el nombre estándar del PC</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="utilidades.aulas.GestorNombres.GestorNombres.get_numero_con_ceros">
+<span class="sig-name descname"><span class="pre">get_numero_con_ceros</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">numero</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cantidad_digitos_en_total</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">2</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#utilidades.aulas.GestorNombres.GestorNombres.get_numero_con_ceros" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Devuelve una cadena con el mismo número pero rellenada con ceros</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parámetros</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>numero</strong> – numero a rellenar</p></li>
+<li><p><strong>cantidad_digitos_en_total</strong> – cantidad de digitos que debe tener</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="utilidades.aulas.GestorNombres.GestorNombres.get_otros_nombres_equipo">
+<span class="sig-name descname"><span class="pre">get_otros_nombres_equipo</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">num_pc</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#utilidades.aulas.GestorNombres.GestorNombres.get_otros_nombres_equipo" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Devuelve el nombre de un equipo usando la nomenclatura alternativa</p>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="indices-y-tables">
+<h2>Indices y tables<a class="headerlink" href="#indices-y-tables" title="Enlazar permanentemente con este título">¶</a></h2>
 <ul class="simple">
 <li><p><a class="reference internal" href="genindex.html"><span class="std std-ref">Índice</span></a></p></li>
 <li><p><a class="reference internal" href="py-modindex.html"><span class="std std-ref">Índice de Módulos</span></a></p></li>
 <li><p><a class="reference internal" href="search.html"><span class="std std-ref">Página de Búsqueda</span></a></p></li>
 </ul>
+</section>
 </section>
 
 
