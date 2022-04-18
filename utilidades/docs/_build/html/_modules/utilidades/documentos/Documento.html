@@ -1,0 +1,336 @@
+
+<!DOCTYPE html>
+
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>utilidades.documentos.Documento &#8212; documentación de Modulo de utilidades para Python - 1.0</title>
+    <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/alabaster.css" />
+    <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+    <script src="../../../_static/jquery.js"></script>
+    <script src="../../../_static/underscore.js"></script>
+    <script src="../../../_static/doctools.js"></script>
+    <script src="../../../_static/translations.js"></script>
+    <link rel="index" title="Índice" href="../../../genindex.html" />
+    <link rel="search" title="Búsqueda" href="../../../search.html" />
+   
+  <link rel="stylesheet" href="../../../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <h1>Código fuente para utilidades.documentos.Documento</h1><div class="highlight"><pre>
+<span></span><span class="kn">import</span> <span class="nn">pytablewriter</span>
+
+<div class="viewcode-block" id="Documento"><a class="viewcode-back" href="../../../index.html#utilidades.documentos.Documento.Documento">[documentos]</a><span class="k">class</span> <span class="nc">Documento</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">nombre_archivo</span><span class="o">=</span><span class="s2">&quot;documento.rst&quot;</span><span class="p">,</span> <span class="n">fin_linea</span><span class="o">=</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">separador</span><span class="o">=</span><span class="s2">&quot;</span><span class="se">\n\n</span><span class="s2">&quot;</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Constructor:</span>
+<span class="sd">        </span>
+<span class="sd">            :param nombre_archivo: Ruta del archivo donde se va a guardar&quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">nombre_archivo</span>     <span class="o">=</span>   <span class="n">nombre_archivo</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">separador</span>          <span class="o">=</span>   <span class="n">separador</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">fin_linea</span>          <span class="o">=</span>   <span class="n">fin_linea</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">bloques</span>            <span class="o">=</span>   <span class="p">[]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">subrayados</span>         <span class="o">=</span>   <span class="p">[</span><span class="s2">&quot;=&quot;</span><span class="p">,</span> <span class="s2">&quot;-&quot;</span><span class="p">,</span> <span class="s2">&quot;~&quot;</span><span class="p">]</span>
+
+<div class="viewcode-block" id="Documento.anadir_parrafo"><a class="viewcode-back" href="../../../index.html#utilidades.documentos.Documento.Documento.anadir_parrafo">[documentos]</a>    <span class="k">def</span> <span class="nf">anadir_parrafo</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">parrafo</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Anade un párrafo al documento</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">bloques</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">parrafo</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="Documento.anadir_texto_con_linea_arriba_y_abajo"><a class="viewcode-back" href="../../../index.html#utilidades.documentos.Documento.Documento.anadir_texto_con_linea_arriba_y_abajo">[documentos]</a>    <span class="k">def</span> <span class="nf">anadir_texto_con_linea_arriba_y_abajo</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">titulo</span><span class="p">,</span> <span class="n">subrayador</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Añade al documento un texto con el subrayador especificado</span>
+<span class="sd">            Parametros: </span>
+<span class="sd">                :param titulo: texto del titulo</span>
+<span class="sd">                :param subrayador: símbolo para crear las líneas</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">bloques</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">get_texto_con_linea_arriba_y_abajo</span><span class="p">(</span><span class="n">titulo</span><span class="p">,</span> <span class="n">subrayador</span><span class="p">))</span></div>
+
+<div class="viewcode-block" id="Documento.get_texto_con_linea_arriba_y_abajo"><a class="viewcode-back" href="../../../index.html#utilidades.documentos.Documento.Documento.get_texto_con_linea_arriba_y_abajo">[documentos]</a>    <span class="k">def</span> <span class="nf">get_texto_con_linea_arriba_y_abajo</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">titulo</span><span class="p">,</span> <span class="n">subrayador</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Genera un texto con una linea de simbolos arriba y abajo</span>
+<span class="sd">        </span>
+<span class="sd">            Parametros: </span>
+<span class="sd">                :param titulo: texto del titulo</span>
+<span class="sd">                :param subrayador: símbolo para crear las líneas&quot;&quot;&quot;</span>
+        <span class="n">longitud_titulo</span><span class="o">=</span><span class="nb">len</span><span class="p">(</span><span class="n">titulo</span><span class="p">)</span>
+        <span class="n">iguales</span><span class="o">=</span><span class="n">subrayador</span><span class="o">*</span><span class="n">longitud_titulo</span>
+        <span class="c1">#Por este orden y de arriba a abajo</span>
+        <span class="c1"># Signos igual --- separador --- titulo --separador ---igual---separador--separador</span>
+        <span class="n">plantilla</span><span class="o">=</span><span class="s2">&quot;</span><span class="si">{0}{1}{2}{1}{0}{1}{1}</span><span class="s2">&quot;</span>
+        <span class="n">texto</span><span class="o">=</span><span class="n">plantilla</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">iguales</span><span class="p">,</span><span class="bp">self</span><span class="o">.</span><span class="n">fin_linea</span><span class="p">,</span><span class="n">titulo</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">texto</span></div>
+    
+
+<div class="viewcode-block" id="Documento.anadir_titulo"><a class="viewcode-back" href="../../../index.html#utilidades.documentos.Documento.Documento.anadir_titulo">[documentos]</a>    <span class="k">def</span> <span class="nf">anadir_titulo</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">titulo</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Añade el título del documento&quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">anadir_texto_con_linea_arriba_y_abajo</span><span class="p">(</span><span class="n">titulo</span><span class="p">,</span> <span class="s2">&quot;=&quot;</span><span class="p">)</span></div>
+    
+<div class="viewcode-block" id="Documento.get_titulo"><a class="viewcode-back" href="../../../index.html#utilidades.documentos.Documento.Documento.get_titulo">[documentos]</a>    <span class="k">def</span> <span class="nf">get_titulo</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">titulo</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Genera el titulo de un documento&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_texto_con_linea_arriba_y_abajo</span><span class="p">(</span><span class="n">titulo</span><span class="p">,</span> <span class="s2">&quot;=&quot;</span><span class="p">)</span></div>
+    
+
+
+<div class="viewcode-block" id="Documento.anadir_subtitulo"><a class="viewcode-back" href="../../../index.html#utilidades.documentos.Documento.Documento.anadir_subtitulo">[documentos]</a>    <span class="k">def</span> <span class="nf">anadir_subtitulo</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">subtitulo</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Anade el subtítulo del documento&quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">anadir_texto_con_linea_arriba_y_abajo</span><span class="p">(</span><span class="n">subtitulo</span><span class="p">,</span> <span class="s2">&quot;-&quot;</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="Documento.get_subtitulo"><a class="viewcode-back" href="../../../index.html#utilidades.documentos.Documento.Documento.get_subtitulo">[documentos]</a>    <span class="k">def</span> <span class="nf">get_subtitulo</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">subtitulo</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Genera el subtítulo de un documento&quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">get_texto_con_linea_arriba_y_abajo</span><span class="p">(</span><span class="n">subtitulo</span><span class="p">,</span> <span class="s2">&quot;-&quot;</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="Documento.anadir_lineas_numeradas"><a class="viewcode-back" href="../../../index.html#utilidades.documentos.Documento.Documento.anadir_lineas_numeradas">[documentos]</a>    <span class="k">def</span> <span class="nf">anadir_lineas_numeradas</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">vector_lineas</span><span class="p">,</span> <span class="n">con_numeracion</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">simbolo_alternativo</span><span class="o">=</span><span class="s2">&quot;*&quot;</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Genera una lista numerada</span>
+<span class="sd">        </span>
+<span class="sd">            Parametros:</span>
+<span class="sd">                :param vector_lineas: lista con las lineas a añadir</span>
+<span class="sd">                :param con_numeracion: Indica si vamos a usar numeros o no</span>
+<span class="sd">                :param simbolo_alternativo: Indica el simbolo que vamos a poner delante&quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">bloques</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">get_lineas_numeradas</span><span class="p">(</span><span class="n">vector_lineas</span><span class="p">,</span><span class="n">con_numeracion</span><span class="p">,</span> <span class="n">simbolo_alternativo</span><span class="p">))</span></div>
+    
+<div class="viewcode-block" id="Documento.get_lineas_numeradas"><a class="viewcode-back" href="../../../index.html#utilidades.documentos.Documento.Documento.get_lineas_numeradas">[documentos]</a>    <span class="k">def</span> <span class="nf">get_lineas_numeradas</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">vector_lineas</span><span class="p">,</span> <span class="n">con_numeracion</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">simbolo_alternativo</span><span class="o">=</span><span class="s2">&quot;*&quot;</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Genera líneas numeradas</span>
+<span class="sd">        </span>
+<span class="sd">            Parametros:</span>
+<span class="sd">            </span>
+<span class="sd">                :param vector_lineas: lista de lineas a numerar</span>
+<span class="sd">                :param con_numeracion: indica si usaremos numeros o no</span>
+<span class="sd">                :param simbolo_alternativo: SI NO ESTAMOS NUMERANDO se pondrá este símbolo delante&quot;&quot;&quot;</span>
+        <span class="n">nuevas_lineas</span><span class="o">=</span><span class="p">[]</span>
+        <span class="k">for</span> <span class="n">pos</span><span class="p">,</span> <span class="n">linea</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">vector_lineas</span><span class="p">):</span>
+            <span class="n">inicio</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">pos</span><span class="p">)</span><span class="o">+</span><span class="s2">&quot;.&quot;</span> <span class="k">if</span> <span class="n">con_numeracion</span> <span class="k">else</span> <span class="n">simbolo_alternativo</span>
+            <span class="n">nueva_linea</span><span class="o">=</span><span class="n">inicio</span><span class="o">+</span><span class="s2">&quot; &quot;</span> <span class="o">+</span><span class="n">linea</span>
+            <span class="n">nuevas_lineas</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">nueva_linea</span><span class="p">)</span>
+        <span class="n">texto</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">fin_linea</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">nuevas_lineas</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">texto</span></div>
+
+<div class="viewcode-block" id="Documento.anadir_lineas_punteadas"><a class="viewcode-back" href="../../../index.html#utilidades.documentos.Documento.Documento.anadir_lineas_punteadas">[documentos]</a>    <span class="k">def</span> <span class="nf">anadir_lineas_punteadas</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">vector_lineas</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Genera una lista punteada</span>
+<span class="sd">        </span>
+<span class="sd">            Parametros:</span>
+<span class="sd">                :param vector_lineas: lista de lineas se van a añadir&quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">anadir_lineas_numeradas</span><span class="p">(</span><span class="n">vector_lineas</span><span class="p">,</span> <span class="n">con_numeracion</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span></div>
+    
+<div class="viewcode-block" id="Documento.get_lineas_punteadas"><a class="viewcode-back" href="../../../index.html#utilidades.documentos.Documento.Documento.get_lineas_punteadas">[documentos]</a>    <span class="k">def</span> <span class="nf">get_lineas_punteadas</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">vector_lineas</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Genera una lista punteada con el asterisco:</span>
+<span class="sd">        </span>
+<span class="sd">            Parametros: </span>
+<span class="sd">                :param vector_lineas: lista de lineas a puntear&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_lineas_numeradas</span><span class="p">(</span><span class="n">vector_lineas</span><span class="p">,</span> <span class="n">con_numeracion</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span></div>
+    
+    
+<div class="viewcode-block" id="Documento.anadir_lineas_con_guion"><a class="viewcode-back" href="../../../index.html#utilidades.documentos.Documento.Documento.anadir_lineas_con_guion">[documentos]</a>    <span class="k">def</span> <span class="nf">anadir_lineas_con_guion</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">vector_lineas</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Genera una lista punteada con guiones</span>
+<span class="sd">        </span>
+<span class="sd">            Parametros:</span>
+<span class="sd">                :param vector_lineas: lista de lineas a añadir.&quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">anadir_lineas_numeradas</span><span class="p">(</span><span class="n">vector_lineas</span><span class="p">,</span> <span class="n">con_numeracion</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">simbolo_alternativo</span><span class="o">=</span><span class="s2">&quot;-&quot;</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="Documento.get_lineas_con_guion"><a class="viewcode-back" href="../../../index.html#utilidades.documentos.Documento.Documento.get_lineas_con_guion">[documentos]</a>    <span class="k">def</span> <span class="nf">get_lineas_con_guion</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">vector_lineas</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Devuelve una lista de líneas con el guión delante</span>
+<span class="sd">        </span>
+<span class="sd">            Parametros:</span>
+<span class="sd">                :param vector_lineas: lista de lineas&quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">get_lineas_numeradas</span><span class="p">(</span><span class="n">vector_lineas</span><span class="p">,</span> <span class="n">con_numeracion</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">simbolo_alternativo</span><span class="o">=</span><span class="s2">&quot;-&quot;</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="Documento.anadir_titulo_de_nivel"><a class="viewcode-back" href="../../../index.html#utilidades.documentos.Documento.Documento.anadir_titulo_de_nivel">[documentos]</a>    <span class="k">def</span> <span class="nf">anadir_titulo_de_nivel</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">texto_titulo</span><span class="p">,</span> <span class="n">nivel</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Añade un título de nivel 1, 2, o 3</span>
+<span class="sd">        </span>
+<span class="sd">            Parametros:</span>
+<span class="sd">                :param titulo: texto del titulo</span>
+<span class="sd">                :param nivel: nivel de titulo a generar&quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">bloques</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">get_titulo_de_nivel</span><span class="p">(</span><span class="n">texto_titulo</span><span class="p">,</span> <span class="n">nivel</span><span class="p">))</span></div>
+
+<div class="viewcode-block" id="Documento.get_titulo_de_nivel"><a class="viewcode-back" href="../../../index.html#utilidades.documentos.Documento.Documento.get_titulo_de_nivel">[documentos]</a>    <span class="k">def</span> <span class="nf">get_titulo_de_nivel</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">texto_titulo</span><span class="p">,</span> <span class="n">nivel</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Genera un título del nivel pedido</span>
+<span class="sd">        </span>
+<span class="sd">            Parametros:</span>
+<span class="sd">                :param texto_titulo: Texto del título</span>
+<span class="sd">                :param nivel: nivel del título pedido (1,2 o 3)&quot;&quot;&quot;</span>
+        <span class="n">subrayador</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">subrayados</span><span class="p">[</span><span class="n">nivel</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+        <span class="n">texto_subrayados</span><span class="o">=</span><span class="n">subrayador</span><span class="o">*</span><span class="nb">len</span><span class="p">(</span><span class="n">texto_titulo</span><span class="p">)</span>
+        <span class="c1">#Estructura</span>
+        <span class="c1">#Titulo--separador--subrayado</span>
+        <span class="n">plantilla</span><span class="o">=</span><span class="s2">&quot;</span><span class="si">{0}{1}{2}</span><span class="s2">&quot;</span>
+        <span class="n">texto</span><span class="o">=</span><span class="n">plantilla</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">texto_titulo</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">fin_linea</span><span class="p">,</span> <span class="n">texto_subrayados</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">texto</span></div>
+
+<div class="viewcode-block" id="Documento.anadir_tabla"><a class="viewcode-back" href="../../../index.html#utilidades.documentos.Documento.Documento.anadir_tabla">[documentos]</a>    <span class="k">def</span> <span class="nf">anadir_tabla</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">nombre_tabla</span><span class="p">,</span> <span class="n">lista_cabeceras</span><span class="p">,</span> <span class="n">lista_de_listas_con_datos</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Añade una tabla en formato RestructuredText</span>
+
+<span class="sd">            :param nombre_tabla: nombre con el que la tabla aparece en el documento</span>
+<span class="sd">            :param lista_cabeceras: lista de textos que aparecerán en las cabeceras de la tabla</span>
+<span class="sd">            :param lista_de_lista_con_datos: lista de listas en las que aparecen las filas de datos</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">texto</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">get_tabla</span><span class="p">(</span><span class="n">nombre_tabla</span><span class="p">,</span> <span class="n">lista_cabeceras</span><span class="p">,</span> <span class="n">lista_de_listas_con_datos</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">anadir_parrafo</span><span class="p">(</span><span class="n">texto</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="Documento.get_tabla"><a class="viewcode-back" href="../../../index.html#utilidades.documentos.Documento.Documento.get_tabla">[documentos]</a>    <span class="k">def</span> <span class="nf">get_tabla</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">nombre_tabla</span><span class="p">,</span> <span class="n">lista_cabeceras</span><span class="p">,</span> <span class="n">lista_de_listas_con_datos</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Devuelve una tabla en formato RestructuredText.</span>
+
+<span class="sd">            :param nombre_tabla: nombre con el que la tabla aparece en el documento</span>
+<span class="sd">            :param lista_cabeceras: lista de textos que aparecerán en las cabeceras de la tabla</span>
+<span class="sd">            :param lista_de_lista_con_datos: lista de listas en las que aparecen las filas de datos</span>
+<span class="sd">        </span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">writer</span> <span class="o">=</span> <span class="n">pytablewriter</span><span class="o">.</span><span class="n">RstGridTableWriter</span><span class="p">(</span>
+        <span class="n">headers</span><span class="o">=</span><span class="n">lista_cabeceras</span><span class="p">,</span>
+        <span class="n">value_matrix</span><span class="o">=</span><span class="n">lista_de_listas_con_datos</span><span class="p">,</span>
+        <span class="n">table_name</span><span class="o">=</span><span class="n">nombre_tabla</span>
+        <span class="p">)</span>
+        <span class="k">return</span> <span class="n">writer</span><span class="o">.</span><span class="n">dumps</span><span class="p">()</span></div>
+        
+<div class="viewcode-block" id="Documento.get_texto"><a class="viewcode-back" href="../../../index.html#utilidades.documentos.Documento.Documento.get_texto">[documentos]</a>    <span class="k">def</span> <span class="nf">get_texto</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Recuperar el texto del documento&quot;&quot;&quot;</span>
+        <span class="n">texto</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">separador</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">bloques</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">texto</span></div>
+
+<div class="viewcode-block" id="Documento.anadir_figura"><a class="viewcode-back" href="../../../index.html#utilidades.documentos.Documento.Documento.anadir_figura">[documentos]</a>    <span class="k">def</span> <span class="nf">anadir_figura</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ruta_imagen</span><span class="p">,</span> <span class="n">porcentaje_escalado</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">alineacion</span><span class="o">=</span><span class="s2">&quot;center&quot;</span><span class="p">,</span> <span class="n">texto_alternativo</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Anade una figura para restructuredtext o Sphinx</span>
+<span class="sd">        </span>
+<span class="sd">            Parametros:</span>
+<span class="sd">                :param ruta_imagen: ruta a un archivo de imagen.</span>
+<span class="sd">                :param porcentaje_escalado: número entero que indica el tamaño a escalar.</span>
+<span class="sd">                :param alineacion: puede ser &quot;left&quot;, &quot;right&quot; o &quot;center&quot;</span>
+<span class="sd">                :param texto_alternativo: Si no se puede ver la imagen en el navegador se mostrará este texto&quot;&quot;&quot;</span>
+        <span class="n">bloque</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">get_figura</span><span class="p">(</span><span class="n">ruta_imagen</span><span class="p">,</span> <span class="n">porcentaje_escalado</span><span class="p">,</span> <span class="n">alineacion</span><span class="p">,</span> <span class="n">texto_alternativo</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">anadir_parrafo</span><span class="p">(</span><span class="n">bloque</span><span class="p">)</span></div>
+    
+<div class="viewcode-block" id="Documento.get_figura"><a class="viewcode-back" href="../../../index.html#utilidades.documentos.Documento.Documento.get_figura">[documentos]</a>    <span class="k">def</span> <span class="nf">get_figura</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ruta_imagen</span><span class="p">,</span> <span class="n">porcentaje_escalado</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">alineacion</span><span class="o">=</span><span class="s2">&quot;center&quot;</span><span class="p">,</span> <span class="n">texto_alternativo</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Genera una figura para restructuredtext o Sphinx</span>
+<span class="sd">        </span>
+<span class="sd">            Parametros:</span>
+<span class="sd">                :param ruta_imagen: ruta a un archivo de imagen.</span>
+<span class="sd">                :param porcentaje_escalado: número entero que indica el tamaño a escalar.</span>
+<span class="sd">                :param alineacion: puede ser &quot;left&quot;, &quot;right&quot; o &quot;center&quot;</span>
+<span class="sd">                :param texto_alternativo: Si no se puede ver la imagen en el navegador se mostrará este texto&quot;&quot;&quot;</span>
+        <span class="n">PLANTILLA_FIGURA</span><span class="o">=</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">.. figure:: </span><span class="si">{0}</span><span class="s2"></span>
+<span class="s2">   :scale: </span><span class="si">{1}</span><span class="s2">%</span>
+<span class="s2">   :align: </span><span class="si">{2}</span><span class="s2"></span>
+<span class="s2">   :alt: </span><span class="si">{3}</span><span class="s2"></span>
+
+<span class="s2">   </span><span class="si">{3}</span><span class="s2"></span>
+
+<span class="s2">&quot;&quot;&quot;</span>
+        <span class="n">texto</span><span class="o">=</span><span class="n">PLANTILLA_FIGURA</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">ruta_imagen</span><span class="p">,</span> <span class="n">porcentaje_escalado</span><span class="p">,</span> <span class="n">alineacion</span><span class="p">,</span> <span class="n">texto_alternativo</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">texto</span></div>
+
+
+<div class="viewcode-block" id="Documento.anadir_bloque_codigo"><a class="viewcode-back" href="../../../index.html#utilidades.documentos.Documento.Documento.anadir_bloque_codigo">[documentos]</a>    <span class="k">def</span> <span class="nf">anadir_bloque_codigo</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">programa</span><span class="p">,</span> <span class="n">lenguaje</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Añade un bloque de código</span>
+<span class="sd">        </span>
+<span class="sd">            Parámetros:</span>
+<span class="sd">                programa: texto del programa</span>
+<span class="sd">                lenguaje: lenguaje en el que está escrito&quot;&quot;&quot;</span>
+        <span class="n">PLANTILLA</span><span class="o">=</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">.. code-block:: </span><span class="si">{0}</span><span class="s2"></span>
+
+<span class="si">{1}</span><span class="s2"></span>
+<span class="s2">&quot;&quot;&quot;</span>
+        <span class="n">texto_tabulado</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">tabular_texto</span><span class="p">(</span><span class="n">programa</span><span class="p">)</span>
+        <span class="n">texto_final</span><span class="o">=</span><span class="n">PLANTILLA</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">lenguaje</span><span class="p">,</span> <span class="n">texto_tabulado</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">anadir_parrafo</span><span class="p">(</span><span class="n">texto_final</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="Documento.anadir_literal"><a class="viewcode-back" href="../../../index.html#utilidades.documentos.Documento.Documento.anadir_literal">[documentos]</a>    <span class="k">def</span> <span class="nf">anadir_literal</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">texto</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Añade un texto literal&quot;&quot;&quot;</span>
+        <span class="n">nuevo_texto</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">tabular_texto</span><span class="p">(</span><span class="n">texto</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">anadir_parrafo</span><span class="p">(</span><span class="n">nuevo_texto</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="Documento.tabular_texto"><a class="viewcode-back" href="../../../index.html#utilidades.documentos.Documento.Documento.tabular_texto">[documentos]</a>    <span class="k">def</span> <span class="nf">tabular_texto</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">texto</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Pone un tabular al principio de cada línea del texto&quot;&quot;&quot;</span>
+        <span class="n">lineas</span><span class="o">=</span><span class="n">texto</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="n">nuevas_lineas</span><span class="o">=</span><span class="p">[]</span>
+        <span class="k">for</span> <span class="n">linea</span> <span class="ow">in</span> <span class="n">lineas</span><span class="p">:</span>
+            <span class="n">nueva_linea</span><span class="o">=</span><span class="s2">&quot;</span><span class="se">\t</span><span class="s2">&quot;</span><span class="o">+</span><span class="n">linea</span>
+            <span class="n">nuevas_lineas</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">nueva_linea</span><span class="p">)</span>
+        <span class="n">nuevo_texto</span><span class="o">=</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">nuevas_lineas</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">nuevo_texto</span></div>
+
+    <span class="k">def</span> <span class="nf">guardar</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">codificacion</span><span class="o">=</span><span class="s2">&quot;utf-8&quot;</span><span class="p">):</span>
+        <span class="k">with</span> <span class="nb">open</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">nombre_archivo</span><span class="p">,</span> <span class="s2">&quot;w&quot;</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="n">codificacion</span><span class="p">)</span> <span class="k">as</span> <span class="n">fich</span><span class="p">:</span>
+            <span class="n">fich</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">get_texto</span><span class="p">())</span></div>
+        
+</pre></div>
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="../../../index.html">Modulo de utilidades para Python</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navegación</h3>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../../../index.html">Documentation overview</a><ul>
+  <li><a href="../../index.html">Código de módulo</a><ul>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Búsqueda rápida</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Ir a" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2016, None.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 4.4.0</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+    </div>
+
+    
+
+    
+  </body>
+</html>

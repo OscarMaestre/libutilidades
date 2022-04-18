@@ -1,0 +1,155 @@
+
+<!DOCTYPE html>
+
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>utilidades.aulas.GestorNombres &#8212; documentación de Modulo de utilidades para Python - 1.0</title>
+    <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/alabaster.css" />
+    <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+    <script src="../../../_static/jquery.js"></script>
+    <script src="../../../_static/underscore.js"></script>
+    <script src="../../../_static/doctools.js"></script>
+    <script src="../../../_static/translations.js"></script>
+    <link rel="index" title="Índice" href="../../../genindex.html" />
+    <link rel="search" title="Búsqueda" href="../../../search.html" />
+   
+  <link rel="stylesheet" href="../../../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <h1>Código fuente para utilidades.aulas.GestorNombres</h1><div class="highlight"><pre>
+<div class="viewcode-block" id="GestorNombres"><a class="viewcode-back" href="../../../index.html#utilidades.aulas.GestorNombres.GestorNombres">[documentos]</a><span></span><span class="k">class</span> <span class="nc">GestorNombres</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">num_aula_sin_ceros</span><span class="p">,</span> <span class="n">num_pc_sin_ceros</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">num_aula_sin_ceros</span> <span class="o">=</span> <span class="n">num_aula_sin_ceros</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">num_pc_sin_ceros</span>   <span class="o">=</span> <span class="n">num_pc_sin_ceros</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">num_aula_con_ceros</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_numero_con_ceros</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">num_pc_con_ceros</span>   <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_numero_con_ceros</span><span class="p">()</span>
+
+        <span class="c1"># Plantillas para los nombres de los equipos. </span>
+        <span class="c1"># En principio los equipos se llaman algo como AULAB09-PC04</span>
+        <span class="c1"># Todo tiene dos digitos y si no los hay se rellena con 0, ejemplo PC04 o PC17</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">PLANTILLA_NOMBRE_AULA</span><span class="o">=</span><span class="s2">&quot;AULAB</span><span class="si">{0}</span><span class="s2">&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">PLANTILLA_NOMBRE_PC</span><span class="o">=</span><span class="s2">&quot;PC</span><span class="si">{0}</span><span class="s2">&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">PLANTILLA_NOMBRE_COMPLETO_ORDENADOR</span><span class="o">=</span><span class="s2">&quot;</span><span class="si">{0}</span><span class="s2">-</span><span class="si">{1}</span><span class="s2">&quot;</span>
+
+        <span class="c1">#Si hay otros ordenadores con otras IP poner aquí su último byte y su nombre</span>
+        <span class="c1">#Por ejemplo, el PC con la IP xxx.xxx.xxx.100 suele ser el &quot;PC-PROFESOR&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">OTROS_PC</span><span class="o">=</span><span class="p">[</span><span class="mi">100</span><span class="p">,</span> <span class="mi">101</span><span class="p">]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">NOMBRES_OTROS_PC</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;PROFESOR&quot;</span><span class="p">,</span> <span class="s2">&quot;BORRAR&quot;</span><span class="p">]</span>
+
+<div class="viewcode-block" id="GestorNombres.get_numero_con_ceros"><a class="viewcode-back" href="../../../index.html#utilidades.aulas.GestorNombres.GestorNombres.get_numero_con_ceros">[documentos]</a>    <span class="k">def</span> <span class="nf">get_numero_con_ceros</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">numero</span><span class="p">,</span> <span class="n">cantidad_digitos_en_total</span><span class="o">=</span><span class="mi">2</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Devuelve una cadena con el mismo número pero rellenada con ceros</span>
+<span class="sd">        </span>
+<span class="sd">                :param numero: numero a rellenar</span>
+<span class="sd">                :param cantidad_digitos_en_total: cantidad de digitos que debe tener&quot;&quot;&quot;</span>
+        <span class="n">cadena</span><span class="o">=</span><span class="nb">str</span><span class="p">(</span><span class="n">numero</span><span class="p">)</span>
+        <span class="n">cadena_con_ceros</span><span class="o">=</span><span class="n">cadena</span><span class="o">.</span><span class="n">zfill</span><span class="p">(</span><span class="n">cantidad_digitos_en_total</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">cadena_con_ceros</span></div>
+
+<div class="viewcode-block" id="GestorNombres.get_nombre_aula"><a class="viewcode-back" href="../../../index.html#utilidades.aulas.GestorNombres.GestorNombres.get_nombre_aula">[documentos]</a>    <span class="k">def</span> <span class="nf">get_nombre_aula</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Devuelve el nombre estándar del aula&quot;&quot;&quot;</span>
+        <span class="n">texto</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">PLANTILLA_NOMBRE_AULA</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">num_aula_con_ceros</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">texto</span></div>
+
+<div class="viewcode-block" id="GestorNombres.get_nombre_pc"><a class="viewcode-back" href="../../../index.html#utilidades.aulas.GestorNombres.GestorNombres.get_nombre_pc">[documentos]</a>    <span class="k">def</span> <span class="nf">get_nombre_pc</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Devuelve el nombre estándar del PC&quot;&quot;&quot;</span>
+        <span class="n">texto</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">PLANTILLA_NOMBRE_PC</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">num_pc_con_ceros</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">texto</span></div>
+
+<div class="viewcode-block" id="GestorNombres.get_otros_nombres_equipo"><a class="viewcode-back" href="../../../index.html#utilidades.aulas.GestorNombres.GestorNombres.get_otros_nombres_equipo">[documentos]</a>    <span class="k">def</span> <span class="nf">get_otros_nombres_equipo</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">num_pc</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Devuelve el nombre de un equipo usando la nomenclatura alternativa&quot;&quot;&quot;</span>
+        <span class="k">for</span> <span class="n">pos</span><span class="p">,</span> <span class="n">valor</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">OTROS_PC</span><span class="p">):</span>
+            <span class="k">if</span> <span class="n">valor</span><span class="o">==</span><span class="n">num_pc</span><span class="p">:</span>
+                <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">NOMBRES_OTROS_PC</span><span class="p">[</span><span class="n">pos</span><span class="p">]</span>
+        <span class="k">return</span> <span class="s2">&quot;DESCONOCIDO&quot;</span></div>
+
+<div class="viewcode-block" id="GestorNombres.get_nombre_completo_pc"><a class="viewcode-back" href="../../../index.html#utilidades.aulas.GestorNombres.GestorNombres.get_nombre_completo_pc">[documentos]</a>    <span class="k">def</span> <span class="nf">get_nombre_completo_pc</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Devuelve el nombre del PC en formato AULABXX-PCXX&quot;&quot;&quot;</span>
+        <span class="c1">#print(num_pc)</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">num_pc_sin_ceros</span><span class="o">&gt;</span><span class="n">MAX_PC</span><span class="p">:</span>
+            <span class="n">nombre_pc</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">get_otros_nombres_equipo</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">num_pc</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">nombre_pc</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">get_nombre_pc</span><span class="p">()</span>
+            
+        <span class="n">nombre_aula</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">get_nombre_aula</span><span class="p">()</span>
+        
+        <span class="n">texto</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">PLANTILLA_NOMBRE_COMPLETO_ORDENADOR</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">nombre_aula</span><span class="p">,</span> <span class="n">nombre_pc</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">texto</span></div></div>
+</pre></div>
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="../../../index.html">Modulo de utilidades para Python</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navegación</h3>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../../../index.html">Documentation overview</a><ul>
+  <li><a href="../../index.html">Código de módulo</a><ul>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Búsqueda rápida</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Ir a" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2016, None.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 4.4.0</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+    </div>
+
+    
+
+    
+  </body>
+</html>

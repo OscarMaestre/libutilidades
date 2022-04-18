@@ -1,0 +1,236 @@
+
+<!DOCTYPE html>
+
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>utilidades.ip.ipv4 &#8212; documentación de Modulo de utilidades para Python - 1.0</title>
+    <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/alabaster.css" />
+    <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+    <script src="../../../_static/jquery.js"></script>
+    <script src="../../../_static/underscore.js"></script>
+    <script src="../../../_static/doctools.js"></script>
+    <script src="../../../_static/translations.js"></script>
+    <link rel="index" title="Índice" href="../../../genindex.html" />
+    <link rel="search" title="Búsqueda" href="../../../search.html" />
+   
+  <link rel="stylesheet" href="../../../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <h1>Código fuente para utilidades.ip.ipv4</h1><div class="highlight"><pre>
+<span></span><span class="kn">from</span> <span class="nn">random</span> <span class="kn">import</span> <span class="n">randint</span><span class="p">,</span> <span class="n">random</span><span class="p">,</span> <span class="n">seed</span><span class="p">,</span> <span class="n">choice</span>
+<span class="kn">from</span> <span class="nn">dataclasses</span> <span class="kn">import</span> <span class="n">dataclass</span>
+<span class="kn">import</span> <span class="nn">ipaddress</span>
+
+<div class="viewcode-block" id="GeneradorIPV4Azar"><a class="viewcode-back" href="../../../index.html#utilidades.ip.ipv4.GeneradorIPV4Azar">[documentos]</a><span class="k">class</span> <span class="nc">GeneradorIPV4Azar</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">num_ejercicio</span><span class="p">,</span> <span class="n">cantidad_bits_mascara</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;Constructor</span>
+<span class="sd">        </span>
+<span class="sd">            Argumentos:</span>
+<span class="sd">            </span>
+<span class="sd">                :param num_ejercicio: Número de ejercicio con el que aparecerá </span>
+<span class="sd">                </span>
+<span class="sd">                :param cantidad_bits_mascara: Cantidad de bits a 1 en la máscara&quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">primer_byte</span><span class="o">=</span><span class="n">randint</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">52</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">cantidad_bits_mascara</span><span class="o">!=</span><span class="kc">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">bits_mascara</span><span class="o">=</span><span class="n">cantidad_bits_mascara</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">bits_mascara</span><span class="o">=</span><span class="n">randint</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">28</span><span class="p">)</span>
+        <span class="c1">#print(&quot;Mascara:/&quot;+str(self.bits_mascara))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">bits_host</span><span class="o">=</span><span class="mi">32</span><span class="o">-</span><span class="bp">self</span><span class="o">.</span><span class="n">bits_mascara</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">secuencia_binaria</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">generar</span><span class="p">()</span>
+        
+        <span class="bp">self</span><span class="o">.</span><span class="n">cadena</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">convertir_a_decimal</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">secuencia_binaria</span><span class="p">)</span>
+        <span class="c1">#print(self.cadena)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">direccion</span><span class="o">=</span><span class="n">ipaddress</span><span class="o">.</span><span class="n">IPv4Network</span><span class="p">(</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">cadena</span><span class="o">+</span><span class="s2">&quot;/&quot;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">bits_mascara</span><span class="p">)</span>
+        <span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">todos_hosts</span><span class="o">=</span><span class="nb">list</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">direccion</span><span class="o">.</span><span class="n">hosts</span><span class="p">())</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">mascara_en_decimal</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">get_mascara_en_decimal</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">num_ejercicio</span><span class="o">=</span><span class="n">num_ejercicio</span>
+
+<div class="viewcode-block" id="GeneradorIPV4Azar.convertir_a_decimal"><a class="viewcode-back" href="../../../index.html#utilidades.ip.ipv4.GeneradorIPV4Azar.convertir_a_decimal">[documentos]</a>    <span class="k">def</span> <span class="nf">convertir_a_decimal</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">secuencia_binaria</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Dada una secuencia en binario de 32 bits nos devuelve</span>
+<span class="sd">        la dirección en decimal.</span>
+<span class="sd">    </span>
+<span class="sd">        </span>
+<span class="sd">            :param secuencia_binaria: secuencia de 32 bits&quot;&quot;&quot;</span>
+        <span class="n">bytes_ip</span><span class="o">=</span><span class="p">[]</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">4</span><span class="p">):</span>
+            <span class="n">li</span><span class="o">=</span><span class="n">i</span><span class="o">*</span><span class="mi">8</span>
+            <span class="n">ls</span><span class="o">=</span><span class="n">li</span><span class="o">+</span><span class="mi">8</span>
+            <span class="n">trozo</span><span class="o">=</span><span class="nb">int</span><span class="p">(</span><span class="n">secuencia_binaria</span><span class="p">[</span><span class="n">li</span><span class="p">:</span><span class="n">ls</span><span class="p">],</span> <span class="mi">2</span><span class="p">)</span>
+            <span class="n">bytes_ip</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">trozo</span><span class="p">))</span>
+        <span class="n">cadena</span><span class="o">=</span><span class="s2">&quot;.&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">bytes_ip</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">cadena</span></div>
+
+<div class="viewcode-block" id="GeneradorIPV4Azar.get_direccion_en_binario"><a class="viewcode-back" href="../../../index.html#utilidades.ip.ipv4.GeneradorIPV4Azar.get_direccion_en_binario">[documentos]</a>    <span class="k">def</span> <span class="nf">get_direccion_en_binario</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">direccion</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Dada una dirección en decimal como 192.168.1.39/24</span>
+<span class="sd">        nos devuelve el equivalente en binario</span>
+<span class="sd">        </span>
+<span class="sd">            :param direccion:  Dirección en decimal como 192.168.1.39/24&quot;&quot;&quot;</span>
+        <span class="n">trozos</span><span class="o">=</span><span class="nb">str</span><span class="p">(</span><span class="n">direccion</span><span class="p">)</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;/&quot;</span><span class="p">)</span>
+        <span class="n">binario</span><span class="o">=</span><span class="s1">&#39;</span><span class="si">{:#b}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">ipaddress</span><span class="o">.</span><span class="n">IPv4Address</span><span class="p">(</span><span class="n">trozos</span><span class="p">[</span><span class="mi">0</span><span class="p">]))</span>
+        <span class="n">binario</span><span class="o">=</span><span class="n">binario</span><span class="p">[</span><span class="mi">2</span><span class="p">:]</span>
+        <span class="nb">bytes</span><span class="o">=</span><span class="p">[</span>
+            <span class="n">binario</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">8</span><span class="p">],</span>
+            <span class="n">binario</span><span class="p">[</span><span class="mi">8</span><span class="p">:</span><span class="mi">16</span><span class="p">],</span>
+            <span class="n">binario</span><span class="p">[</span><span class="mi">16</span><span class="p">:</span><span class="mi">24</span><span class="p">],</span>
+            <span class="n">binario</span><span class="p">[</span><span class="mi">24</span><span class="p">:</span><span class="mi">32</span><span class="p">]</span>
+        <span class="p">]</span>
+        <span class="n">resultado</span><span class="o">=</span><span class="s2">&quot;.&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="nb">bytes</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">resultado</span></div>
+<div class="viewcode-block" id="GeneradorIPV4Azar.get_mascara_en_decimal"><a class="viewcode-back" href="../../../index.html#utilidades.ip.ipv4.GeneradorIPV4Azar.get_mascara_en_decimal">[documentos]</a>    <span class="k">def</span> <span class="nf">get_mascara_en_decimal</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Devuelve la máscara de la dirección actual en decimal&quot;&quot;&quot;</span>
+        <span class="n">prefijo</span><span class="o">=</span><span class="s2">&quot;1&quot;</span><span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">bits_mascara</span>
+        <span class="n">sufijo</span> <span class="o">=</span><span class="s2">&quot;0&quot;</span><span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">bits_host</span>
+        <span class="n">mascara</span><span class="o">=</span><span class="n">prefijo</span><span class="o">+</span><span class="n">sufijo</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">convertir_a_decimal</span><span class="p">(</span><span class="n">mascara</span><span class="p">)</span></div>
+<div class="viewcode-block" id="GeneradorIPV4Azar.get_todos_hosts"><a class="viewcode-back" href="../../../index.html#utilidades.ip.ipv4.GeneradorIPV4Azar.get_todos_hosts">[documentos]</a>    <span class="k">def</span> <span class="nf">get_todos_hosts</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Devuelve una lista con todos los host de la red generada</span>
+
+<span class="sd">                :returns hosts[]: una lista con todos los host</span>
+<span class="sd">        </span>
+<span class="sd">        &quot;&quot;&quot;</span></div>
+<div class="viewcode-block" id="GeneradorIPV4Azar.get_ip_host"><a class="viewcode-back" href="../../../index.html#utilidades.ip.ipv4.GeneradorIPV4Azar.get_ip_host">[documentos]</a>    <span class="k">def</span> <span class="nf">get_ip_host</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">num_host</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Genera una IP válida de host:</span>
+<span class="sd">        </span>
+<span class="sd">            </span>
+<span class="sd">                :param num_host:  Número de host (se extrae la IP número X del vector total de IPs</span>
+<span class="sd">            </span>
+
+<span class="sd">                :returns (ip, mascara):  Tupla con una IP y una máscara, todo en strings</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">ip_host</span><span class="o">=</span><span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">todos_hosts</span><span class="p">[</span><span class="n">num_host</span><span class="p">])</span>
+        <span class="k">return</span> <span class="p">(</span><span class="n">ip_host</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">mascara_en_decimal</span><span class="p">)</span></div>
+        
+<div class="viewcode-block" id="GeneradorIPV4Azar.generar"><a class="viewcode-back" href="../../../index.html#utilidades.ip.ipv4.GeneradorIPV4Azar.generar">[documentos]</a>    <span class="k">def</span> <span class="nf">generar</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Genera una dirección IP de red (no de host) al azar&quot;&quot;&quot;</span>
+        <span class="n">posibles_generadores</span><span class="o">=</span><span class="p">[]</span>
+        <span class="n">bits_host</span><span class="o">=</span><span class="s2">&quot;0&quot;</span><span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">bits_host</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">bits_mascara</span><span class="o">&gt;=</span><span class="mi">24</span><span class="p">:</span>
+            <span class="n">posibles_generadores</span><span class="o">=</span><span class="p">[</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">generar_clase_a</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">generar_clase_b</span><span class="p">,</span><span class="bp">self</span><span class="o">.</span><span class="n">generar_clase_c</span><span class="p">]</span>
+            <span class="n">generador</span><span class="o">=</span><span class="n">choice</span><span class="p">(</span><span class="n">posibles_generadores</span><span class="p">)</span>
+            <span class="k">return</span> <span class="n">generador</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">bits_mascara</span><span class="p">)</span><span class="o">+</span><span class="n">bits_host</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">bits_mascara</span><span class="o">&gt;=</span><span class="mi">16</span><span class="p">:</span>
+            <span class="n">posibles_generadores</span><span class="o">=</span><span class="p">[</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">generar_clase_a</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">generar_clase_b</span><span class="p">]</span>
+            <span class="n">generador</span><span class="o">=</span><span class="n">choice</span><span class="p">(</span><span class="n">posibles_generadores</span><span class="p">)</span>
+            <span class="k">return</span> <span class="n">generador</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">bits_mascara</span><span class="p">)</span><span class="o">+</span><span class="n">bits_host</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">bits_mascara</span><span class="o">&gt;=</span><span class="mi">8</span><span class="p">:</span>
+            <span class="n">posibles_generadores</span><span class="o">=</span><span class="p">[</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">generar_clase_a</span><span class="p">]</span>
+            <span class="n">generador</span><span class="o">=</span><span class="n">choice</span><span class="p">(</span><span class="n">posibles_generadores</span><span class="p">)</span>
+            <span class="k">return</span> <span class="n">generador</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">bits_mascara</span><span class="p">)</span><span class="o">+</span><span class="n">bits_host</span></div>
+            
+<div class="viewcode-block" id="GeneradorIPV4Azar.generar_clase_a"><a class="viewcode-back" href="../../../index.html#utilidades.ip.ipv4.GeneradorIPV4Azar.generar_clase_a">[documentos]</a>    <span class="k">def</span> <span class="nf">generar_clase_a</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">num_bits</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Genera una dirección de clase A en la que haya</span>
+<span class="sd">        tantos bits de red como se nos pida.</span>
+<span class="sd">    </span>
+<span class="sd">                :param num_bits: número de bits de red</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="s2">&quot;0&quot;</span><span class="o">+</span><span class="bp">self</span><span class="o">.</span><span class="n">get_secuencia_azar_bits</span><span class="p">(</span><span class="n">num_bits</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span></div>
+<div class="viewcode-block" id="GeneradorIPV4Azar.generar_clase_b"><a class="viewcode-back" href="../../../index.html#utilidades.ip.ipv4.GeneradorIPV4Azar.generar_clase_b">[documentos]</a>    <span class="k">def</span> <span class="nf">generar_clase_b</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">num_bits</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Genera una dirección de clase B en la que haya</span>
+<span class="sd">        tantos bits de red como se nos pida.</span>
+<span class="sd">    </span>
+<span class="sd">                :param num_bits: número de bits de red</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="s2">&quot;10&quot;</span><span class="o">+</span><span class="bp">self</span><span class="o">.</span><span class="n">get_secuencia_azar_bits</span><span class="p">(</span><span class="n">num_bits</span><span class="o">-</span><span class="mi">2</span><span class="p">)</span></div>
+<div class="viewcode-block" id="GeneradorIPV4Azar.generar_clase_c"><a class="viewcode-back" href="../../../index.html#utilidades.ip.ipv4.GeneradorIPV4Azar.generar_clase_c">[documentos]</a>    <span class="k">def</span> <span class="nf">generar_clase_c</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">num_bits</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Genera una dirección de clase C en la que haya</span>
+<span class="sd">        tantos bits de red como se nos pida.</span>
+<span class="sd">    </span>
+<span class="sd">            :param num_bits: número de bits de red</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="s2">&quot;110&quot;</span><span class="o">+</span><span class="bp">self</span><span class="o">.</span><span class="n">get_secuencia_azar_bits</span><span class="p">(</span><span class="n">num_bits</span><span class="o">-</span><span class="mi">3</span><span class="p">)</span></div>
+    
+    <span class="k">def</span> <span class="nf">get_bit</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">choice</span><span class="p">([</span><span class="s2">&quot;0&quot;</span><span class="p">,</span> <span class="s2">&quot;1&quot;</span><span class="p">])</span>
+
+    <span class="k">def</span> <span class="nf">get_secuencia_azar_bits</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">num_bits</span><span class="p">):</span>
+        <span class="n">cadena</span><span class="o">=</span><span class="s2">&quot;&quot;</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">num_bits</span><span class="p">):</span>
+            <span class="n">cadena</span><span class="o">=</span><span class="n">cadena</span><span class="o">+</span><span class="bp">self</span><span class="o">.</span><span class="n">get_bit</span><span class="p">()</span>
+        <span class="k">return</span> <span class="n">cadena</span>   </div>
+ 
+</pre></div>
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="../../../index.html">Modulo de utilidades para Python</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navegación</h3>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../../../index.html">Documentation overview</a><ul>
+  <li><a href="../../index.html">Código de módulo</a><ul>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Búsqueda rápida</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Ir a" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2016, None.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 4.4.0</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+    </div>
+
+    
+
+    
+  </body>
+</html>

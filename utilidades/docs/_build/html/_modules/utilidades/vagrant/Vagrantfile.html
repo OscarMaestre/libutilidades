@@ -1,0 +1,321 @@
+
+<!DOCTYPE html>
+
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>utilidades.vagrant.Vagrantfile &#8212; documentación de Modulo de utilidades para Python - 1.0</title>
+    <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/alabaster.css" />
+    <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+    <script src="../../../_static/jquery.js"></script>
+    <script src="../../../_static/underscore.js"></script>
+    <script src="../../../_static/doctools.js"></script>
+    <script src="../../../_static/translations.js"></script>
+    <link rel="index" title="Índice" href="../../../genindex.html" />
+    <link rel="search" title="Búsqueda" href="../../../search.html" />
+   
+  <link rel="stylesheet" href="../../../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <h1>Código fuente para utilidades.vagrant.Vagrantfile</h1><div class="highlight"><pre>
+<span></span><span class="ch">#!/usr/bin/python3</span>
+
+
+<span class="kn">from</span> <span class="nn">dataclasses</span> <span class="kn">import</span> <span class="n">dataclass</span>
+
+<span class="n">FICHERO_PLANTILLA</span><span class="o">=</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">Vagrant.configure(&quot;2&quot;) do |config|</span>
+<span class="si">{0}</span><span class="s2"></span>
+<span class="s2">end</span>
+<span class="s2">&quot;&quot;&quot;</span>
+
+<span class="n">BLOQUE_RAM</span><span class="o">=</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">    config.vm.provider &quot;virtualbox&quot; do |vb|</span>
+<span class="s2">        vb.gui = true</span>
+<span class="s2">        vb.memory = &quot;</span><span class="si">{0}</span><span class="s2">&quot;</span>
+<span class="s2">    end</span>
+<span class="s2">&quot;&quot;&quot;</span>
+
+<span class="n">PROVISIONADO</span><span class="o">=</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">    config.vm.provision &quot;shell&quot;, inline: &lt;&lt;-SHELL</span>
+<span class="si">{0}</span><span class="s2"></span>
+<span class="s2">    SHELL</span>
+<span class="s2">&quot;&quot;&quot;</span>
+
+<span class="k">class</span> <span class="nc">PuertoAbierto</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">puerto_invitado</span><span class="p">,</span> <span class="n">puerto_anfitrion</span><span class="p">,</span> <span class="n">ip_invitado</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">ip_anfitrion</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">puerto_invitado</span>    <span class="o">=</span>   <span class="n">puerto_invitado</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">puerto_anfitrion</span>   <span class="o">=</span>   <span class="n">puerto_anfitrion</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">ip_invitado</span>        <span class="o">=</span>   <span class="n">ip_invitado</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">ip_anfitrion</span>       <span class="o">=</span>   <span class="n">ip_anfitrion</span>
+    <span class="k">def</span> <span class="fm">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+        <span class="n">lista</span><span class="o">=</span><span class="p">[]</span>
+        <span class="n">trozo1</span><span class="o">=</span><span class="s2">&quot;guest: </span><span class="se">\&quot;</span><span class="si">{0}</span><span class="se">\&quot;</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">puerto_invitado</span><span class="p">)</span>
+        <span class="n">lista</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">trozo1</span><span class="p">)</span>
+        <span class="n">trozo2</span><span class="o">=</span><span class="s2">&quot;host: </span><span class="se">\&quot;</span><span class="si">{0}</span><span class="se">\&quot;</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">puerto_anfitrion</span><span class="p">)</span>
+        <span class="n">lista</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">trozo2</span><span class="p">)</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">ip_anfitrion</span><span class="o">!=</span><span class="kc">None</span><span class="p">:</span>
+            <span class="n">trozo3</span><span class="o">=</span><span class="s2">&quot;host_ip: </span><span class="se">\&quot;</span><span class="si">{0}</span><span class="se">\&quot;</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">ip_anfitrion</span><span class="p">)</span>
+            <span class="n">lista</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">trozo3</span><span class="p">)</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">ip_invitado</span><span class="o">!=</span><span class="kc">None</span><span class="p">:</span>
+            <span class="n">trozo4</span><span class="o">=</span><span class="s2">&quot;guest_ip: </span><span class="se">\&quot;</span><span class="si">{0}</span><span class="se">\&quot;</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">ip_invitado</span><span class="p">)</span>
+            <span class="n">lista</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">trozo4</span><span class="p">)</span>
+        <span class="n">parametros</span><span class="o">=</span><span class="s2">&quot;, &quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">lista</span><span class="p">)</span>
+        <span class="n">linea</span><span class="o">=</span><span class="s2">&quot;    config.vm.network </span><span class="se">\&quot;</span><span class="s2">forwarded_port</span><span class="se">\&quot;</span><span class="s2">, </span><span class="si">{0}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">parametros</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">linea</span>
+        
+
+<span class="k">class</span> <span class="nc">FicheroParaCopiar</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">fichero_en_anfitrion</span><span class="p">,</span> <span class="n">fichero_en_invitado</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">fichero_en_anfitrion</span><span class="o">=</span><span class="n">fichero_en_anfitrion</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">fichero_en_invitado</span><span class="o">=</span><span class="n">fichero_en_invitado</span>
+    <span class="k">def</span> <span class="fm">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+        <span class="n">plantilla</span><span class="o">=</span><span class="s2">&quot;    config.vm.provision </span><span class="se">\&quot;</span><span class="s2">file</span><span class="se">\&quot;</span><span class="s2">, source: </span><span class="se">\&quot;</span><span class="si">{0}</span><span class="se">\&quot;</span><span class="s2">, destination: </span><span class="se">\&quot;</span><span class="si">{1}</span><span class="se">\&quot;</span><span class="s2">&quot;</span>
+        <span class="n">texto</span><span class="o">=</span><span class="n">plantilla</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">fichero_en_anfitrion</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">fichero_en_invitado</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">texto</span>
+
+
+
+<div class="viewcode-block" id="Vagrantfile"><a class="viewcode-back" href="../../../index.html#utilidades.vagrant.Vagrantfile.Vagrantfile">[documentos]</a><span class="k">class</span> <span class="nc">Vagrantfile</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">MEGAS_RAM</span>      <span class="o">=</span>   <span class="mi">768</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">maquina_base</span>   <span class="o">=</span>   <span class="s2">&quot;oscarmaestre/ubuntuserver20&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">bloques</span>        <span class="o">=</span>   <span class="p">[]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">puertos_abiertos</span><span class="o">=</span>  <span class="p">[]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">num_tarjetas_puente</span><span class="o">=</span><span class="mi">0</span>
+        
+        <span class="bp">self</span><span class="o">.</span><span class="n">carpeta_compartida_invitado</span><span class="o">=</span><span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">carpeta_compartida_anfitrion</span><span class="o">=</span><span class="kc">None</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">ficheros_para_copiar</span><span class="o">=</span><span class="p">[]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">comandos</span><span class="o">=</span><span class="p">[]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">nombre_tarjeta_puente</span><span class="o">=</span><span class="kc">None</span>
+
+<div class="viewcode-block" id="Vagrantfile.abrir_puerto"><a class="viewcode-back" href="../../../index.html#utilidades.vagrant.Vagrantfile.Vagrantfile.abrir_puerto">[documentos]</a>    <span class="k">def</span> <span class="nf">abrir_puerto</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">puerto_en_anfitrion</span><span class="p">,</span> <span class="n">puerto_en_invitado</span><span class="p">,</span> <span class="n">ip_invitado</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">ip_anfitrion</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Abre un puerto en el host anfitrión:</span>
+<span class="sd">            :param puerto_en_anfitrión: puerto en el que va a escuchar el anfitrión.</span>
+<span class="sd">            :param puerto_en_invitado: puerto al que se va a redirigir la conexión cuando llegue.</span>
+<span class="sd">            :param ip_invitado: dirección IP del invitado que va a escuchar.</span>
+<span class="sd">            :param ip_anfitrión: dirección IP del anfitrión.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">puerto</span><span class="o">=</span><span class="n">PuertoAbierto</span><span class="p">(</span><span class="n">puerto_en_invitado</span><span class="p">,</span> <span class="n">puerto_en_anfitrion</span><span class="p">,</span> <span class="n">ip_invitado</span><span class="p">,</span> <span class="n">ip_anfitrion</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">puertos_abiertos</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">puerto</span><span class="p">)</span></div>
+        
+<div class="viewcode-block" id="Vagrantfile.anadir_comando"><a class="viewcode-back" href="../../../index.html#utilidades.vagrant.Vagrantfile.Vagrantfile.anadir_comando">[documentos]</a>    <span class="k">def</span> <span class="nf">anadir_comando</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">comando</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Añadir un comando que se ejecutará cuando se inyecte la máquina virtual.</span>
+
+<span class="sd">            :param comando: Comando a añadir.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">comandos</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">comando</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="Vagrantfile.anadir_tarjeta_puente"><a class="viewcode-back" href="../../../index.html#utilidades.vagrant.Vagrantfile.Vagrantfile.anadir_tarjeta_puente">[documentos]</a>    <span class="k">def</span> <span class="nf">anadir_tarjeta_puente</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">nombre_tarjeta</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Añadir una tarjeta en modo puente.</span>
+
+<span class="sd">            :param nombre_tarjeta: nombre que recibe EN EL ANFITRIÓN la tarjeta con la cual se va a conectar la tarjeta puente que añadamos. En Linux será algo como enp0s3 y en Windows algo como Ethernet</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">num_tarjetas_puente</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">num_tarjetas_puente</span><span class="o">+</span><span class="mi">1</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">nombre_tarjeta_puente</span><span class="o">=</span><span class="n">nombre_tarjeta</span></div>
+
+<div class="viewcode-block" id="Vagrantfile.anadir_carpeta_compartida"><a class="viewcode-back" href="../../../index.html#utilidades.vagrant.Vagrantfile.Vagrantfile.anadir_carpeta_compartida">[documentos]</a>    <span class="k">def</span> <span class="nf">anadir_carpeta_compartida</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">carpeta_en_anfitrion</span><span class="p">,</span> <span class="n">carpeta_en_invitado</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Añadir una carpeta compartida.</span>
+
+<span class="sd">            :param carpeta_en_anfitrion: ruta de la carpeta en el anfitrión.</span>
+<span class="sd">            :param carpeta_en_invitado: ruta de la carpeta en el invitado. En Linux pondremos algo como /compartida y en Windows algo como H:</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">carpeta_compartida_anfitrion</span><span class="o">=</span><span class="n">carpeta_en_anfitrion</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">carpeta_compartida_invitado</span><span class="o">=</span><span class="n">carpeta_en_invitado</span></div>
+
+<div class="viewcode-block" id="Vagrantfile.anadir_fichero_para_copiar"><a class="viewcode-back" href="../../../index.html#utilidades.vagrant.Vagrantfile.Vagrantfile.anadir_fichero_para_copiar">[documentos]</a>    <span class="k">def</span> <span class="nf">anadir_fichero_para_copiar</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ruta_en_anfitrion</span><span class="p">,</span> <span class="n">ruta_en_invitado</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Añadir un fichero que se copiará dentro del invitado, puede ser una carpeta.</span>
+
+<span class="sd">            :param ruta_en_anfitrion: ruta de la carpeta o fichero en el anfitrión.</span>
+<span class="sd">            :param ruta_en_invitado: ruta de la carpeta o fichero donde aparecerá DENTRO del invitado.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">fichero</span><span class="o">=</span><span class="n">FicheroParaCopiar</span><span class="p">(</span><span class="n">ruta_en_anfitrion</span><span class="p">,</span> <span class="n">ruta_en_invitado</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">ficheros_para_copiar</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">fichero</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="Vagrantfile.get_carpetas_compartidas"><a class="viewcode-back" href="../../../index.html#utilidades.vagrant.Vagrantfile.Vagrantfile.get_carpetas_compartidas">[documentos]</a>    <span class="k">def</span> <span class="nf">get_carpetas_compartidas</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        DE USO INTERNO. Devuelve las carpetas compartidas listas para meter</span>
+<span class="sd">        en el Vagrantfile</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">carpeta_compartida_anfitrion</span><span class="o">==</span><span class="kc">None</span><span class="p">:</span>
+            <span class="k">return</span> <span class="s2">&quot;&quot;</span>
+        <span class="n">plantilla</span><span class="o">=</span><span class="s2">&quot;    config.vm.synced_folder </span><span class="se">\&quot;</span><span class="si">{0}</span><span class="se">\&quot;</span><span class="s2">, </span><span class="se">\&quot;</span><span class="si">{1}</span><span class="se">\&quot;</span><span class="s2">&quot;</span>
+        <span class="n">texto</span><span class="o">=</span><span class="n">plantilla</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">carpeta_compartida_anfitrion</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">carpeta_compartida_invitado</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">texto</span></div>
+
+<div class="viewcode-block" id="Vagrantfile.get_ficheros_para_copiar"><a class="viewcode-back" href="../../../index.html#utilidades.vagrant.Vagrantfile.Vagrantfile.get_ficheros_para_copiar">[documentos]</a>    <span class="k">def</span> <span class="nf">get_ficheros_para_copiar</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        DE USO INTERNO. Devuelve los ficheros a copiar listos para meter</span>
+<span class="sd">        en el Vagrantfile</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">ficheros_para_copiar</span><span class="o">==</span><span class="p">[]:</span>
+            <span class="k">return</span> <span class="s2">&quot;&quot;</span>
+        <span class="n">lineas</span><span class="o">=</span><span class="p">[</span><span class="nb">str</span><span class="p">(</span><span class="n">fichero</span><span class="p">)</span> <span class="k">for</span> <span class="n">fichero</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">ficheros_para_copiar</span><span class="p">]</span>
+        <span class="k">return</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">lineas</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="Vagrantfile.get_tarjetas_puente"><a class="viewcode-back" href="../../../index.html#utilidades.vagrant.Vagrantfile.Vagrantfile.get_tarjetas_puente">[documentos]</a>    <span class="k">def</span> <span class="nf">get_tarjetas_puente</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        DE USO INTERNO. Devuelve las tarjetas puente listas para meter</span>
+<span class="sd">        en el Vagrantfile</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">configuracion</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;    config.vm.network </span><span class="se">\&quot;</span><span class="s2">public_network</span><span class="se">\&quot;</span><span class="s2">, bridge: </span><span class="se">\&quot;</span><span class="si">{0}</span><span class="se">\&quot;</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">nombre_tarjeta_puente</span><span class="p">)]</span>
+        <span class="n">lineas</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">num_tarjetas_puente</span> <span class="o">*</span> <span class="n">configuracion</span>
+        <span class="k">return</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">lineas</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="Vagrantfile.get_puertos"><a class="viewcode-back" href="../../../index.html#utilidades.vagrant.Vagrantfile.Vagrantfile.get_puertos">[documentos]</a>    <span class="k">def</span> <span class="nf">get_puertos</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        DE USO INTERNO. Devuelve los puertos abiertos listos para meter</span>
+<span class="sd">        en el Vagrantfile</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">puertos_abiertos</span><span class="o">==</span><span class="p">[]:</span>
+            <span class="k">return</span> <span class="s2">&quot;&quot;</span>
+        <span class="n">lineas_puertos</span><span class="o">=</span><span class="p">[</span><span class="nb">str</span><span class="p">(</span><span class="n">puerto</span><span class="p">)</span> <span class="k">for</span> <span class="n">puerto</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">puertos_abiertos</span><span class="p">]</span>
+        <span class="k">return</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">lineas_puertos</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="Vagrantfile.set_maquina_base"><a class="viewcode-back" href="../../../index.html#utilidades.vagrant.Vagrantfile.Vagrantfile.set_maquina_base">[documentos]</a>    <span class="k">def</span> <span class="nf">set_maquina_base</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">maquina_base</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Establece el nombre de la máquina base.</span>
+
+<span class="sd">            :param maquina_base: ruta de la máquina base. Puede ser algo como oscarmaestre/ubuntuserver20 o una ruta completa como M:\boxes\maquina.box</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">maquina_base</span><span class="o">=</span><span class="n">maquina_base</span></div>
+
+<div class="viewcode-block" id="Vagrantfile.set_megas_ram"><a class="viewcode-back" href="../../../index.html#utilidades.vagrant.Vagrantfile.Vagrantfile.set_megas_ram">[documentos]</a>    <span class="k">def</span> <span class="nf">set_megas_ram</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">megas_ram</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Establece la cantida de RAM de la máquina en megas.</span>
+
+<span class="sd">            :param megas_ram: Cantidad de RAM en megas</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">MEGAS_RAM</span><span class="o">=</span><span class="n">megas_ram</span></div>
+
+<div class="viewcode-block" id="Vagrantfile.get_maquina_base"><a class="viewcode-back" href="../../../index.html#utilidades.vagrant.Vagrantfile.Vagrantfile.get_maquina_base">[documentos]</a>    <span class="k">def</span> <span class="nf">get_maquina_base</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        DE USO INTERNO. Devuelve el nombre de la máquina base para meter</span>
+<span class="sd">        en el Vagrantfile</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">plantilla</span><span class="o">=</span><span class="s2">&quot;    config.vm.box = </span><span class="se">\&quot;</span><span class="si">{0}</span><span class="se">\&quot;</span><span class="s2">&quot;</span>
+        <span class="n">texto</span><span class="o">=</span><span class="n">plantilla</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">maquina_base</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">texto</span></div>
+
+<div class="viewcode-block" id="Vagrantfile.get_comandos"><a class="viewcode-back" href="../../../index.html#utilidades.vagrant.Vagrantfile.Vagrantfile.get_comandos">[documentos]</a>    <span class="k">def</span> <span class="nf">get_comandos</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        DE USO INTERNO. Devuelve los comandos a ejecutar listos para meter</span>
+<span class="sd">        en el Vagrantfile</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">comandos</span><span class="o">==</span><span class="p">[]:</span>
+            <span class="k">return</span> <span class="s2">&quot;&quot;</span>
+        <span class="n">lineas</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;        &quot;</span><span class="o">+</span><span class="n">comando</span> <span class="k">for</span> <span class="n">comando</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">comandos</span><span class="p">]</span>
+        <span class="n">comandos</span><span class="o">=</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">lineas</span><span class="p">)</span>
+        <span class="n">provisionado</span><span class="o">=</span><span class="n">PROVISIONADO</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">comandos</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">provisionado</span></div>
+
+<div class="viewcode-block" id="Vagrantfile.get_texto_vagrantfile"><a class="viewcode-back" href="../../../index.html#utilidades.vagrant.Vagrantfile.Vagrantfile.get_texto_vagrantfile">[documentos]</a>    <span class="k">def</span> <span class="nf">get_texto_vagrantfile</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        DE USO INTERNO. Devuelve el texto que irá en el fichero Vagrantfile</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">bloques</span><span class="o">=</span><span class="p">[]</span>
+
+        <span class="n">bloques</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">get_maquina_base</span><span class="p">())</span>
+        <span class="n">bloques</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">BLOQUE_RAM</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">MEGAS_RAM</span><span class="p">))</span>
+        <span class="n">bloques</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">get_puertos</span><span class="p">())</span>
+        <span class="n">bloques</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">get_tarjetas_puente</span><span class="p">())</span>
+        <span class="n">bloques</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">get_carpetas_compartidas</span><span class="p">())</span>
+        <span class="n">bloques</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">get_ficheros_para_copiar</span><span class="p">())</span>
+        <span class="n">bloques</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">get_comandos</span><span class="p">())</span>
+        <span class="n">texto</span><span class="o">=</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">bloques</span><span class="p">)</span>
+        <span class="n">vagrantfile_texto</span><span class="o">=</span><span class="n">FICHERO_PLANTILLA</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">texto</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">vagrantfile_texto</span></div>
+
+<div class="viewcode-block" id="Vagrantfile.guardar_como"><a class="viewcode-back" href="../../../index.html#utilidades.vagrant.Vagrantfile.Vagrantfile.guardar_como">[documentos]</a>    <span class="k">def</span> <span class="nf">guardar_como</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ruta_archivo</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Guarda el fichero Vagrantfile</span>
+
+<span class="sd">            :param ruta_archivo: ruta completa donde se guardará el archivo</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">ruta_archivo</span><span class="p">,</span> <span class="s2">&quot;w&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">fich</span><span class="p">:</span>
+            <span class="n">fich</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">get_texto_vagrantfile</span><span class="p">())</span></div></div>
+</pre></div>
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="../../../index.html">Modulo de utilidades para Python</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navegación</h3>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../../../index.html">Documentation overview</a><ul>
+  <li><a href="../../index.html">Código de módulo</a><ul>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Búsqueda rápida</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Ir a" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2016, None.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 4.4.0</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+    </div>
+
+    
+
+    
+  </body>
+</html>

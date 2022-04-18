@@ -4,5 +4,7 @@ class GestorComandos(object):
         PLANTILLA="netsh interface ip set address name= \"{3}\" static {0} {1} {2}"
         texto=PLANTILLA.format(ip, mascara, gateway, nombre_tarjeta)
         return texto
-    @staticmethod
     
+    @staticmethod
+    def cambiar_dns(dns1, dns2, nombre_tarjeta):
+        

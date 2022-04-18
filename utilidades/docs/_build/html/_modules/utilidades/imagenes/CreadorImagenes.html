@@ -1,0 +1,184 @@
+
+<!DOCTYPE html>
+
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>utilidades.imagenes.CreadorImagenes &#8212; documentación de Modulo de utilidades para Python - 1.0</title>
+    <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/alabaster.css" />
+    <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+    <script src="../../../_static/jquery.js"></script>
+    <script src="../../../_static/underscore.js"></script>
+    <script src="../../../_static/doctools.js"></script>
+    <script src="../../../_static/translations.js"></script>
+    <link rel="index" title="Índice" href="../../../genindex.html" />
+    <link rel="search" title="Búsqueda" href="../../../search.html" />
+   
+  <link rel="stylesheet" href="../../../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <h1>Código fuente para utilidades.imagenes.CreadorImagenes</h1><div class="highlight"><pre>
+<span></span><span class="kn">from</span> <span class="nn">PIL</span> <span class="kn">import</span> <span class="n">Image</span><span class="p">,</span> <span class="n">ImageDraw</span><span class="p">,</span> <span class="n">ImageFont</span>
+
+<span class="kn">from</span> <span class="nn">importlib.resources</span> <span class="kn">import</span> <span class="n">contents</span><span class="p">,</span> <span class="n">open_binary</span><span class="p">,</span> <span class="n">path</span>
+<span class="kn">from</span> <span class="nn">glob</span> <span class="kn">import</span> <span class="n">glob</span>
+<span class="kn">import</span> <span class="nn">utilidades.imagenes.fuentes</span>
+<span class="kn">import</span> <span class="nn">inspect</span>
+<span class="kn">import</span> <span class="nn">os</span>
+
+<div class="viewcode-block" id="CreadorImagenes"><a class="viewcode-back" href="../../../index.html#utilidades.imagenes.CreadorImagenes.CreadorImagenes">[documentos]</a><span class="k">class</span> <span class="nc">CreadorImagenes</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+<div class="viewcode-block" id="CreadorImagenes.__init__"><a class="viewcode-back" href="../../../index.html#utilidades.imagenes.CreadorImagenes.CreadorImagenes.__init__">[documentos]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">archivo_imagen</span><span class="p">,</span> <span class="n">archivo_resultado</span><span class="p">,</span> <span class="n">tamano_fuente</span><span class="o">=</span><span class="mi">18</span><span class="p">,</span> <span class="n">paquete_fuente</span><span class="o">=</span><span class="s2">&quot;utilidades.imagenes.fuentes.cantarell&quot;</span><span class="p">,</span> <span class="n">archivo_fuente</span><span class="o">=</span><span class="s2">&quot;Cantarell-Regular.ttf&quot;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;Constructor</span>
+
+<span class="sd">            :param archivo_imagen: ruta del archivo de imagen donde vamos a escribir</span>
+<span class="sd">            :param archivo_resultado: ruta del archivo donde se va a dejar el resultado.</span>
+<span class="sd">            :param tamano_fuente: tamaño de la fuente</span>
+<span class="sd">            :param paquete_fuente: paquete de donde se va a cargar la fuente</span>
+<span class="sd">            :param archivo_fuente: archivo de fuente TTF con el que se va  escribir </span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">imagen</span><span class="o">=</span><span class="n">Image</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">archivo_imagen</span><span class="p">)</span><span class="o">.</span><span class="n">convert</span><span class="p">(</span><span class="s2">&quot;RGBA&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">paquete_fuente</span><span class="o">=</span><span class="n">paquete_fuente</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">archivo_fuente</span><span class="o">=</span><span class="n">archivo_fuente</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">bytes_fichero</span><span class="o">=</span><span class="n">open_binary</span><span class="p">(</span><span class="n">paquete_fuente</span><span class="p">,</span> <span class="n">archivo_fuente</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">tamano_fuente</span><span class="o">=</span><span class="n">tamano_fuente</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">font</span><span class="o">=</span> <span class="n">ImageFont</span><span class="o">.</span><span class="n">truetype</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">bytes_fichero</span><span class="p">,</span> <span class="n">tamano_fuente</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">contexto</span><span class="o">=</span><span class="n">ImageDraw</span><span class="o">.</span><span class="n">Draw</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">imagen</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">archivo_resultado</span><span class="o">=</span><span class="n">archivo_resultado</span>    </div>
+
+<div class="viewcode-block" id="CreadorImagenes.get_lista_posibles_fuentes"><a class="viewcode-back" href="../../../index.html#utilidades.imagenes.CreadorImagenes.CreadorImagenes.get_lista_posibles_fuentes">[documentos]</a>    <span class="k">def</span> <span class="nf">get_lista_posibles_fuentes</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Devuelve una lista con las posibles fuentes que se pueden usar&quot;&quot;&quot;</span>
+        <span class="n">fuentes</span><span class="o">=</span><span class="p">[]</span>
+        <span class="n">directorios_con_fuentes</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;cantarell&quot;</span><span class="p">,</span> <span class="s2">&quot;liberation-mono&quot;</span><span class="p">,</span> <span class="s2">&quot;linux-biolinum&quot;</span><span class="p">,</span> <span class="s2">&quot;nimbus-roman-no9-l&quot;</span><span class="p">,</span><span class="s2">&quot;nimbus-sans-l&quot;</span><span class="p">,</span><span class="s2">&quot;oxygen&quot;</span><span class="p">]</span>
+        <span class="k">for</span> <span class="n">d</span> <span class="ow">in</span> <span class="n">directorios_con_fuentes</span><span class="p">:</span>
+            <span class="n">ruta_paquete</span><span class="o">=</span><span class="s2">&quot;utilidades.imagenes.fuentes.&quot;</span><span class="o">+</span><span class="n">d</span>
+            <span class="n">ruta</span><span class="o">=</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="n">inspect</span><span class="o">.</span><span class="n">getfile</span><span class="p">(</span><span class="n">utilidades</span><span class="o">.</span><span class="n">imagenes</span><span class="o">.</span><span class="n">fuentes</span><span class="p">))</span>
+            <span class="n">subdir</span><span class="o">=</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">ruta</span><span class="p">,</span> <span class="n">d</span><span class="p">,</span> <span class="s2">&quot;*.ttf&quot;</span><span class="p">)</span>
+            <span class="n">ficheros_ttf</span><span class="o">=</span><span class="n">glob</span><span class="p">(</span><span class="n">subdir</span><span class="p">,</span> <span class="n">recursive</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+            <span class="k">for</span> <span class="n">f</span> <span class="ow">in</span> <span class="n">ficheros_ttf</span><span class="p">:</span>
+                <span class="n">ruta_relativa</span><span class="o">=</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">basename</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
+                <span class="n">fuentes</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">ruta_paquete</span><span class="p">,</span> <span class="n">ruta_relativa</span><span class="p">))</span>
+            
+            <span class="n">subdir</span><span class="o">=</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">ruta</span><span class="p">,</span> <span class="n">d</span><span class="p">,</span> <span class="s2">&quot;*.otf&quot;</span><span class="p">)</span>
+            <span class="n">ficheros_ttf</span><span class="o">=</span><span class="n">glob</span><span class="p">(</span><span class="n">subdir</span><span class="p">,</span> <span class="n">recursive</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+            <span class="k">for</span> <span class="n">f</span> <span class="ow">in</span> <span class="n">ficheros_ttf</span><span class="p">:</span>
+                <span class="n">ruta_relativa</span><span class="o">=</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">basename</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
+                <span class="n">fuentes</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">ruta_paquete</span><span class="p">,</span> <span class="n">ruta_relativa</span><span class="p">))</span>
+            
+        <span class="k">return</span> <span class="n">fuentes</span></div>
+    
+<div class="viewcode-block" id="CreadorImagenes.set_fuente"><a class="viewcode-back" href="../../../index.html#utilidades.imagenes.CreadorImagenes.CreadorImagenes.set_fuente">[documentos]</a>    <span class="k">def</span> <span class="nf">set_fuente</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ruta_paquete</span><span class="p">,</span> <span class="n">nombre_archivo_ttf_u_otf</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Cambia la fuente activa</span>
+<span class="sd">        </span>
+<span class="sd">            :param ruta_paquete: ruta del paquete en forma de nombres separados por puntos (ej utilidades.imagenes.fuentes)</span>
+<span class="sd">            :param nombre_archivo_ttf_u_otf: nombre del archivo de tipo de letra en formato TTF u OTF</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">bytes_fichero</span><span class="o">=</span><span class="n">open_binary</span><span class="p">(</span><span class="n">ruta_paquete</span><span class="p">,</span> <span class="n">nombre_archivo_ttf_u_otf</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">font</span><span class="o">=</span> <span class="n">ImageFont</span><span class="o">.</span><span class="n">truetype</span><span class="p">(</span><span class="n">bytes_fichero</span><span class="p">)</span></div>
+    
+
+        
+<div class="viewcode-block" id="CreadorImagenes.poner_texto"><a class="viewcode-back" href="../../../index.html#utilidades.imagenes.CreadorImagenes.CreadorImagenes.poner_texto">[documentos]</a>    <span class="k">def</span> <span class="nf">poner_texto</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">texto</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">)):</span>
+        <span class="sd">&quot;&quot;&quot;Inserta un texto en la imagen.</span>
+<span class="sd">        </span>
+<span class="sd">                :param texto:  texto a insertar</span>
+<span class="sd">                :param x,y: coordenadas</span>
+<span class="sd">                :param color: color en formato (R, G, B)</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">contexto</span><span class="o">.</span><span class="n">text</span><span class="p">(</span> <span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">),</span> <span class="n">text</span><span class="o">=</span><span class="n">texto</span><span class="p">,</span> <span class="n">font</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">font</span><span class="p">,</span> <span class="n">fill</span><span class="o">=</span><span class="n">color</span><span class="p">)</span></div>
+        
+
+<div class="viewcode-block" id="CreadorImagenes.poner_textos"><a class="viewcode-back" href="../../../index.html#utilidades.imagenes.CreadorImagenes.CreadorImagenes.poner_textos">[documentos]</a>    <span class="k">def</span> <span class="nf">poner_textos</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">lista_textos</span><span class="p">,</span> <span class="n">lista_tuplas_xy</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">)):</span>
+        <span class="sd">&quot;&quot;&quot;Inserta un conjunto de textos en las coordenadas correspondientes</span>
+
+<span class="sd">                :param lista_textos: una lista de cadenas</span>
+<span class="sd">                :param lista_tuplas_xy: una lista de tuplas con coordenadas (x,y)</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">for</span> <span class="n">tupla</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">lista_textos</span><span class="p">,</span> <span class="n">lista_tuplas_xy</span><span class="p">):</span>
+            <span class="n">texto</span><span class="o">=</span><span class="n">tupla</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+            <span class="n">tupla_xy</span><span class="o">=</span><span class="n">tupla</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">poner_texto</span><span class="p">(</span><span class="n">texto</span><span class="p">,</span> <span class="n">tupla_xy</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">tupla_xy</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">color</span><span class="p">)</span></div>
+            
+    <span class="k">def</span> <span class="nf">get_resultado</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">imagen</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">archivo_resultado</span><span class="p">)</span>
+    
+<div class="viewcode-block" id="CreadorImagenes.guardar"><a class="viewcode-back" href="../../../index.html#utilidades.imagenes.CreadorImagenes.CreadorImagenes.guardar">[documentos]</a>    <span class="k">def</span> <span class="nf">guardar</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Guarda la imagen generada&quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">get_resultado</span><span class="p">()</span></div></div>
+</pre></div>
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="../../../index.html">Modulo de utilidades para Python</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navegación</h3>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../../../index.html">Documentation overview</a><ul>
+  <li><a href="../../index.html">Código de módulo</a><ul>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Búsqueda rápida</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Ir a" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2016, None.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 4.4.0</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+    </div>
+
+    
+
+    
+  </body>
+</html>
