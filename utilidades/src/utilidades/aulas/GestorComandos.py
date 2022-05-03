@@ -7,4 +7,4 @@ class GestorComandos(object):
     
     @staticmethod
     def cambiar_dns(dns1, dns2, nombre_tarjeta):
-        
+        pass

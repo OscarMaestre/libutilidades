@@ -2,9 +2,12 @@ import pytablewriter
 
 class Documento(object):
     def __init__(self, nombre_archivo="documento.rst", fin_linea="\n", separador="\n\n"):
-        """Constructor:
+        """
         
-            :param nombre_archivo: Ruta del archivo donde se va a guardar"""
+        Constructor:
+        
+            :param nombre_archivo: Ruta del archivo donde se va a guardar
+        """
         self.nombre_archivo     =   nombre_archivo
         self.separador          =   separador
         self.fin_linea          =   fin_linea

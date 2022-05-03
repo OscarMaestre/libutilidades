@@ -6,12 +6,13 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>utilidades.aulas.GestorComandos &#8212; documentación de Modulo de utilidades para Python - 1.0</title>
-    <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="../../../_static/alabaster.css" />
-    <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+    <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../../../_static/alabaster.css" type="text/css" />
+    <script id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
     <script src="../../../_static/jquery.js"></script>
     <script src="../../../_static/underscore.js"></script>
     <script src="../../../_static/doctools.js"></script>
+    <script src="../../../_static/language_data.js"></script>
     <script src="../../../_static/translations.js"></script>
     <link rel="index" title="Índice" href="../../../genindex.html" />
     <link rel="search" title="Búsqueda" href="../../../search.html" />
@@ -37,7 +38,11 @@
     <span class="k">def</span> <span class="nf">set_ip</span><span class="p">(</span><span class="n">ip</span><span class="p">,</span> <span class="n">mascara</span><span class="p">,</span> <span class="n">gateway</span><span class="p">,</span> <span class="n">nombre_tarjeta</span><span class="p">):</span>
         <span class="n">PLANTILLA</span><span class="o">=</span><span class="s2">&quot;netsh interface ip set address name= </span><span class="se">\&quot;</span><span class="si">{3}</span><span class="se">\&quot;</span><span class="s2"> static </span><span class="si">{0}</span><span class="s2"> </span><span class="si">{1}</span><span class="s2"> </span><span class="si">{2}</span><span class="s2">&quot;</span>
         <span class="n">texto</span><span class="o">=</span><span class="n">PLANTILLA</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">ip</span><span class="p">,</span> <span class="n">mascara</span><span class="p">,</span> <span class="n">gateway</span><span class="p">,</span> <span class="n">nombre_tarjeta</span><span class="p">)</span>
-        <span class="k">return</span> <span class="n">texto</span></div>
+        <span class="k">return</span> <span class="n">texto</span>
+    
+    <span class="nd">@staticmethod</span>
+    <span class="k">def</span> <span class="nf">cambiar_dns</span><span class="p">(</span><span class="n">dns1</span><span class="p">,</span> <span class="n">dns2</span><span class="p">,</span> <span class="n">nombre_tarjeta</span><span class="p">):</span>
+        <span class="k">pass</span></div>
 </pre></div>
 
           </div>
@@ -70,7 +75,7 @@
   <h3 id="searchlabel">Búsqueda rápida</h3>
     <div class="searchformwrapper">
     <form class="search" action="../../../search.html" method="get">
-      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="text" name="q" aria-labelledby="searchlabel" />
       <input type="submit" value="Ir a" />
     </form>
     </div>
@@ -92,7 +97,7 @@
       &copy;2016, None.
       
       |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 4.4.0</a>
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 3.3.1</a>
       &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
       
     </div>
