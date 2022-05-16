@@ -2,8 +2,8 @@ class GestorNombres(object):
     def __init__(self, num_aula_sin_ceros, num_pc_sin_ceros) -> None:
         self.num_aula_sin_ceros = num_aula_sin_ceros
         self.num_pc_sin_ceros   = num_pc_sin_ceros
-        self.num_aula_con_ceros = self.get_numero_con_ceros()
-        self.num_pc_con_ceros   = self.get_numero_con_ceros()
+        self.num_aula_con_ceros = self.get_numero_con_ceros(self.num_aula_sin_ceros)
+        self.num_pc_con_ceros   = self.get_numero_con_ceros(self.num_pc_sin_ceros)
 
         # Plantillas para los nombres de los equipos. 
         # En principio los equipos se llaman algo como AULAB09-PC04
@@ -11,7 +11,7 @@ class GestorNombres(object):
         self.PLANTILLA_NOMBRE_AULA="AULAB{0}"
         self.PLANTILLA_NOMBRE_PC="PC{0}"
         self.PLANTILLA_NOMBRE_COMPLETO_ORDENADOR="{0}-{1}"
-
+        self.MAX_PC=20
         #Si hay otros ordenadores con otras IP poner aquí su último byte y su nombre
         #Por ejemplo, el PC con la IP xxx.xxx.xxx.100 suele ser el "PC-PROFESOR"
         self.OTROS_PC=[100, 101]
@@ -46,8 +46,8 @@ class GestorNombres(object):
     def get_nombre_completo_pc(self):
         """Devuelve el nombre del PC en formato AULABXX-PCXX"""
         #print(num_pc)
-        if self.num_pc_sin_ceros>MAX_PC:
-            nombre_pc=self.get_otros_nombres_equipo(self.num_pc)
+        if self.num_pc_sin_ceros>self.MAX_PC:
+            nombre_pc=self.get_otros_nombres_equipo(self.num_pc_sin_ceros)
         else:
             nombre_pc=self.get_nombre_pc()
             

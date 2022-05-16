@@ -1,5 +1,12 @@
-from os import mkdir
+from os import makedirs, mkdir
 from os.path import join
+from tkinter import dnd
+
+from utilidades.aulas.GestorNombres import GestorNombres
+
+from utilidades.aulas.CreadorScriptCambioIP import CreadorScriptCambioIP
+
+from utilidades.aulas.CreadorScriptsCambioDNS import CreadorScriptCambioDNS
 # Cosas que hacer al hacer la imagen
 # Tener a mano el usuario administrador y la clave
 # Habilitar la ejecución de scripts ejecutando esto como administrador
@@ -161,18 +168,13 @@ def get_numero_con_ceros(numero):
 
 def crear_directorio_si_no_existe(ruta):
     try:
-        mkdir(ruta)
+        makedirs(ruta)
     except FileExistsError:
         pass
 
-def get_ruta_directorio_equipo(num_aula, num_pc):
-    nombre_aula=get_nombre_aula(num_aula)
-    nombre_pc=get_nombre_pc(num_pc)
-    ruta=join(nombre_aula, nombre_pc)
-    return ruta
-
-def crear_directorio_equipo(num_aula, num_pc):
-    nombre_dir=get_ruta_directorio_equipo(num_aula, num_pc)
+def crear_directorio_equipo(nombre_aula, nombre_pc):
+    nombre_dir=join(nombre_aula, nombre_pc)
+    print(nombre_dir)
     crear_directorio_si_no_existe(nombre_dir)
 
 def guardar_texto_en_archivo(ruta, texto):
@@ -181,7 +183,10 @@ def guardar_texto_en_archivo(ruta, texto):
 
 
 def get_ruta_script_pc(num_aula, num_pc, nombre_fichero):
-    directorio_base=get_ruta_directorio_equipo(num_aula, num_pc)
+    gestor_nombres=GestorNombres(num_aula, num_pc)
+    nombre_aula=gestor_nombres.get_nombre_aula()
+    nombre_pc=gestor_nombres.get_nombre_pc()
+    directorio_base=join(nombre_aula, nombre_pc)
     ruta_completa=join(directorio_base, nombre_fichero)
     return ruta_completa
 
@@ -194,13 +199,20 @@ def crear_script_cambio_ip(num_aula, num_pc):
     PLANTILLA_IP="10.{0}.0.{1}"
     GATEWAY="10.{0}.0.254"
     DNS=["10.1.0.1", "8.8.4.4"]
-    ruta_script=get_ruta_script_pc(num_aula, num_pc, "02-Cambiar-IP.bat")
-    
-    ip_final=PLANTILLA_IP.format(num_aula, num_pc)
-    gw_final=GATEWAY.format(num_aula)
-    texto_script=PLANTILLA_SCRIPT_IP.format(ip_final, MASCARA, gw_final, NOMBRE_TARJETA_RED, IP_DNS_1, IP_DNS_2)
-    guardar_texto_en_archivo(ruta_script, texto_script)
 
+    ip=PLANTILLA_IP.format(num_aula, num_pc)
+    mascara="255.255.255.0"
+    gateway=GATEWAY.format(num_aula)
+
+    ruta_script=get_ruta_script_pc(num_aula, num_pc, "02-Cambiar-IP.bat")
+    CreadorScriptCambioIP.crear(ruta_script, ip, mascara, gateway, NOMBRE_TARJETA_RED)
+    #guardar_texto_en_archivo(ruta_script, texto_script)
+
+def crear_script_cambio_dns(num_aula, num_pc):
+    DNS=["10.1.0.1", "8.8.4.4"]
+    ruta_script=get_ruta_script_pc(num_aula, num_pc, "03-Cambiar-DNS.bat")
+    CreadorScriptCambioDNS.crear(ruta_script, NOMBRE_TARJETA_RED, DNS[0], DNS[1] )
+    
 def crear_script_cambio_clave(num_aula, num_pc, usuario, clave):
     comando_cambio_clave=PLANTILLA_SCRIPT_CAMBIAR_CLAVE_USUARIO.format(usuario, clave)
     nombre_script_cambio_clave="03-Cambiar-clave-profesor-a-Inf-678.bat"
@@ -208,9 +220,11 @@ def crear_script_cambio_clave(num_aula, num_pc, usuario, clave):
     guardar_texto_en_archivo(ruta_script, comando_cambio_clave)
 
 def crear_script_renombrado_equipo(num_aula, num_pc):
-    nombre_equipo=get_nombre_completo_pc(num_aula, num_pc)
+    gestor_nombres=GestorNombres(num_aula, num_pc)
+    
+    nombre_equipo=gestor_nombres.get_nombre_completo_pc()
     comando=PLANTILLA_COMANDO_RENOMBRAR_EQUIPO.format(nombre_equipo)
-    nombre_script_renombrado="04-Renombrar el equipo.bat"
+    nombre_script_renombrado="05-Renombrar el equipo.bat"
     ruta_script=get_ruta_script_pc(num_aula, num_pc, nombre_script_renombrado)
     guardar_texto_en_archivo(ruta_script, comando)
 
@@ -224,24 +238,16 @@ def crear_script_union_dominio(num_aula, num_pc, nombre_dominio, admin_dominio, 
 def crear_todo():
     numeros_aula=range(MIN_AULA, MAX_AULA+1)
     num_ordenador=range(MIN_PC, MAX_PC+1)
-    posibles_ordenadores=list(num_ordenador)+OTROS_PC
-
+    posibles_ordenadores=list(num_ordenador)+[100]
     #Para cada aula
     for aula_sin_ceros in numeros_aula:
-        aula_con_ceros=get_numero_con_ceros(aula_sin_ceros)
-        directorio_aula=get_nombre_aula(aula_sin_ceros)
-        crear_directorio_si_no_existe(directorio_aula)
         #Para cada ordenador de esa aula
         for num_pc in posibles_ordenadores:
-            nombre=get_nombre_completo_pc(aula_sin_ceros, num_pc)
-            print(nombre)
-            crear_directorio_equipo(aula_con_ceros, num_pc)
-            
-            crear_script_habilitacion(aula_sin_ceros, num_pc)
+            gestor_nombres=GestorNombres(aula_sin_ceros, num_pc)
+            crear_directorio_equipo(gestor_nombres.get_nombre_aula(), gestor_nombres.get_nombre_pc())
             crear_script_cambio_ip(aula_sin_ceros, num_pc)
-            crear_script_cambio_clave(aula_sin_ceros, num_pc, NOMBRE_USUARIO_PROFESOR, CLAVE_USUARIO_LOCAL_PROFESOR)
+            crear_script_cambio_dns(aula_sin_ceros, num_pc)
             crear_script_renombrado_equipo(aula_sin_ceros, num_pc)
-            crear_script_union_dominio(aula_sin_ceros, num_pc, "ciclos.local", "admin", "19+Ipf-20")
 
 
 if __name__=="__main__":

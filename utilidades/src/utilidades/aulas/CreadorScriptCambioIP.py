@@ -5,7 +5,7 @@ class CreadorScriptCambioIP(object):
     @staticmethod
     def crear(ruta_archivo_bat, ip, mascara,gateway, nombre_tarjeta_red):
         
-        PLANTILLA_DATOS_IP="NUEVOS DATOS IP-->Tarjeta:'{3}', IP:{0} / {1}, Puerta enlace:{2}"
+        PLANTILLA_DATOS_IP="NUEVOS DATOS IP Tarjeta:'{3}', IP:{0} / {1}, Puerta enlace:{2}"
         texto_cabecera="Cambio de la direccion IP"
         
         informe_comando_cambio_ip=PLANTILLA_DATOS_IP.format(ip, mascara, gateway, nombre_tarjeta_red)
