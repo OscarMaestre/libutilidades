@@ -7,6 +7,8 @@ from utilidades.aulas.GestorNombres import GestorNombres
 from utilidades.aulas.CreadorScriptCambioIP import CreadorScriptCambioIP
 
 from utilidades.aulas.CreadorScriptsCambioDNS import CreadorScriptCambioDNS
+
+from utilidades.aulas.CreadorScriptCambioClave import CreadorScriptCambioClave
 # Cosas que hacer al hacer la imagen
 # Tener a mano el usuario administrador y la clave
 # Habilitar la ejecución de scripts ejecutando esto como administrador
@@ -94,67 +96,7 @@ ping -n 1 %ip% | find "TTL"
 """
 
 
-PLANTILLA_SCRIPT_CAMBIAR_CLAVE_USUARIO="""
-@echo off
-@echo.
-@echo.
-@echo.
-@echo Se va a proceder a cambiar la clave del usuario {0} y se le va a poner la clave {1}
-@pause
-net user {0} {1}
-@echo.
-@echo.
-@echo.
-@echo Comprueba si hay algún error y pulsa una tecla
-@echo.
-@echo.
-@echo.
-@pause
-"""
 
-PLANTILLA_COMANDO_RENOMBRAR_EQUIPO="""
-@echo *******************************************************************
-@echo                      Renombrado del equipo
-@echo *******************************************************************
-
-@echo.
-@echo.
-@echo.
-@echo Se va cambiar el nombre de este ordenador y despues vamos a reiniciar el equipo (es obligatorio)
-@echo.
-@echo El nuevo nombre que se va a poner es {0}
-@echo.
-@pause
-
-WMIC ComputerSystem where Name="%COMPUTERNAME%" call Rename Name="{0}"
-@echo.
-@echo.
-@echo.
-@echo SI HAY ERRORES PULSA AHORA MISMO CTRL+C.
-@echo SI NO HAY ERRORES PULSA UNA TECLA Y REINICIAREMOS EL EQUIPO
-@pause
-shutdown /r
-"""
-PLANTILLA_UNIR_DOMINIO  ="""
-@echo ******************************************************************
-@echo *                Union al dominio                                *
-@echo ******************************************************************
-@echo.
-@echo.
-@echo.
-@echo Se va a proceder a unir este equipo al dominio del Pabellon B.
-@echo Por favor repasa los datos siguientes antes de ejecutar esto
-@echo Se va a ejecutar esto
-@echo netdom.exe join %computername% /domain:{0} /UserD:{1}\{2} /PasswordD:{3} /reboot
-@echo.
-@echo.
-@pause
-netdom.exe join %computername% /domain:{0} /UserD:{1}\{2} /PasswordD:{3} /reboot
-@echo.
-@echo.
-@echo.
-@pause
-"""
 
 
 
@@ -214,19 +156,14 @@ def crear_script_cambio_dns(num_aula, num_pc):
     CreadorScriptCambioDNS.crear(ruta_script, NOMBRE_TARJETA_RED, DNS[0], DNS[1] )
     
 def crear_script_cambio_clave(num_aula, num_pc, usuario, clave):
-    comando_cambio_clave=PLANTILLA_SCRIPT_CAMBIAR_CLAVE_USUARIO.format(usuario, clave)
-    nombre_script_cambio_clave="03-Cambiar-clave-profesor-a-Inf-678.bat"
+    nombre_script_cambio_clave="06-Cambiar-clave-profesor-a-{0}.bat".format(clave)
     ruta_script=get_ruta_script_pc(num_aula, num_pc, nombre_script_cambio_clave)
-    guardar_texto_en_archivo(ruta_script, comando_cambio_clave)
+    CreadorScriptCambioClave.crear(ruta_script, usuario, clave)
 
 def crear_script_renombrado_equipo(num_aula, num_pc):
-    gestor_nombres=GestorNombres(num_aula, num_pc)
-    
-    nombre_equipo=gestor_nombres.get_nombre_completo_pc()
-    comando=PLANTILLA_COMANDO_RENOMBRAR_EQUIPO.format(nombre_equipo)
-    nombre_script_renombrado="05-Renombrar el equipo.bat"
-    ruta_script=get_ruta_script_pc(num_aula, num_pc, nombre_script_renombrado)
-    guardar_texto_en_archivo(ruta_script, comando)
+    ruta_script=get_ruta_script_pc(num_aula, num_pc, "05-Renombrar el equipo.bat")
+    return
+    #guardar_texto_en_archivo(ruta_script, comando)
 
 def crear_script_union_dominio(num_aula, num_pc, nombre_dominio, admin_dominio, clave_admin_dominio):
     nombre_script_cambio_clave="05-Unir al dominio.bat"
@@ -248,6 +185,7 @@ def crear_todo():
             crear_script_cambio_ip(aula_sin_ceros, num_pc)
             crear_script_cambio_dns(aula_sin_ceros, num_pc)
             crear_script_renombrado_equipo(aula_sin_ceros, num_pc)
+            crear_script_cambio_clave(aula_sin_ceros, num_pc, NOMBRE_USUARIO_PROFESOR, CLAVE_USUARIO_LOCAL_PROFESOR)
 
 
 if __name__=="__main__":

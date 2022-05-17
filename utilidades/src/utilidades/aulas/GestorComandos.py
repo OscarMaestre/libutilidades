@@ -17,4 +17,10 @@ class GestorComandos(object):
         comando2=comando_dns_2.format(nombre_tarjeta, dns2)
         texto=PLANTILLA_DNS.format(comando1, comando2)
         return texto
+
+    @staticmethod
+    def cambiar_clave(usuario, nueva_clave):
+        PLANTILLA_CAMBIO_CLAVE="net user {0} {1}"
+        comando=PLANTILLA_CAMBIO_CLAVE.format(usuario, nueva_clave)
+        return comando
         
