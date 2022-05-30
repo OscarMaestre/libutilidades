@@ -15,7 +15,7 @@ class GestorNombres(object):
         #Si hay otros ordenadores con otras IP poner aquí su último byte y su nombre
         #Por ejemplo, el PC con la IP xxx.xxx.xxx.100 suele ser el "PC-PROFESOR"
         self.OTROS_PC=[100, 101]
-        self.NOMBRES_OTROS_PC=["PROFESOR", "BORRAR"]
+        self.NOMBRES_OTROS_PC=["PROF", "BORRAR"]
 
     def get_numero_con_ceros(self, numero, cantidad_digitos_en_total=2):
         """Devuelve una cadena con el mismo número pero rellenada con ceros

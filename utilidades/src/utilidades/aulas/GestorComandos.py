@@ -23,4 +23,22 @@ class GestorComandos(object):
         PLANTILLA_CAMBIO_CLAVE="net user {0} {1}"
         comando=PLANTILLA_CAMBIO_CLAVE.format(usuario, nueva_clave)
         return comando
+
+    @staticmethod
+    def cambiar_nombre(nuevo_nombre):
+        PLANTILLA_CAMBIO_NOMBRE="""
+        WMIC ComputerSystem where Name="%COMPUTERNAME%" call Rename Name="{0}"
+        """
+        comando=PLANTILLA_CAMBIO_NOMBRE.format(nuevo_nombre)
+        return comando
+
+    @staticmethod
+    def unir_a_dominio():
+        PLANTILLA_UNIR_DOMINIO="""
+wmic computersystem where name="%computername%" call joindomainorworkgroup fjoinoptions=3 name="ciclos.local" username="admin" Password="secret"
+        
+        """
+        return PLANTILLA_UNIR_DOMINIO
+
+
         

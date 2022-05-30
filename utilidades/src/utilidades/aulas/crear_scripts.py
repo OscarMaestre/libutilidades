@@ -9,6 +9,12 @@ from utilidades.aulas.CreadorScriptCambioIP import CreadorScriptCambioIP
 from utilidades.aulas.CreadorScriptsCambioDNS import CreadorScriptCambioDNS
 
 from utilidades.aulas.CreadorScriptCambioClave import CreadorScriptCambioClave
+
+from utilidades.aulas.CreadorScriptUnirDominio import CreadorScriptUnirDominio
+
+from utilidades.aulas.CreadorScriptRenombradoEquipo import CreadorScriptRenombradoEquipo
+
+
 # Cosas que hacer al hacer la imagen
 # Tener a mano el usuario administrador y la clave
 # Habilitar la ejecución de scripts ejecutando esto como administrador
@@ -161,15 +167,16 @@ def crear_script_cambio_clave(num_aula, num_pc, usuario, clave):
     CreadorScriptCambioClave.crear(ruta_script, usuario, clave)
 
 def crear_script_renombrado_equipo(num_aula, num_pc):
+    gestor_nombres=GestorNombres(num_aula, num_pc)
     ruta_script=get_ruta_script_pc(num_aula, num_pc, "05-Renombrar el equipo.bat")
+    CreadorScriptRenombradoEquipo.crear(ruta_script, gestor_nombres.get_nombre_completo_pc())
     return
     #guardar_texto_en_archivo(ruta_script, comando)
 
-def crear_script_union_dominio(num_aula, num_pc, nombre_dominio, admin_dominio, clave_admin_dominio):
-    nombre_script_cambio_clave="05-Unir al dominio.bat"
+def crear_script_union_dominio(num_aula, num_pc):
+    nombre_script_cambio_clave="06-Unir al dominio.bat"
     ruta_script=get_ruta_script_pc(num_aula, num_pc, nombre_script_cambio_clave)
-    comando_unir_dominio=PLANTILLA_UNIR_DOMINIO.format(nombre_dominio, nombre_dominio, admin_dominio, clave_admin_dominio)
-    guardar_texto_en_archivo(ruta_script, comando_unir_dominio)
+    CreadorScriptUnirDominio.crear(ruta_script)
 
 
 def crear_todo():
@@ -186,6 +193,7 @@ def crear_todo():
             crear_script_cambio_dns(aula_sin_ceros, num_pc)
             crear_script_renombrado_equipo(aula_sin_ceros, num_pc)
             crear_script_cambio_clave(aula_sin_ceros, num_pc, NOMBRE_USUARIO_PROFESOR, CLAVE_USUARIO_LOCAL_PROFESOR)
+            crear_script_union_dominio(aula_sin_ceros, num_pc)
 
 
 if __name__=="__main__":
