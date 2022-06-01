@@ -16,6 +16,8 @@ from utilidades.aulas.CreadorScriptRenombradoEquipo import CreadorScriptRenombra
 
 from utilidades.aulas.CreadorScriptPermisos import CreadorScriptPermisos
 
+from utilidades.aulas.CreadorScriptReinicio import CreadorScriptReinicio
+
 # Cosas que hacer al hacer la imagen
 # Tener a mano el usuario administrador y la clave
 # Habilitar la ejecución de scripts ejecutando esto como administrador
@@ -175,19 +177,25 @@ def crear_script_renombrado_equipo(num_aula, num_pc):
     #guardar_texto_en_archivo(ruta_script, comando)
 
 def crear_script_union_dominio(num_aula, num_pc):
-    nombre_script_cambio_clave="06-Unir-a-dominio.bat"
+    nombre_script_cambio_clave="07-Unir-a-dominio.bat"
     ruta_script=get_ruta_script_pc(num_aula, num_pc, nombre_script_cambio_clave)
     CreadorScriptUnirDominio.crear(ruta_script)
 
 def crear_script_disco_manana(num_aula, num_pc):
     gestor_nombres=GestorNombres(num_aula, num_pc)
-    ruta_script=get_ruta_script_pc(num_aula, num_pc, "08-Disco-del-usuario-manana.bat")
-    CreadorScriptPermisos.crear(ruta_script, gestor_nombres.get_nombre_alumno("M"))
+    ruta_script=get_ruta_script_pc(num_aula, num_pc, "09-Disco-del-usuario-manana.bat")
+    CreadorScriptPermisos.crear(ruta_script, gestor_nombres.get_nombre_completo_pc(), gestor_nombres.get_nombre_alumno("M"))
+
+def crear_script_reinicio(num_aula, num_pc, nombre_bat):
+    gestor_nombres=GestorNombres(num_aula, num_pc)
+    ruta_script=get_ruta_script_pc(num_aula, num_pc, nombre_bat)
+    CreadorScriptReinicio.crear(ruta_script)
+
 
 def crear_script_disco_tarde(num_aula, num_pc):
     gestor_nombres=GestorNombres(num_aula, num_pc)
-    ruta_script=get_ruta_script_pc(num_aula, num_pc, "09-Disco-del-usuario-tarde.bat")
-    CreadorScriptPermisos.crear(ruta_script, gestor_nombres.get_nombre_alumno("T"))
+    ruta_script=get_ruta_script_pc(num_aula, num_pc, "10-Disco-del-usuario-tarde.bat")
+    CreadorScriptPermisos.crear(ruta_script, gestor_nombres.get_nombre_completo_pc(), gestor_nombres.get_nombre_alumno("T"))
 
 
 def crear_todo():
@@ -203,8 +211,10 @@ def crear_todo():
             crear_script_cambio_ip(aula_sin_ceros, num_pc)
             crear_script_cambio_dns(aula_sin_ceros, num_pc)
             crear_script_renombrado_equipo(aula_sin_ceros, num_pc)
+            crear_script_reinicio(aula_sin_ceros, num_pc, "06-Reiniciar.bat")
             crear_script_cambio_clave(aula_sin_ceros, num_pc, NOMBRE_USUARIO_PROFESOR, CLAVE_USUARIO_LOCAL_PROFESOR)
             crear_script_union_dominio(aula_sin_ceros, num_pc)
+            crear_script_reinicio(aula_sin_ceros, num_pc, "08-Reiniciar.bat")
             crear_script_disco_manana(aula_sin_ceros, num_pc)
             crear_script_disco_tarde(aula_sin_ceros, num_pc)
 

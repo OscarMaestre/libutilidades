@@ -1,16 +1,16 @@
 from utilidades.aulas.GestorComandos import GestorComandos
 from utilidades.aulas.CreadorScriptsBat import CreadorScriptsBat
 
-class CreadorScriptPermisos(object):
+class CreadorScriptReinicio(object):
     @staticmethod
-    def crear(ruta_archivo_bat, nombreequipo, usuario):
+    def crear(ruta_archivo_bat):
         
         
-        texto_cabecera="ASIGNADOR DE PERMISOS EN DISCO"
+        texto_cabecera="Reiniciando..."
         
-        informe_union_dominio="Se va a asignar un disco al usuario {0}.".format(usuario)
+        informe_union_dominio="En este punto ES IMPRESCINDIBLE REINICIAR EL EQUIPO"
         
-        texto_comando=GestorComandos.dar_propiedad_disco_a_alumno(nombreequipo, usuario)
+        texto_comando=GestorComandos.reiniciar_equipo()
         
         texto_mensaje_espera="Comprueba si ha habido algún error conocido. Si no es así, puedes terminar la ejecución"
 
