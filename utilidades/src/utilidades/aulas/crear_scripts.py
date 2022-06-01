@@ -14,6 +14,7 @@ from utilidades.aulas.CreadorScriptUnirDominio import CreadorScriptUnirDominio
 
 from utilidades.aulas.CreadorScriptRenombradoEquipo import CreadorScriptRenombradoEquipo
 
+from utilidades.aulas.CreadorScriptPermisos import CreadorScriptPermisos
 
 # Cosas que hacer al hacer la imagen
 # Tener a mano el usuario administrador y la clave
@@ -162,21 +163,31 @@ def crear_script_cambio_dns(num_aula, num_pc):
     CreadorScriptCambioDNS.crear(ruta_script, NOMBRE_TARJETA_RED, DNS[0], DNS[1] )
     
 def crear_script_cambio_clave(num_aula, num_pc, usuario, clave):
-    nombre_script_cambio_clave="06-Cambiar-clave-profesor-a-{0}.bat".format(clave)
+    nombre_script_cambio_clave="04-Cambiar-clave-profesor-a-{0}.bat".format(clave)
     ruta_script=get_ruta_script_pc(num_aula, num_pc, nombre_script_cambio_clave)
     CreadorScriptCambioClave.crear(ruta_script, usuario, clave)
 
 def crear_script_renombrado_equipo(num_aula, num_pc):
     gestor_nombres=GestorNombres(num_aula, num_pc)
-    ruta_script=get_ruta_script_pc(num_aula, num_pc, "05-Renombrar el equipo.bat")
+    ruta_script=get_ruta_script_pc(num_aula, num_pc, "05-Renombrar-equipo.bat")
     CreadorScriptRenombradoEquipo.crear(ruta_script, gestor_nombres.get_nombre_completo_pc())
     return
     #guardar_texto_en_archivo(ruta_script, comando)
 
 def crear_script_union_dominio(num_aula, num_pc):
-    nombre_script_cambio_clave="06-Unir al dominio.bat"
+    nombre_script_cambio_clave="06-Unir-a-dominio.bat"
     ruta_script=get_ruta_script_pc(num_aula, num_pc, nombre_script_cambio_clave)
     CreadorScriptUnirDominio.crear(ruta_script)
+
+def crear_script_disco_manana(num_aula, num_pc):
+    gestor_nombres=GestorNombres(num_aula, num_pc)
+    ruta_script=get_ruta_script_pc(num_aula, num_pc, "08-Disco-del-usuario-manana.bat")
+    CreadorScriptPermisos.crear(ruta_script, gestor_nombres.get_nombre_alumno("M"))
+
+def crear_script_disco_tarde(num_aula, num_pc):
+    gestor_nombres=GestorNombres(num_aula, num_pc)
+    ruta_script=get_ruta_script_pc(num_aula, num_pc, "09-Disco-del-usuario-tarde.bat")
+    CreadorScriptPermisos.crear(ruta_script, gestor_nombres.get_nombre_alumno("T"))
 
 
 def crear_todo():
@@ -194,6 +205,8 @@ def crear_todo():
             crear_script_renombrado_equipo(aula_sin_ceros, num_pc)
             crear_script_cambio_clave(aula_sin_ceros, num_pc, NOMBRE_USUARIO_PROFESOR, CLAVE_USUARIO_LOCAL_PROFESOR)
             crear_script_union_dominio(aula_sin_ceros, num_pc)
+            crear_script_disco_manana(aula_sin_ceros, num_pc)
+            crear_script_disco_tarde(aula_sin_ceros, num_pc)
 
 
 if __name__=="__main__":

@@ -10,6 +10,7 @@ class GestorNombres(object):
         # Todo tiene dos digitos y si no los hay se rellena con 0, ejemplo PC04 o PC17
         self.PLANTILLA_NOMBRE_AULA="AULAB{0}"
         self.PLANTILLA_NOMBRE_PC="PC{0}"
+        self.PLANTILLA_USUARIO_ALUMNO="B{0}-{1}{2}"
         self.PLANTILLA_NOMBRE_COMPLETO_ORDENADOR="{0}-{1}"
         self.MAX_PC=20
         #Si hay otros ordenadores con otras IP poner aquí su último byte y su nombre
@@ -55,3 +56,7 @@ class GestorNombres(object):
         
         texto=self.PLANTILLA_NOMBRE_COMPLETO_ORDENADOR.format(nombre_aula, nombre_pc)
         return texto
+
+    def get_nombre_alumno(self, manana_o_tarde):
+        usuario_alumno=self.PLANTILLA_USUARIO_ALUMNO.format(self.num_aula_con_ceros, self.num_pc_con_ceros, manana_o_tarde)
+        return usuario_alumno

@@ -35,10 +35,19 @@ class GestorComandos(object):
     @staticmethod
     def unir_a_dominio():
         PLANTILLA_UNIR_DOMINIO="""
-wmic computersystem where name="%computername%" call joindomainorworkgroup fjoinoptions=3 name="ciclos.local" username="admin" Password="secret"
+wmic computersystem where name="%computername%" call joindomainorworkgroup fjoinoptions=3 name="ciclos.local" username="admin" Password="inf-678"
         
         """
         return PLANTILLA_UNIR_DOMINIO
 
+
+    @staticmethod
+    def dar_propiedad_disco_a_alumno(usuario):
+        PLANTILLA_PROPIEDAD="""
+        ..\\..\\zenity.exe --file-selection --directory --title "Indica el disco del usuario {0}"
+        """
+
+        texto=PLANTILLA_PROPIEDAD.format(usuario)
+        return texto
 
         
