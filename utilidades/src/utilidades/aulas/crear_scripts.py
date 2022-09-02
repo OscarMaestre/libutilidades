@@ -28,7 +28,7 @@ MIN_AULA=8
 MAX_AULA=15
 
 MIN_PC=1
-MAX_PC=20
+MAX_PC=32
 
 
 
@@ -152,7 +152,7 @@ def crear_script_cambio_ip(num_aula, num_pc):
     DNS=["10.1.0.1", "8.8.4.4"]
 
     ip=PLANTILLA_IP.format(num_aula, num_pc)
-    mascara="255.255.255.0"
+    mascara="255.255.0.0"
     gateway=GATEWAY.format(num_aula)
 
     ruta_script=get_ruta_script_pc(num_aula, num_pc, "02-Cambiar-IP.bat")
@@ -215,8 +215,8 @@ def crear_todo():
             crear_script_cambio_clave(aula_sin_ceros, num_pc, NOMBRE_USUARIO_PROFESOR, CLAVE_USUARIO_LOCAL_PROFESOR)
             crear_script_union_dominio(aula_sin_ceros, num_pc)
             crear_script_reinicio(aula_sin_ceros, num_pc, "08-Reiniciar.bat")
-            crear_script_disco_manana(aula_sin_ceros, num_pc)
-            crear_script_disco_tarde(aula_sin_ceros, num_pc)
+            #crear_script_disco_manana(aula_sin_ceros, num_pc)
+            #crear_script_disco_tarde(aula_sin_ceros, num_pc)
 
 
 if __name__=="__main__":
