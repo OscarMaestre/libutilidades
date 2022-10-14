@@ -18,6 +18,8 @@ from utilidades.aulas.CreadorScriptPermisos import CreadorScriptPermisos
 
 from utilidades.aulas.CreadorScriptReinicio import CreadorScriptReinicio
 
+from utilidades.aulas.CreadorScriptInicio import CreadorScriptInicio
+
 # Cosas que hacer al hacer la imagen
 # Tener a mano el usuario administrador y la clave
 # Habilitar la ejecución de scripts ejecutando esto como administrador
@@ -197,7 +199,10 @@ def crear_script_disco_tarde(num_aula, num_pc):
     ruta_script=get_ruta_script_pc(num_aula, num_pc, "10-Disco-del-usuario-tarde.bat")
     CreadorScriptPermisos.crear(ruta_script, gestor_nombres.get_nombre_completo_pc(), gestor_nombres.get_nombre_alumno("T"))
 
-
+def crear_script_inicio(num_aula, num_pc):
+    ruta_script=get_ruta_script_pc(num_aula, num_pc, "01-Inicio.bat")
+    CreadorScriptInicio.crear(ruta_script)
+    
 def crear_todo():
     numeros_aula=range(MIN_AULA, MAX_AULA+1)
     num_ordenador=range(MIN_PC, MAX_PC+1)
@@ -207,7 +212,9 @@ def crear_todo():
         #Para cada ordenador de esa aula
         for num_pc in posibles_ordenadores:
             gestor_nombres=GestorNombres(aula_sin_ceros, num_pc)
+            
             crear_directorio_equipo(gestor_nombres.get_nombre_aula(), gestor_nombres.get_nombre_pc())
+            crear_script_inicio(aula_sin_ceros, num_pc)
             crear_script_cambio_ip(aula_sin_ceros, num_pc)
             crear_script_cambio_dns(aula_sin_ceros, num_pc)
             crear_script_renombrado_equipo(aula_sin_ceros, num_pc)

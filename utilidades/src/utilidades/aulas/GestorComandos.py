@@ -24,6 +24,7 @@ class GestorComandos(object):
         comando=PLANTILLA_CAMBIO_CLAVE.format(usuario, nueva_clave)
         return comando
 
+
     @staticmethod
     def reiniciar_equipo():
         return "shutdown /r"
@@ -38,7 +39,7 @@ class GestorComandos(object):
     @staticmethod
     def unir_a_dominio():
         PLANTILLA_UNIR_DOMINIO="""
-wmic computersystem where name="%computername%" call joindomainorworkgroup fjoinoptions=3 name="ciclos.local" username="admin" Password="inf-678"
+wmic computersystem where name="%computername%" call joindomainorworkgroup fjoinoptions=3 name="ciclos.local" username="admin" Password="19+Ipf-20"
         
         """
         return PLANTILLA_UNIR_DOMINIO
