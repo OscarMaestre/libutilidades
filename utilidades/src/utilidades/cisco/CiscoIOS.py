@@ -271,4 +271,10 @@ class CiscoIOS(object):
         self.ir_a_modo_config()
         self.anadir_comando("show vlan")
         
-        
+    def poner_ip_en_tarjeta(self, nombre_tarjeta, ip, mascara):
+        self.ir_a_modo_4("interface {0}".format(nombre_tarjeta), "config-if")
+        self.anadir_comando("ip address {0} {1}".format(ip, mascara))
+
+    def poner_dhcp_en_tarjeta(self, nombre_tarjeta):
+        self.ir_a_modo_4("interface {0}".format(nombre_tarjeta), "config-if")
+        self.anadir_comando("ip address dhcp")
