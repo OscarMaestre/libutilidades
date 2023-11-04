@@ -1,4 +1,5 @@
 from random import choice, randint
+from ipaddress import IPv4Network
 import unittest
 
 
@@ -46,7 +47,7 @@ class Generator(object):
         return mascara_con_puntos
 
     @staticmethod 
-    def generar_direccion_de_red_de_clase_a():
+    def generar_direccion_de_host_de_clase_a():
         #Generamos 31 bits al azar y ponemos como primer bit el 0
         secuencia=Generator.generar_secuencia_binaria(31)
         secuencia="0"+secuencia
@@ -54,7 +55,7 @@ class Generator(object):
         return (secuencia, bits_mascara, Generator.CLASE_A)
     
     @staticmethod 
-    def generar_direccion_de_red_de_clase_b():
+    def generar_direccion_de_host_de_clase_b():
         #Generamos 30 bits al azar y ponemos como primeros bits "10"
         secuencia=Generator.generar_secuencia_binaria(30)
         secuencia="10"+secuencia
@@ -62,13 +63,56 @@ class Generator(object):
         return (secuencia, bits_mascara, Generator.CLASE_B)
 
     @staticmethod 
-    def generar_direccion_de_red_de_clase_c():
+    def generar_direccion_de_host_de_clase_c():
         #Generamos 29 bits al azar y ponemos como primeros bits "110"
-        secuencia=Generator.generar_secuencia_binaria(30)
+        secuencia=Generator.generar_secuencia_binaria(29)
         secuencia="110"+secuencia
         bits_mascara=randint(24, 28)
         return (secuencia, bits_mascara, Generator.CLASE_C)
+    
+    def generar_direccion_de_red_de_clase_a():
+        aux=Generator.generar_direccion_de_red_a_partir_de_prefijo_binario("0")
+        return aux
+    
+    def generar_direccion_de_red_privada_de_clase_a():
+        aux=Generator.generar_direccion_de_red_a_partir_de_prefijo_binario("00001010")
+        return aux
+    
+    def generar_direccion_de_red_de_clase_b():
+        aux=Generator.generar_direccion_de_red_a_partir_de_prefijo_binario("10")
+        return aux
+    
+    def generar_direccion_de_red_privada_de_clase_b():
+        aux=Generator.generar_direccion_de_red_a_partir_de_prefijo_binario("101011000001")
+        return aux
+        
+    def generar_direccion_de_red_de_clase_c():
+        aux=Generator.generar_direccion_de_red_a_partir_de_prefijo_binario("110")
+        return aux
 
+    def generar_direccion_de_red_privada_de_clase_c():
+        aux=Generator.generar_direccion_de_red_a_partir_de_prefijo_binario("1100000010101000")
+        return aux
+    
+    def generar_direccion_de_red_a_partir_de_prefijo_binario(prefijo_binario):
+        longitud_prefijo=len(prefijo_binario)
+        bits_mascara=randint(longitud_prefijo,29)
+        bits_host=32-bits_mascara
+        ceros_host="0"*bits_host
+        secuencia=Generator.generar_secuencia_binaria(32)
+        secuencia=prefijo_binario+secuencia[longitud_prefijo:]
+        secuencia=secuencia[:bits_mascara]+ceros_host
+        aux=Generator.convertir_binario_a_ip(secuencia)
+        return IPv4Network(f"{aux}/{bits_mascara}")
+
+    def generar_direccion(clase):
+        if clase==Generator.CLASE_A:
+            return Generator.generar_direccion_de_red_de_clase_a()
+        if clase==Generator.CLASE_B:
+            return Generator.generar_direccion_de_red_de_clase_b()
+        if clase==Generator.CLASE_C:
+            return Generator.generar_direccion_de_red_de_clase_c()
+        
 class Tests(unittest.TestCase):
     def test_secuencia_binaria(self):
         longitud=24
@@ -87,17 +131,17 @@ class Tests(unittest.TestCase):
         nueva_secuencia=Generator.convertir_ip_a_binario(direccion_ip, con_puntos=False)
         self.assertEqual(secuencia, nueva_secuencia)
     def test_generacion_clase_a(self):
-        (direccion_clase_a, bits_red)=Generator.generar_direccion_de_red_de_clase_a()
+        (direccion_clase_a, bits_red, clase)=Generator.generar_direccion_de_host_de_clase_a()
         direccion_clase_a=Generator.convertir_binario_a_ip(direccion_clase_a)
         cadena="{0}/{1}".format(direccion_clase_a, bits_red)
         #print(cadena)
     def test_generacion_clase_b(self):
-        (direccion_clase_b, bits_red)=Generator.generar_direccion_de_red_de_clase_b()
+        (direccion_clase_b, bits_red, clase)=Generator.generar_direccion_de_host_de_clase_b()
         direccion_clase_b=Generator.convertir_binario_a_ip(direccion_clase_b)
         cadena="{0}/{1}".format(direccion_clase_b, bits_red)
         #print(cadena)
     def test_generacion_clase_c(self):
-        (direccion_clase_c, bits_red)=Generator.generar_direccion_de_red_de_clase_b()
+        (direccion_clase_c, bits_red, clase)=Generator.generar_direccion_de_host_de_clase_b()
         direccion_clase_c=Generator.convertir_binario_a_ip(direccion_clase_c)
         cadena="{0}/{1}".format(direccion_clase_c, bits_red)
         #print(cadena)
@@ -134,8 +178,29 @@ class Tests(unittest.TestCase):
         mascara_esperada="255.255.192.0"
         self.assertEqual(mascara_calculada, mascara_esperada)
 
+    def test_ipnetwork(self):
+        direccion=Generator.generar_direccion(Generator.CLASE_A)
+        print(direccion)
+
+        direccion=Generator.generar_direccion(Generator.CLASE_B)
+        print(direccion)
+
+        direccion=Generator.generar_direccion(Generator.CLASE_C)
+        print(direccion)
         
+        privada_clase_a=Generator.generar_direccion_de_red_privada_de_clase_a()
+        print(privada_clase_a)
+
+        privada_clase_b=Generator.generar_direccion_de_red_privada_de_clase_b()
+        print(privada_clase_b)
+
+        privada_clase_c=Generator.generar_direccion_de_red_privada_de_clase_c()
+        print(privada_clase_c)
         
+        #Prefijo "10.14"
+        prefijo="0000101000001110"
+        prueba=Generator.generar_direccion_de_red_a_partir_de_prefijo_binario(prefijo)
+        print(prueba)
         
 
 if __name__=="__main__":
