@@ -24,6 +24,7 @@ setup(name='utilidades',
                 'utilidades.cadenas',
                 'utilidades.internet',
                 'utilidades.ip',
+		'utilidades.netplan',
                 'utilidades.vagrant',
                 'utilidades.cisco'],
 
