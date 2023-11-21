@@ -71,18 +71,15 @@ Class GestorMensajes(Aulas)
 .. autoclass:: utilidades.aulas.GestorMensajes.GestorMensajes
    :members:
 
-Class GestorNombres(Aulas)
+Clase GestorNombres(Aulas)
 --------------------------------------------------------------------------------
 
 .. autoclass:: utilidades.aulas.GestorNombres.GestorNombres
    :members:
 
 
-Indices y tables
+Clase NetplanGenerator
 --------------------------------------------------------------------------------
 
-
-* :ref:`genindex`
-* :ref:`modindex`
-* :ref:`search`
-
+.. autoclass:: utilidades.netplan.netplan.NetplanGenerator
+   :members:

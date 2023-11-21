@@ -11,7 +11,9 @@
     <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
     <script src="../../../_static/jquery.js"></script>
     <script src="../../../_static/underscore.js"></script>
+    <script src="../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="../../../_static/doctools.js"></script>
+    <script src="../../../_static/sphinx_highlight.js"></script>
     <script src="../../../_static/translations.js"></script>
     <link rel="index" title="Índice" href="../../../genindex.html" />
     <link rel="search" title="Búsqueda" href="../../../search.html" />
@@ -41,7 +43,94 @@
     
     <span class="nd">@staticmethod</span>
     <span class="k">def</span> <span class="nf">cambiar_dns</span><span class="p">(</span><span class="n">dns1</span><span class="p">,</span> <span class="n">dns2</span><span class="p">,</span> <span class="n">nombre_tarjeta</span><span class="p">):</span>
-        <span class="k">pass</span></div>
+        <span class="n">PLANTILLA_DNS</span><span class="o">=</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="si">{0}</span><span class="s2"></span>
+<span class="si">{1}</span><span class="s2"></span>
+<span class="s2">&quot;&quot;&quot;</span>
+        <span class="n">comando_dns_1</span><span class="o">=</span><span class="s2">&quot;netsh interface ip set dns </span><span class="se">\&quot;</span><span class="si">{0}</span><span class="se">\&quot;</span><span class="s2"> static </span><span class="si">{1}</span><span class="s2">&quot;</span> 
+        <span class="n">comando_dns_2</span><span class="o">=</span><span class="s2">&quot;netsh interface ip add dns </span><span class="se">\&quot;</span><span class="si">{0}</span><span class="se">\&quot;</span><span class="s2"> </span><span class="si">{1}</span><span class="s2">&quot;</span>
+        <span class="n">comando1</span><span class="o">=</span><span class="n">comando_dns_1</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">nombre_tarjeta</span><span class="p">,</span> <span class="n">dns1</span><span class="p">)</span>
+        <span class="n">comando2</span><span class="o">=</span><span class="n">comando_dns_2</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">nombre_tarjeta</span><span class="p">,</span> <span class="n">dns2</span><span class="p">)</span>
+        <span class="n">texto</span><span class="o">=</span><span class="n">PLANTILLA_DNS</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">comando1</span><span class="p">,</span> <span class="n">comando2</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">texto</span>
+
+    <span class="nd">@staticmethod</span>
+    <span class="k">def</span> <span class="nf">cambiar_clave</span><span class="p">(</span><span class="n">usuario</span><span class="p">,</span> <span class="n">nueva_clave</span><span class="p">):</span>
+        <span class="n">PLANTILLA_CAMBIO_CLAVE</span><span class="o">=</span><span class="s2">&quot;net user </span><span class="si">{0}</span><span class="s2"> </span><span class="si">{1}</span><span class="s2">&quot;</span>
+        <span class="n">comando</span><span class="o">=</span><span class="n">PLANTILLA_CAMBIO_CLAVE</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">usuario</span><span class="p">,</span> <span class="n">nueva_clave</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">comando</span>
+
+
+    <span class="nd">@staticmethod</span>
+    <span class="k">def</span> <span class="nf">reiniciar_equipo</span><span class="p">():</span>
+        <span class="k">return</span> <span class="s2">&quot;shutdown /r&quot;</span>
+    <span class="nd">@staticmethod</span>
+    <span class="k">def</span> <span class="nf">cambiar_nombre</span><span class="p">(</span><span class="n">nuevo_nombre</span><span class="p">):</span>
+        <span class="n">PLANTILLA_CAMBIO_NOMBRE</span><span class="o">=</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">        WMIC ComputerSystem where Name=&quot;%COMPUTERNAME%&quot; call Rename Name=&quot;</span><span class="si">{0}</span><span class="s2">&quot;</span>
+<span class="s2">        &quot;&quot;&quot;</span>
+        <span class="n">comando</span><span class="o">=</span><span class="n">PLANTILLA_CAMBIO_NOMBRE</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">nuevo_nombre</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">comando</span>
+
+    <span class="nd">@staticmethod</span>
+    <span class="k">def</span> <span class="nf">unir_a_dominio</span><span class="p">():</span>
+        <span class="n">PLANTILLA_UNIR_DOMINIO</span><span class="o">=</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">wmic computersystem where name=&quot;</span><span class="si">%c</span><span class="s2">omputername%&quot; call joindomainorworkgroup fjoinoptions=3 name=&quot;ciclos.local&quot; username=&quot;admin&quot; Password=&quot;19+Ipf-20&quot;</span>
+<span class="s2">        </span>
+<span class="s2">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="n">PLANTILLA_UNIR_DOMINIO</span>
+
+
+    <span class="nd">@staticmethod</span>
+    <span class="k">def</span> <span class="nf">dar_propiedad_disco_a_alumno</span><span class="p">(</span><span class="n">nombreequipo</span><span class="p">,</span> <span class="n">usuario</span><span class="p">):</span>
+        <span class="n">PLANTILLA_PROPIEDAD</span><span class="o">=</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">@echo off</span>
+<span class="s2">@set COMANDO=..</span><span class="se">\\</span><span class="s2">..</span><span class="se">\\</span><span class="s2">zenity.exe --file-selection --directory --title &quot;Indica el disco del usuario </span><span class="si">{0}</span><span class="s2">&quot;</span>
+<span class="s2">@for /f </span><span class="si">%%</span><span class="s2">i in (&#39;%COMANDO%&#39;) do set DISCO=</span><span class="si">%%</span><span class="s2">i</span>
+<span class="s2">@echo Vas a modificar la propiedad del disco  %DISCO%</span>
+<span class="s2">@mkdir %DISCO%VirtualBOX-VM</span>
+<span class="s2">@pause</span>
+<span class="s2">@cls</span>
+<span class="s2">echo Dando acceso total al usuario Profesor local</span>
+<span class="s2">@echo on</span>
+<span class="s2">icacls %DISCO% /grant </span><span class="si">{1}</span><span class="s2">\Profesor:F  /t</span>
+<span class="s2">@echo off</span>
+<span class="s2">@echo off</span>
+<span class="s2">@pause</span>
+<span class="s2">@cls</span>
+
+<span class="s2">echo Dando acceso total al administrador del dominio</span>
+<span class="s2">@echo on</span>
+<span class="s2">icacls %DISCO% /grant ciclos</span><span class="se">\\</span><span class="s2">admin:F  /t</span>
+<span class="s2">@echo off</span>
+<span class="s2">@echo off</span>
+<span class="s2">@pause</span>
+<span class="s2">@cls</span>
+
+<span class="s2">echo Dando acceso total al usuario </span><span class="si">{0}</span><span class="s2"></span>
+<span class="s2">@echo on</span>
+<span class="s2">icacls %DISCO% /grant ciclos</span><span class="se">\\</span><span class="si">{0}</span><span class="s2">:F  /t</span>
+<span class="s2">@echo off</span>
+<span class="s2">@echo off</span>
+<span class="s2">@pause</span>
+<span class="s2">@cls</span>
+
+
+
+
+
+<span class="s2">        &quot;&quot;&quot;</span>
+
+        <span class="n">texto</span><span class="o">=</span><span class="n">PLANTILLA_PROPIEDAD</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">usuario</span><span class="p">,</span> <span class="n">nombreequipo</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">texto</span></div>
+
+<span class="c1"># echo Eliminando al resto de usuarios (para evitar que los )</span>
+<span class="c1"># @echo on</span>
+<span class="c1"># icacls %DISCO% /deny &quot;NT AUTHORITY\\Usuarios autentificados&quot;:F  /t</span>
+<span class="c1"># @echo off</span>
+<span class="c1"># @echo off</span>
+<span class="c1"># @pause</span>
+<span class="c1"># @cls</span>
 </pre></div>
 
           </div>
@@ -79,7 +168,7 @@
     </form>
     </div>
 </div>
-<script>$('#searchbox').show(0);</script>
+<script>document.getElementById('searchbox').style.display = "block"</script>
 
 
 
@@ -96,7 +185,7 @@
       &copy;2016, None.
       
       |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 4.5.0</a>
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 5.3.0</a>
       &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
       
     </div>
