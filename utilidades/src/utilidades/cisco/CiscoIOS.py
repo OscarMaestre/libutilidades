@@ -133,7 +133,7 @@ class CiscoIOS(object):
 
     def cambiar_prioridad_stp(self, prioridad):
         self.ir_a_modo_config()
-        plantilla="spanning tree vlan 1 priority {0}"
+        plantilla="spanning-tree vlan 1 priority {0}"
         self.anadir_comando(plantilla.format(str(prioridad)))
 
     def get_comandos_sin_prompt(self):
